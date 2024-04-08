@@ -36,51 +36,53 @@ if (isset($_REQUEST['id_transfert'])) {
     include '../../includes/titre-page.php';
     ?>
     <main>
-        <table border="1px">
-            <tr>
-                <th>Titre ouvrage</th>
-                <th>Ville origine</th>
-                <th>Ville cible</th>
-                <th>Date transfert</th>
-            </tr>
-        <?php
-        foreach ($temp as $t) {
-            ?>
-            <tr>
-                <td>
-                    <?= $t['titre_ouvrage']; ?>
-                </td>
-                <td>
-                    <?= $t['ville_bibliotheque']; ?>
-                </td>
-                <td>
-                    <?= $t['ville_bibliotheque']; ?>
-                </td>
-                <td>
-                    <?= $t['date_transfert']; ?>
-                </td>
-                <td>
-                    <form action="transfert_01.php" method="post">
-                        <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                        <input type="submit" value="🗑️">
-                    </form>
-                </td>
-                <td>
-                    <form action="transfert_02.php?id=<?= $t['numero_transfert'] ?>" method="post">
-                        <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                        <input type="submit">
-                    </form>
-                </td>
-            </tr>
-        <?php
-        }
-        ?>
-        </table>
-        </br>
-        <a href="emprunt_04.php">
-            <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-            Add
-        </a>
+        <div class="content">
+            <table border="1px">
+                <tr>
+                    <th>Titre ouvrage</th>
+                    <th>Ville origine</th>
+                    <th>Ville cible</th>
+                    <th>Date transfert</th>
+                </tr>
+                <?php
+                foreach ($temp as $t) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?= $t['titre_ouvrage']; ?>
+                        </td>
+                        <td>
+                            <?= $t['ville_bibliotheque']; ?>
+                        </td>
+                        <td>
+                            <?= $t['ville_bibliotheque']; ?>
+                        </td>
+                        <td>
+                            <?= $t['date_transfert']; ?>
+                        </td>
+                        <td>
+                            <form action="transfert_01.php" method="post">
+                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
+                                <input type="submit" value="🗑️">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="transfert_02.php?id=<?= $t['numero_transfert'] ?>" method="post">
+                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
+                                <input type="submit">
+                            </form>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
+            </br>
+            <a href="emprunt_04.php">
+                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                Add
+            </a>
+        </div>
     </main>
 </body>
 
