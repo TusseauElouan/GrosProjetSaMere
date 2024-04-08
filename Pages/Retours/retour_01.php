@@ -33,10 +33,10 @@ if(isset($_REQUEST['id_retour'])){
     ?>
     <table>
         <tr>
-            <td>Titre ouvrage</td>
-            <td>Nom auteur</td>
-            <td>Prénom auteurt</td>
-            <td>Date du retour</td>
+            <th>Titre ouvrage</th>
+            <th>Nom auteur</th>
+            <th>Prénom auteurt</th>
+            <th>Date du retour</th>
         </tr>
 
 
@@ -65,7 +65,7 @@ if(isset($_REQUEST['id_retour'])){
     <?php
     }
     ?>
-    <form action="add_ListeRetour.php" method="post">
+    <form action="Retour_02.php" method="post">
         <input type="hidden" name="nom" value="">
         <input type="submit" class="" value="➕">
     </form>
