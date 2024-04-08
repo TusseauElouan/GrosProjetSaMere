@@ -1,5 +1,9 @@
 body{
     display: grid;
+    grid-column: 25% 75%;
+}
+.boutonsform{
+    width: 20px;
     grid-template-columns: 25% 75%;
     grid-template-rows: 15% 85%;
 }
