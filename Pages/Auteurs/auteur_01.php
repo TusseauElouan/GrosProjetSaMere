@@ -22,13 +22,13 @@
                     while($auteur = $temp->fetch()){
                         echo $auteur
                 ?>
-                    <!-- <tr><td>#</td><td>#</td><td>#</td><td><a href="modif.php?nom=#&prenom=#&comm=#">Modifier</a><a href="suppr.php?id=#">Remove</a></td></tr> -->
+                    <tr><td>#</td><td>#</td><td>#</td><td><a href="auteur_02.php?nom=#&prenom=#&comm=#">Modifier</a><a href="auteur_03.php?id=#">Remove</a></td></tr>
                 <?php
                     }
                 ?>
                 </table>
                 <br />
-                <a href="ajout.php">Add</a>
+                <a href="auteur_04.php">Add</a>
             </div>
 
 
