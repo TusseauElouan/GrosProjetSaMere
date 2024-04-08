@@ -57,7 +57,7 @@ if(isset($_REQUEST['id_retour'])){
             <td>
                 <form action="retour_02.php?id=<?=$t['numero_retour']?>" method="post">
                     <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
-                    <input type="submit" value="✏️">
+                    <input type="submit">
                 </form>
             </td>
         </tr>
@@ -67,7 +67,7 @@ if(isset($_REQUEST['id_retour'])){
     ?>
     <form action="Retour_02.php" method="post">
         <input type="hidden" name="nom" value="">
-        <input type="submit" class="" value="➕">
+        <input type="submit">
     </form>
 </body>
 </html>

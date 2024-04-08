@@ -69,7 +69,7 @@ if (isset($_REQUEST['id_transfert'])) {
                 <td>
                     <form action="transfert_02.php?id=<?= $t['numero_transfert'] ?>" method="post">
                         <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                        <input type="submit" value="✏️">
+                        <input type="submit">
                     </form>
                 </td>
             </tr>
@@ -79,7 +79,7 @@ if (isset($_REQUEST['id_transfert'])) {
         ?>
     <form action="transfert_02.php" method="post">
         <input type="hidden" name="nom" value="">
-        <input type="submit" class="add-btn delete-btn" value="➕">
+        <input type="submit">
     </form>
 </body>
 
