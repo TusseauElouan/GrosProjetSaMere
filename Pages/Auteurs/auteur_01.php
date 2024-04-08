@@ -1,13 +1,5 @@
 <?php
-$host = 'localhost';
-$db = 'bibliotheque';
-$user = 'root';
-$pass = '';
-$port = 3306;
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset;port=$port";
-$pdo = new PDO($dsn, $user, $pass);
+require_once '../../includes/connexion.php'
 ?>
 <!doctype html>
 <html lang="fr">
@@ -27,7 +19,11 @@ $pdo = new PDO($dsn, $user, $pass);
         <main>
             <div>
                 <table border="1px">
-                <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>Modifs</th></tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>Prénom</td>
+                    <td>Commentaire</td>
+                    <th>Modifs</th></tr>
                 <?php
                     $sql = 'SELECT * FROM auteur';
                     $temp = $pdo->query($sql);
@@ -38,17 +34,17 @@ $pdo = new PDO($dsn, $user, $pass);
                         $commentaire = $auteur['commentaire']; 
                 ?>
                         <tr>
-                        <td><?= $nom ?></td>
-                        <td><?= $prenom ?></td>
-                        <td><?= $commentaire ?></td>
-                        <td>
-                            <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
-                                <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
-                            </a>
-                            <a href="auteur_03.php?id=<?= $id ?>">
-                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
-                            </a>
-                        </td>
+                            <td><?= $nom ?></td>
+                            <td><?= $prenom ?></td>
+                            <td><?= $commentaire ?></td>
+                            <td>
+                                <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
+                                    <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                                </a>
+                                <a href="auteur_03.php?id=<?= $id ?>">
+                                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
+                                </a>
+                            </td>
                         </tr>
                 <?php
                     }
