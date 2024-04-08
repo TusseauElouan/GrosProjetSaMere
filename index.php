@@ -21,9 +21,11 @@
         <a href="Pages/Transferts/transfert_01.php">Gestion des transferts</a>
     </nav>
 
-    <?php include'includes/heure.php';?>
+    <?php 
+    include 'includes/heure.php';
 
-    <?php include'includes/titre-page.php';?>
+    include 'includes/titre-page.php';
+    ?>
 
     <div class="content">
         <p>Bienvenue !</p>
