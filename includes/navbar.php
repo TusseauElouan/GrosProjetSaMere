@@ -4,7 +4,7 @@
     <a href="../Auteurs/auteur_01.php">Gestion des auteurs</a>
     <a href="../Ouvrages/ouvrages_01.php">Gestion des ouvrages</a>
     <a href="../Usagers/usagers_01.php">Gestion des usagers</a>
-    <a href="../emprunt_01.php">Gestion des emprunts</a>
+    <a href="../Emprunt/emprunt_01.php">Gestion des emprunts</a>
     <a href="../Retours/retour_01.php">Gestion des retours</a>
     <a href="../Transferts/transfert_01.php">Gestion des transferts</a>
 </nav>
