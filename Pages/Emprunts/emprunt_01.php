@@ -4,21 +4,20 @@ require_once '../../includes/connexion.php';
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Projet - Biblio</title>
+        <title>Formulaire Auteurs</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
-
+    <main>
     <body>
-        <header>
-            <?php
-            include("../../includes/navbar.php");
-            ?>
-        </header>
-        <main>
-            <div>
-                <table border="1px">
+        <?php
+            require_once '../../includes/navbar.php';
+            require_once '../../includes/heure.php';
+            require_once '../../includes/titre-page.php';
+        ?>
+        <div>
+            <table border="1px">
                 <tr><th>Numéro ouvrage</th><th>Date emprunt</th><th>Numéro usager</th><th>commentaire</th><th>Modifs</th></tr>
                 <?php
                     $sql = 'SELECT * FROM emprunt';
@@ -43,24 +42,18 @@ require_once '../../includes/connexion.php';
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                             </a>
                         </td>
-                        </tr>
                 <?php
                     }
                 ?>
-                </table>
-                <br />
-                <a href="emprunt_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Add
-                </a>
-            </div>
+            </table>
 
-
-        </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
+            <br />
+            <a href="emprunt_04.php">
+                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                Add
+            </a>
+        </div>
     </body>
+    </main>
 </html>
+

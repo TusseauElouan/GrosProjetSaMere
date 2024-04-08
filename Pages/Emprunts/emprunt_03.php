@@ -21,11 +21,19 @@ if (isset($_REQUEST['del'])) {
     </head>
 
     <body>
+<<<<<<< HEAD
         <header>
             <?php
             include("../../includes/navbar.php");
             ?>
         </header>
+=======
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
+>>>>>>> 1e6464cb57ea45bdfc4a4f58ce823516700ea885
         <main>
             <fieldset>
                 <h2>Êtes-vous sûr de vouloir supprimer cet auteur ?</h2>
@@ -33,10 +41,5 @@ if (isset($_REQUEST['del'])) {
                 <a href="auteur_01.php">Non</a>
             </fieldset>
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

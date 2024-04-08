@@ -37,11 +37,19 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
     </head>
 
     <body>
+<<<<<<< HEAD
         <header>
             <?php
             include("../../includes/navbar.php");
             ?>
         </header>
+=======
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
+>>>>>>> 1e6464cb57ea45bdfc4a4f58ce823516700ea885
         <main>
             <div>
                 <form action="auteur_02.php">
@@ -64,10 +72,5 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>
