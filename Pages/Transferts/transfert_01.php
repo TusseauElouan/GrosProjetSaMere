@@ -2,7 +2,9 @@
 
 require_once 'Database.php';
 
-$sql = 'SELECT transfert.numero_transfert,Ouvrage.nom Bibliotheque.ville_bibliotheque FROM Transfert,Ouvrage,Bibliotheque WHERE Ouvrage.numero_ouvrage = Transfert.numero_ouvrage';
+$sql = 'SELECT transfert.numero_transfert,Ouvrage.nom Bibliotheque.ville_bibliotheque 
+FROM transfert_vue,emprunt_vue
+WHERE Ouvrage.numero_ouvrage = Transfert.numero_ouvrage';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
