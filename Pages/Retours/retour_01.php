@@ -1,10 +1,10 @@
 <?php
 require_once 'Database.php';
 
-$sql = 'SELECT Retour.numero_retour,Auteur.nom_auteur,Auteur.prenom_auteur,Retour.date_retour 
-FROM Emprunt,Retour,Ouvrage 
-WHERE Retour.numero_emprunt = Emprunt.numero_emprunt AND Emprunt.numero_ouvrage = Ouvrage.numero_ouvrage 
-AND Ouvrage.numero_auteur';
+//requete affichage liste
+$sql = 'SELECT retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
+FROM retour_vue, auteur
+WHERE retour_vue.numero_auteur = auteur.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
@@ -52,7 +52,7 @@ foreach ($temp as $t) {
 }
 ?>
 <form action="add_ListeRetour.php" method="post">
-    <input type="hidden" name="nom" value="' . $r['nom'] . '">
-    <input type="submit" class="add-btn delete-btn" value="➕">
+    <input type="hidden" name="nom" value="">
+    <input type="submit" class="" value="➕">
 </form>
 <a href="index.php">retour sur à l'index</a>
