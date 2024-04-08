@@ -20,8 +20,10 @@ require_once '../../includes/connexion.php';
     include '../../includes/titre-page.php';
     ?>
     <main>
+        <div class="content">
+            <div>
         <a href="usagers_04.php">Ajoutez</a>
-        <table>
+        <table border="1px">
             <tr>
                 <th>Nom</th>
                 <th>Prenom</th>
@@ -58,6 +60,8 @@ require_once '../../includes/connexion.php';
             </tr>
             <?php } ?>
         </table>
+        </div>
+        </div>
     </main>
 </body>
 
