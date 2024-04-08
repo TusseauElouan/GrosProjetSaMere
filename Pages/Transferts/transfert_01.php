@@ -2,9 +2,18 @@
 
 require_once 'Database.php';
 
-$sql = 'SELECT Ouvrage.nom Bibliotheque.ville_bibliotheque FROM Transfert,Ouvrage,Bibliotheque WHERE Ouvrage.numero_ouvrage = Transfert.numero_ouvrage';
+$sql = 'SELECT transfert.numero_transfert,Ouvrage.nom Bibliotheque.ville_bibliotheque FROM Transfert,Ouvrage,Bibliotheque WHERE Ouvrage.numero_ouvrage = Transfert.numero_ouvrage';
 $temp = $pdo->prepare($sql);
 $temp->execute();
+
+//Requete de delete
+if(isset($_REQUEST['id_transfert'])){
+    $id_transfert = htmlentities($_REQUEST['id_transfert']);
+    $sql ='DELETE FROM transfert WHERE numero_transfert = :id_transfert';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id_transfert',$id_transfert);
+    $temp->execute();
+}
 
 ?>
 <table>
@@ -25,14 +34,14 @@ foreach ($temp as $t) {
         <td><?= $t['ville_bibliotheque']; ?></td>
         <td><?= $t['date_transfert']; ?></td>
         <td>
-            <form action="page_admin.php" method="post">
-                <input type="hidden" name="" value="">
+            <form action="transfert_01.php" method="post">
+                <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
                 <input type="submit" value="🗑️">
             </form>
         </td>
         <td>
-            <form action="modifier_adminActualite.php?id=" method="post">
-                <input type="hidden" name="nom" value="">
+            <form action="transfert_02.php?id=<?=$t['numero_transfert']?>" method="post">
+                <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
                 <input type="submit" value="✏️">
             </form>
         </td>
@@ -41,8 +50,8 @@ foreach ($temp as $t) {
 <?php
 }
 ?>
-<form action="add_adminActualite.php" method="post">
-    <input type="hidden" name="nom" value="' . $r['nom'] . '">
+<form action="transfert_02.php" method="post">
+    <input type="hidden" name="nom" value="">
     <input type="submit" class="add-btn delete-btn" value="➕">
 </form>
-<a href="index.php">retour sur le site</a>
+<a href="index.php">Retour sur à l'index</a>
