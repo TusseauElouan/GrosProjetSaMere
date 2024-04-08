@@ -44,6 +44,7 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
             require_once '../../includes/titre-page.php';
         ?>
         <main>
+        <div class="content">
             <div>
                 <form action="auteur_02.php">
                     <h2>Modifier un auteur : </h2>
@@ -62,6 +63,7 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
                     <input type="submit" value="Modifier" />
                 </form>
             </div>
+        </div>
         </main>
     </body>
 </html>
