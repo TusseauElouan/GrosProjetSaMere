@@ -40,7 +40,7 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+                require_once '../../includes/navbar.php';
             ?>
         </header>
         <main>

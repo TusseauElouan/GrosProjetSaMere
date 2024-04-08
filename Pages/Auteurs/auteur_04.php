@@ -30,7 +30,7 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+                require_once '../../includes/navbar.php';
             ?>
         </header>
         <main>
