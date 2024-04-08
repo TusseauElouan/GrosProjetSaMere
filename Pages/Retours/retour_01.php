@@ -8,6 +8,14 @@ AND Ouvrage.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
+//Requete de delete
+if(isset($_REQUEST['id_retour'])){
+    $id_retour = htmlentities($_REQUEST['id_retour']);
+    $sql ='DELETE FROM retour WHERE numero_retour = :id_retour';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id_retour',$id_retour);
+    $temp->execute();
+}
 ?>
 <table>
     <tr>
@@ -27,14 +35,14 @@ foreach ($temp as $t) {
         <td><?= $t['prenom_auteur']; ?></td>
         <td><?= $t['date_retour']; ?></td>
         <td>
-            <form action="#" method="post">
-                <input type="hidden" name="" value="">
+            <form action="retour_01.php" method="post">
+                <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
                 <input type="submit" value="🗑️">
             </form>
         </td>
         <td>
-            <form action="modifier_ListeRetour.php?id=" method="post">
-                <input type="hidden" name="nom" value="">
+            <form action="retour_02.php?id=<?=$t['numero_retour']?>" method="post">
+                <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
                 <input type="submit" value="✏️">
             </form>
         </td>
@@ -47,4 +55,4 @@ foreach ($temp as $t) {
     <input type="hidden" name="nom" value="' . $r['nom'] . '">
     <input type="submit" class="add-btn delete-btn" value="➕">
 </form>
-<a href="index.php">retour sur le site</a>
+<a href="index.php">retour sur à l'index</a>
