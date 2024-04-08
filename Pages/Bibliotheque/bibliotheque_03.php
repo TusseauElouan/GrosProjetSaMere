@@ -21,7 +21,7 @@
         <input type="text" name="ville_bibliotheque" required value="<?=$resultat['ville_bibliotheque']?>">
 
         <label for="commentaire_bibliotheque">Commentaire : </label>
-        <textarea name="commentaire_bibliotheque" id="" cols="60" rows="10" required value="<?=$resultat['commentaire']?>"></textarea>
+        <textarea name="commentaire_bibliotheque" id="" cols="60" rows="10" required><?=$resultat['commentaire']?></textarea>
 
         <input type="hidden" name="type" value="modif">
         <input type="hidden" name="id_bibliotheque" value="<?=$id_bibliotheque?>">
