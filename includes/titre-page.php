@@ -1,3 +1,10 @@
 <div class="affichage-titre">
-        <h1>Accueil</h1>
-    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var title = document.title;
+    var div = document.querySelector(".affichage-titre");
+    div.innerHTML = "<h1>" + title + "</h1>" ;
+});
+</script>
