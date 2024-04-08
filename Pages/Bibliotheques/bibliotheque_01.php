@@ -44,7 +44,7 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
     ?>
     <div class="content">
     <a href="bibliotheque_02.php">Ajouter +</a>
-    <table>
+    <table border="1px">
         <thead>
             <tr>
                 <th scope='col'>Ville</th>
