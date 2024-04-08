@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once '../../includes/connexion.php';
 
 //requete affichage liste
 $sql = 'SELECT retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
@@ -55,4 +55,4 @@ foreach ($temp as $t) {
     <input type="hidden" name="nom" value="">
     <input type="submit" class="" value="➕">
 </form>
-<a href="index.php">retour sur à l'index</a>
+<a href="../../index.php">retour sur à l'index</a>
