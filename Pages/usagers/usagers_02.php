@@ -1,14 +1,13 @@
 <?php 
     require '../../includes/connexion.php';
     require '../../includes/navbar.php';
-    if (isset($_REQUEST["id"])){
         $id = $_REQUEST["id"];
         $sql2 = "SELECT * FROM usager WHERE numero_usager = :id";
         $temp2 = $pdo->prepare($sql2);
         $temp2->bindParam(':id', $id);
         $temp2->execute();
         $usager = $temp2->fetch();
-    }
+    
     
     if(isset($_REQUEST["nom"],$_REQUEST["prenom"],$_REQUEST["ville"],$_REQUEST["biblioteque"],$_REQUEST["commentaire"])){
         $nom = htmlentities($_REQUEST["nom"]);
@@ -16,7 +15,9 @@
         $ville = htmlentities($_REQUEST["ville"]);
         $bibliotheque = htmlentities($_REQUEST["biblioteque"]);
         $commentaire = htmlentities($_REQUEST["commentaire"]);
+        $id = $_REQUEST["id"];
         $sql = "UPDATE usager SET nom_usager = :nom , prenom_usager = :prenom, ville_usager = :ville, numero_bibliotheque = :biblioteque, commentaire = :commentaire WHERE numero_usager = :id";
+        echo $sql;
         $temp = $pdo->prepare($sql);
         $temp->bindParam(':nom', $nom);
         $temp->bindParam(':prenom', $prenom);
@@ -24,6 +25,7 @@
         $temp->bindParam(':biblioteque', $bibliotheque);
         $temp->bindParam(':commentaire', $commentaire);
         $temp->bindParam(':id', $id);
+        
         $temp->execute();
     
         header('Location: usagers_01.php');
@@ -48,7 +50,7 @@
     include '../../includes/heure.php';
     include '../../includes/titre-page.php';
 ?>
-<form action="usagers_02.php" method="post">
+<form action="usagers_02.php?id=<?php echo $id ?>" method="post">
     <label for="nom">Nom</label>
     <input type="text" name='nom' id="nom" value="<?php echo $usager["nom_usager"] ?>">
     <label for="prenom">prenom</label>
