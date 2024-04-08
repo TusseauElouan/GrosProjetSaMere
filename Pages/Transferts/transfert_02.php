@@ -10,7 +10,7 @@ $sql_biblio = 'SELECT * FROM bibliothèque';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css_bibliotheque.css">
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Formulaire d'ajout d'un transfert</title>
 </head>
 <body>

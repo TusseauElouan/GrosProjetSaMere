@@ -43,7 +43,7 @@ require_once '../../includes/connexion.php';
             <?php
             ?>
             <br />
-            <a href="ajout.php">Add</a>
+            <a href="ouvrages_02.php">Add</a>
         </div>
     </main>
 </body>
