@@ -50,7 +50,13 @@ require_once '../../includes/connexion.php';
                 <br />
                 <a href="auteur_04.php">
                     <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Add
+                </a>
+                <a
+                    href="#">
+                    <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                </a>
+                <a href="#">
+                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                 </a>
             </div>
 
