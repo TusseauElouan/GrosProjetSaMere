@@ -6,40 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/css_bibliotheque.css">
     <title>Accueil</title>
-
-    <script>
-        // Fonction pour afficher la date et l'heure actuelles en continu
-        function afficherDateHeure() {
-            var maintenant = new Date();
-            var jour = maintenant.getDate().toString().padStart(2, '0');
-            var mois = (maintenant.getMonth() + 1).toString().padStart(2, '0'); // Mois de 0 à 11, donc +1
-            var annee = maintenant.getFullYear();
-            var heures = maintenant.getHours().toString().padStart(2, '0');
-            var minutes = maintenant.getMinutes().toString().padStart(2, '0');
-
-            var dateAffichee = jour + '/' + mois + '/' + annee;
-            var heureAffichee = heures + ':' + minutes;
-
-            document.getElementById('date-heure').textContent = dateAffichee + ' ' + heureAffichee;
-        }
-
-        // Mettre à jour la date et l'heure toutes les secondes
-        setInterval(afficherDateHeure, 1000);
-    </script>
-
 </head>
 
-<body onload="afficherHeure()">
+<body>
 
-    <?php include 'includes/navbar.php' ?>
+    <nav>
+        <a href="index.php">Menu principal</a>
+        <a href="Pages/Bibliotheques/bibliotheque_01.php">Gestion des bibliothèques</a>
+        <a href="Pages/Auteurs/auteur_01.php">Gestion des auteurs</a>
+        <a href="Pages/Ouvrages/ouvrages_01.php">Gestion des ouvrages</a>
+        <a href="Pages/Usagers/usagers_01.php">Gestion des usagers</a>
+        <a href="Pages/Emprunts/emprunt_01.php">Gestion des emprunts</a>
+        <a href="Pages/Retour/retour_01.php">Gestion des retours</a>
+        <a href="Pages/Transferts/transfert_01.php">Gestion des transferts</a>
+    </nav>
 
-    <div class="affichage-heure">
-        <p id="date-heure"></p>
-    </div>
+    <?php 
+    include 'includes/heure.php';
 
-    <div class="affichage-titre">
-        <h1>Accueil</h1>
-    </div>
+    include 'includes/titre-page.php';
+    ?>
 
     <div class="content">
         <p>Bienvenue !</p>

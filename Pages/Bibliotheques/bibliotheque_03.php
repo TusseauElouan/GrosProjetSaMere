@@ -6,11 +6,14 @@ require_once "./../../includes/connexion.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Document</title>
 </head>
 <body>
     <?php
-    include('./../../includes/navbar.php');
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
 
     $id_bibliotheque=$_GET["id_bibliotheque"];
 
