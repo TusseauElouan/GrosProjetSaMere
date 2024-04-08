@@ -13,18 +13,13 @@ require_once '../../includes/connexion.php';
     <body>
         <header>
             <?php
-                require_once '../../includes/navbar.php';
+            // include("includes/header.php");
             ?>
         </header>
         <main>
             <div>
                 <table border="1px">
-                <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Commentaire</th>
-                    <th>Modifs</th>
-                </tr>
+                <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>Modifs</th></tr>
                 <?php
                     $sql = 'SELECT * FROM auteur';
                     $temp = $pdo->query($sql);
@@ -35,17 +30,17 @@ require_once '../../includes/connexion.php';
                         $commentaire = $auteur['commentaire']; 
                 ?>
                         <tr>
-                            <td><?= $nom ?></td>
-                            <td><?= $prenom ?></td>
-                            <td><?= $commentaire ?></td>
-                            <td>
-                                <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
-                                    <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
-                                </a>
-                                <a href="auteur_03.php?id=<?= $id ?>">
-                                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
-                                </a>
-                            </td>
+                        <td><?= $nom ?></td>
+                        <td><?= $prenom ?></td>
+                        <td><?= $commentaire ?></td>
+                        <td>
+                            <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
+                                <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                            </a>
+                            <a href="auteur_03.php?id=<?= $id ?>">
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
+                            </a>
+                        </td>
                         </tr>
                 <?php
                     }

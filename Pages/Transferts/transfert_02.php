@@ -1,7 +1,7 @@
 <?php
 require_once '../../includes/connexion.php';
 $sql_biblio = 'SELECT * FROM bibliothèque';
-$sql = 'SELECT * FROM ouvrage WHERE ouvrage.id = '
+
 ?>
 
 
@@ -17,36 +17,36 @@ $sql = 'SELECT * FROM ouvrage WHERE ouvrage.id = '
         <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
         <select name="bibli-origine" id="bibli-origine">
             <?php
-                $result = prepare($sql_biblio);
-                $result = $result->exec();
+                $result = $pdo->prepare($sql_biblio);
+                $result->execute();
                 while($result = $result->fetch()){
                     echo '<option value="'.$result['numero_bibliotheque'].'">Bibliothèque de '.$result['ville_bibliotheque'].'</option>';
-                }
+                };
             ?>
         </select>
 
         <label for="bibli-origine">Nom de la bibliothèque ciblé</label>
         <select name="bibli-cible" id="bibli-cible">
             <?php
-                $result = prepare($sql_biblio);
-                $result = $result->exec();
+                $result = $pdo->prepare($sql_biblio);
+                $result->execute();
                 while($result = $result->fetch()){
                     echo '<option value="'.$result['numero_bibliotheque'].'">Bibliothèque de '.$result['ville_bibliotheque'].'</option>';
-                }
+                };
             ?>
         </select>
 
         <label for="titre">L'ouvrage à transférer</label>
         <select name="titre" id="titre">
             <?php
-                $result = prepare();
-                $result = $result->exec();
-                while($result = $result->fetch()){
+                $result = $pdo->prepare($sql);
+                $result->execute();
+                $resultat_ouvrage = $result->fetchAll(PDO::FETCH_ASSOC);
+                for ($i = 0; $i<count($resultat_ouvrage); $i++){
                     echo '<option value="'.$result['numero_ouvrage'].'">'.$result['titre'].'</option>';
-                }
+                };
             ?>
         </select>
-
     </form>
 </body>
 </html>
