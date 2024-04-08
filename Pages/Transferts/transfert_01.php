@@ -30,20 +30,20 @@ if (isset($_REQUEST['id_transfert'])) {
 </head>
 
 <body>
+
     <?php
     include "../../includes/navbar.php";
     include '../../includes/heure.php';
     include '../../includes/titre-page.php';
     ?>
-    <table>
-        <tr>
-            <th>Titre ouvrage</th>
-            <th>Ville origine</th>
-            <th>Ville cible</th>
-            <th>Date transfert</th>
-        </tr>
-
-
+    <main>
+        <table border="1px">
+            <tr>
+                <th>Titre ouvrage</th>
+                <th>Ville origine</th>
+                <th>Ville cible</th>
+                <th>Date transfert</th>
+            </tr>
         <?php
         foreach ($temp as $t) {
             ?>
@@ -73,14 +73,16 @@ if (isset($_REQUEST['id_transfert'])) {
                     </form>
                 </td>
             </tr>
-        </table>
         <?php
         }
         ?>
-    <form action="transfert_02.php" method="post">
-        <input type="hidden" name="nom" value="">
-        <input type="submit">
-    </form>
+        </table>
+        </br>
+        <a href="emprunt_04.php">
+            <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+            Add
+        </a>
+    </main>
 </body>
 
 </html>
