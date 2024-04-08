@@ -1,7 +1,7 @@
 <?php
 require_once '../../includes/connexion.php';
 $sql_biblio = 'SELECT * FROM bibliothèque';
-$sql = 'SELECT * FROM ouvrage WHERE'
+
 ?>
 
 
@@ -41,12 +41,12 @@ $sql = 'SELECT * FROM ouvrage WHERE'
             <?php
                 $result = $pdo->prepare($sql);
                 $result->execute();
-                while($result = $result->fetch()){
+                $resultat_ouvrage = $result->fetchAll(PDO::FETCH_ASSOC);
+                for ($i = 0; $i<count($resultat_ouvrage); $i++){
                     echo '<option value="'.$result['numero_ouvrage'].'">'.$result['titre'].'</option>';
                 };
             ?>
         </select>
-
     </form>
 </body>
 </html>
