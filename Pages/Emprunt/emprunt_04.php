@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 // verification de l'existance des valeures dans le liens (si ca existe je prepare les variables pour mon form)
 if (isset($_REQUEST['id'],$_REQUEST['nom'],$_REQUEST['prenom'],$_REQUEST['commentaire'])) {
     $id = $_REQUEST['id'];

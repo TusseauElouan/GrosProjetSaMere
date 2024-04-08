@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 $id = $_REQUEST['id'];
 
 if (isset($_REQUEST['del'])) {
