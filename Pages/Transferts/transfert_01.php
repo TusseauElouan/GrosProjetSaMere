@@ -21,14 +21,12 @@ if (isset($_REQUEST['id_transfert'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des transferts</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
-
 <body>
     <?php
     include "../../includes/navbar.php";
@@ -37,13 +35,14 @@ if (isset($_REQUEST['id_transfert'])) {
     ?>
     <main>
         <div class="content">
-            <table border="1px">
-                <tr>
-                    <th>Titre ouvrage</th>
-                    <th>Ville origine</th>
-                    <th>Ville cible</th>
-                    <th>Date transfert</th>
-                </tr>
+            <div>
+                <table border="1px">
+                    <tr>
+                        <th>Titre ouvrage</th>
+                        <th>Ville origine</th>
+                        <th>Ville cible</th>
+                        <th>Date transfert</th>
+                    </tr>
                 <?php
                 foreach ($temp as $t) {
                     ?>
@@ -73,15 +72,16 @@ if (isset($_REQUEST['id_transfert'])) {
                             </form>
                         </td>
                     </tr>
-                    <?php
+                <?php
                 }
                 ?>
-            </table>
-            </br>
-            <a href="emprunt_04.php">
-                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                Add
-            </a>
+                </table>
+                </br>
+                <a href="emprunt_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Add
+                </a>
+            </div>
         </div>
     </main>
 </body>
