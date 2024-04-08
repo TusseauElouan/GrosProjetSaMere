@@ -2,18 +2,18 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
-FROM retour_vue, auteur
-WHERE retour_vue.numero_auteur = auteur.numero_auteur';
+$sql = 'SELECT emprunt_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,emprunt_vue.date_emprunt
+FROM emprunt_vue, auteur
+WHERE emprunt_vue.numero_auteur = auteur.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
 //Requete de delete
-if(isset($_REQUEST['id_retour'])){
-    $id_retour = htmlentities($_REQUEST['id_retour']);
-    $sql ='DELETE FROM retour WHERE numero_retour = :id_retour';
+if(isset($_REQUEST['id_emprunt'])){
+    $id_emprunt = htmlentities($_REQUEST['id_emprunt']);
+    $sql ='DELETE FROM emprunt WHERE numero_emprunt = :id_emprunt';
     $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id_retour',$id_retour);
+    $temp->bindParam(':id_emprunt',$id_emprunt);
     $temp->execute();
 }
 ?>
@@ -27,12 +27,11 @@ if(isset($_REQUEST['id_retour'])){
 <body>
     <table>
         <tr>
-            <td>Titre ouvrage</td>
-            <td>Nom auteur</td>
-            <td>Prénom auteurt</td>
-            <td>Date du retour</td>
+            <th>Titre ouvrage</th>
+            <th>Nom auteur</th>
+            <th>Prénom auteurt</th>
+            <th>Date du emprunt</th>
         </tr>
-
 
     <?php
     foreach ($temp as $t) {
@@ -41,16 +40,16 @@ if(isset($_REQUEST['id_retour'])){
             <td><?= $t['titre_ouvrage']; ?></td>
             <td><?= $t['nom_auteur']; ?></td>
             <td><?= $t['prenom_auteur']; ?></td>
-            <td><?= $t['date_retour']; ?></td>
+            <td><?= $t['date_emprunt']; ?></td>
             <td>
-                <form action="retour_01.php" method="post">
-                    <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
+                <form action="emprunt_01.php" method="post">
+                    <input type="hidden" name="id_emprunt" value="<?=$t['numero_emprunt']?>">
                     <input type="submit" value="🗑️">
                 </form>
             </td>
             <td>
-                <form action="retour_02.php?id=<?=$t['numero_retour']?>" method="post">
-                    <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
+                <form action="emprunt_02.php?id=<?=$t['numero_emprunt']?>" method="post">
+                    <input type="hidden" name="id_emprunt" value="<?=$t['numero_emprunt']?>">
                     <input type="submit" value="✏️">
                 </form>
             </td>
@@ -59,7 +58,7 @@ if(isset($_REQUEST['id_retour'])){
     <?php
     }
     ?>
-    <form action="add_ListeRetour.php" method="post">
+    <form action="add_Listeemprunt.php" method="post">
         <input type="hidden" name="nom" value="">
         <input type="submit" class="" value="➕">
     </form>
