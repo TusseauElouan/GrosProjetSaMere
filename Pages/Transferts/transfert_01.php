@@ -19,42 +19,52 @@ if(isset($_REQUEST['id_transfert'])){
 }
 
 ?>
-<table>
-    <tr>
-        <td>Titre ouvrage</td>
-        <td>Ville origine</td>
-        <td>Ville cible</td>
-        <td>Date transfert</td>
-    </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Titre ouvrage</td>
+            <td>Ville origine</td>
+            <td>Ville cible</td>
+            <td>Date transfert</td>
+        </tr>
 
 
-<?php
-foreach ($temp as $t) {
-?>
-    <tr>
-        <td><?= $t['titre_ouvrage']; ?></td>
-        <td><?= $t['ville_bibliotheque']; ?></td>
-        <td><?= $t['ville_bibliotheque']; ?></td>
-        <td><?= $t['date_transfert']; ?></td>
-        <td>
-            <form action="transfert_01.php" method="post">
-                <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
-                <input type="submit" value="🗑️">
-            </form>
-        </td>
-        <td>
-            <form action="transfert_02.php?id=<?=$t['numero_transfert']?>" method="post">
-                <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
-                <input type="submit" value="✏️">
-            </form>
-        </td>
-    </tr>
-</table>
-<?php
-}
-?>
-<form action="transfert_02.php" method="post">
-    <input type="hidden" name="nom" value="">
-    <input type="submit" class="add-btn delete-btn" value="➕">
-</form>
-<a href="../../index.php">Retour sur à l'index</a>
+    <?php
+    foreach ($temp as $t) {
+    ?>
+        <tr>
+            <td><?= $t['titre_ouvrage']; ?></td>
+            <td><?= $t['ville_bibliotheque']; ?></td>
+            <td><?= $t['ville_bibliotheque']; ?></td>
+            <td><?= $t['date_transfert']; ?></td>
+            <td>
+                <form action="transfert_01.php" method="post">
+                    <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
+                    <input type="submit" value="🗑️">
+                </form>
+            </td>
+            <td>
+                <form action="transfert_02.php?id=<?=$t['numero_transfert']?>" method="post">
+                    <input type="hidden" name="id_transfert" value="<?=$t['numero_transfert']?>">
+                    <input type="submit" value="✏️">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <?php
+    }
+    ?>
+    <form action="transfert_02.php" method="post">
+        <input type="hidden" name="nom" value="">
+        <input type="submit" class="add-btn delete-btn" value="➕">
+    </form>
+    <a href="../../index.php">Retour sur à l'index</a>
+</body>
+</html>
