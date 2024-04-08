@@ -44,7 +44,10 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
     ?>
     <div class="content">
         <div>
-            <a href="bibliotheque_02.php">Ajouter <img src="../../Medias/ajouterform.png" class="boutonsform" alt="ajout" title="ajout"></a>
+            <a href="bibliotheque_02.php">
+                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                Ajouter
+            </a>
             <table border="1px">
                 <thead>
                     <tr>

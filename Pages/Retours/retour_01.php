@@ -36,6 +36,10 @@ if (isset($_REQUEST['id_retour'])) {
     <main>
         <div class="content">
             <div>
+                <a href="retour_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Ajouter
+                </a>
                 <table border="1px">
                     <tr>
                         <th>Titre ouvrage</th>
@@ -78,12 +82,7 @@ if (isset($_REQUEST['id_retour'])) {
                         <?php
                     }
                     ?>
-                </table>
-                </br>
-                <a href="retour_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Add
-                </a>
+                </table>  
             </div>
         </div>
     </main>
