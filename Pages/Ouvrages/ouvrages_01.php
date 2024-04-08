@@ -11,13 +11,13 @@ require_once '../../includes/connexion.php';
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
+        <?php
+            require_once '../../includes/navbar.php';
+            require_once '../../includes/heure.php';
+            require_once '../../includes/titre-page.php';
             ?>
-        </header>
         <main>
-            <div>
+            <div class="content">
                 <table border="1px">
                 <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>titre</th></tr>
                 <?php
