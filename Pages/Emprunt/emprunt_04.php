@@ -1,14 +1,5 @@
 <?php
-$host = 'localhost';
-$db = 'bibliotheque';
-$user = 'root';
-$pass = '';
-$port = 3306;
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset;port=$port";
-$pdo = new PDO($dsn, $user, $pass);
-
+require_once '../../includes/connexion.php'
 // verification de l'existance des valeures dans le liens (si ca existe je prepare les variables pour mon form)
 if (isset($_REQUEST['id'],$_REQUEST['nom'],$_REQUEST['prenom'],$_REQUEST['commentaire'])) {
     $id = $_REQUEST['id'];

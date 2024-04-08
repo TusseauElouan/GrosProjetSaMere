@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 ?>
 <!doctype html>
 <html lang="fr">
