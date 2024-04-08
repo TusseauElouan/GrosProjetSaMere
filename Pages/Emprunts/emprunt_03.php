@@ -23,7 +23,7 @@ if (isset($_REQUEST['del'])) {
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+            include("../../includes/navbar.php");
             ?>
         </header>
         <main>

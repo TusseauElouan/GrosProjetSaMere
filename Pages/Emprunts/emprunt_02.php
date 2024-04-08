@@ -1,20 +1,28 @@
 <?php
 require_once '../../includes/connexion.php';
-
+if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['date_emprunt'],$_REQUEST['numero_usager'],$_REQUEST['commentaire'])) {
+    $numero_emprunt = $_REQUEST['numero_emprunt'];
+    $numero_ouvrage = $_REQUEST['numero_ouvrage'];
+    $date_emprunt = $_REQUEST['date_emprunt'];
+    $numero_usager = $_REQUEST['numero_usager'];
+    $commentaire = $_REQUEST['commentaire'];
+}
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
-if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commentaire_auteur'])) {
-    $nom_auteur = $_REQUEST['nom_auteur'];
-    $prenom_auteur = $_REQUEST['prenom_auteur'];
-    $commentaire_auteur = $_REQUEST['commentaire_auteur'];
+if (isset($_REQUEST['num_ouvrage'],$_REQUEST['d_emprunt'],$_REQUEST['num_usager'],$_REQUEST['commentaire_emprunt'])) {
+    $num_ouvrage = $_REQUEST['num_ouvrage'];
+    $d_emprunt = $_REQUEST['d_emprunt'];
+    $num_usager = $_REQUEST['num_usager'];
+    $commentaire_emprunt = $_REQUEST['commentaire_emprunt'];
 
-    $sql = "INSERT INTO auteur (nom_auteur, prenom_auteur, commentaire) values(:nom_auteur,:prenom_auteur,:commentaire)";
+    $sql = "INSERT INTO emprunt (numero_ouvrage, date_emprunt, numero_usager, commentaire) values(:num_ouvrage,:d_emprunt,:num_usager,:commentaire_emprunt)";
     $temp = $pdo->prepare($sql);
-    $temp->bindParam(':nom_auteur', $nom_auteur);
-    $temp->bindParam(':prenom_auteur', $prenom_auteur);
-    $temp->bindParam(':commentaire', $commentaire_auteur);
+    $temp->bindParam(':num_ouvrage', $num_ouvrage);
+    $temp->bindParam(':d_emprunt', $d_emprunt);
+    $temp->bindParam(':num_usager', $num_usager);
+    $temp->bindParam(':commentaire_emprunt', $commentaire_emprunt);
     $temp->execute();
 
-    header('Location: auteur_01.php');
+    header('Location: emprunt_01.php');
     exit();
 }
 ?>
@@ -30,23 +38,27 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+            include("../../includes/navbar.php");
             ?>
         </header>
         <main>
             <div>
-                <form action="auteur_04.php">
-                    <h2>Ajouter un auteur : </h2>
+                <form action="emprunt_02.php">
+                    <h2>Modifier un emprunt : </h2>
 
-                    <label for="nom_auteur">Nom :</label>
-                    <input type="text" name="nom_auteur" required/>
+                    <input type="hidden" name="num_emprunt" value="<?=$numero_emprunt?>"/> 
 
-                    <label for="prenom_auteur">Prénom :</label>
-                    <input type="text" name="prenom_auteur" required/>
+                    <label for="num_ouvrage">Nom :</label>
+                    <input type="text" name="num_ouvrage" value="<?=$numero_ouvrage?>" required/>
 
-                    <label for="commentaire_auteur">Commentaire :</label>
-                    <input type="text" name="commentaire_auteur" required/>
+                    <label for="d_emprunt">Prénom :</label>
+                    <input type="text" name="d_emprunt" value="<?=$date_emprunt?>" required/>
 
+                    <label for="num_usager">Commentaire :</label>
+                    <input type="text" name="num_usager" value="<?=$numero_usager?>" required/>
+
+                    <label for="commentaire_emprunt">Commentaire :</label>
+                    <input type="text" name="commentaire_emprunt" value="<?=$commentaire?>" required/>
                     <input type="submit" value="Ajouter" />
                 </form>
             </div>

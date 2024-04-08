@@ -13,31 +13,33 @@ require_once '../../includes/connexion.php';
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+            include("../../includes/navbar.php");
             ?>
         </header>
         <main>
             <div>
                 <table border="1px">
-                <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>Modifs</th></tr>
+                <tr><th>Numéro ouvrage</th><th>Date emprunt</th><th>Numéro usager</th><th>commentaire</th><th>Modifs</th></tr>
                 <?php
-                    $sql = 'SELECT * FROM auteur';
+                    $sql = 'SELECT * FROM emprunt';
                     $temp = $pdo->query($sql);
-                    while ($auteur = $temp->fetch()) {
-                        $id = $auteur['numero_auteur'];
-                        $nom = $auteur['nom_auteur'];
-                        $prenom = $auteur['prenom_auteur'];
-                        $commentaire = $auteur['commentaire']; 
+                    while ($emprunt = $temp->fetch()) {
+                        $numero_emprunt = $emprunt['numero_emprunt'];
+                        $numero_ouvrage = $emprunt['numero_ouvrage'];
+                        $date_emprunt = $emprunt['date_emprunt'];
+                        $numero_usager = $emprunt['numero_usager']; 
+                        $commentaire = $emprunt['commentaire']; 
                 ?>
                         <tr>
-                        <td><?= $nom ?></td>
-                        <td><?= $prenom ?></td>
+                        <td><?= $numero_ouvrage ?></td>
+                        <td><?= $date_emprunt ?></td>
+                        <td><?= $numero_usager ?></td>
                         <td><?= $commentaire ?></td>
                         <td>
-                            <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
+                            <a href="emprunt_02.php?id=<?= $numero_emprunt ?>&numero_ouvrage=<?= $numero_ouvrage ?>&date_emprunt=<?= $date_emprunt ?>&numero_usager=<?= $numero_usager ?>&commentaire=<?= $commentaire ?>">
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                             </a>
-                            <a href="auteur_03.php?id=<?= $id ?>">
+                            <a href="emprunt_03.php?id=<?= $numero_emprunt ?>">
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                             </a>
                         </td>
@@ -47,7 +49,7 @@ require_once '../../includes/connexion.php';
                 ?>
                 </table>
                 <br />
-                <a href="auteur_04.php">
+                <a href="emprunt_04.php">
                     <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                     Add
                 </a>
