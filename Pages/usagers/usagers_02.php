@@ -1,6 +1,5 @@
 <?php 
     require '../../includes/connexion.php';
-    require '../../includes/navbar.php';
     
 $sql = "SELECT * FROM usager"
 
@@ -11,9 +10,15 @@ $sql = "SELECT * FROM usager"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_bibliotheque.css">
     <title>Document</title>
 </head>
 <body>
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
     <form action="usagers_01.php" method="post">
         <label for="nom">Nom</label>
         <input type="text" name='nom' id="nom">

@@ -28,11 +28,11 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <form action="auteur_04.php">
@@ -53,10 +53,5 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

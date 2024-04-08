@@ -31,18 +31,18 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Projet - Biblio</title>
+        <title>Modification Auteurs</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
 
     <body>
-        <header>
-            <?php
-                require_once '../../includes/navbar.php';
-            ?>
-        </header>
+        <?php
+            require_once '../../includes/navbar.php';
+            require_once '../../includes/heure.php';
+            require_once '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <form action="auteur_02.php">
@@ -62,13 +62,6 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
                     <input type="submit" value="Modifier" />
                 </form>
             </div>
-
-
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

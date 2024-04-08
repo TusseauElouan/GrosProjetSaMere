@@ -69,5 +69,4 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
         </tbody>
     </table>
 </body>
-
 </html>

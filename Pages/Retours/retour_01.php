@@ -22,9 +22,15 @@ if(isset($_REQUEST['id_retour'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_bibliotheque.css">
     <title>Document</title>
 </head>
 <body>
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
     <table>
         <tr>
             <td>Titre ouvrage</td>
@@ -63,6 +69,5 @@ if(isset($_REQUEST['id_retour'])){
         <input type="hidden" name="nom" value="">
         <input type="submit" class="" value="➕">
     </form>
-    <a href="../../index.php">retour sur à l'index</a>
 </body>
 </html>

@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <?php
-            include("includes/header.php");
-        ?>
-    </header>
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
     <main>
         <div class="tab-admin">
             <table border="1px">
