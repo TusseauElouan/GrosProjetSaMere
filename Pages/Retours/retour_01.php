@@ -35,54 +35,56 @@ if (isset($_REQUEST['id_retour'])) {
     ?>
     <main>
         <div class="content">
-            <table border="1px">
-                <tr>
-                    <th>Titre ouvrage</th>
-                    <th>Nom auteur</th>
-                    <th>Prénom auteurt</th>
-                    <th>Date du retour</th>
-                </tr>
-
-
-                <?php
-                foreach ($temp as $t) {
-                    ?>
+            <div>
+                <table border="1px">
                     <tr>
-                        <td>
-                            <?= $t['titre_ouvrage']; ?>
-                        </td>
-                        <td>
-                            <?= $t['nom_auteur']; ?>
-                        </td>
-                        <td>
-                            <?= $t['prenom_auteur']; ?>
-                        </td>
-                        <td>
-                            <?= $t['date_retour']; ?>
-                        </td>
-                        <td>
-                            <form action="retour_01.php" method="post">
-                                <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
-                                <input type="submit" value="🗑️">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="retour_02.php?id=<?= $t['numero_retour'] ?>" method="post">
-                                <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
-                                <input type="submit">
-                            </form>
-                        </td>
+                        <th>Titre ouvrage</th>
+                        <th>Nom auteur</th>
+                        <th>Prénom auteurt</th>
+                        <th>Date du retour</th>
                     </tr>
 
+
                     <?php
-                }
-                ?>
-            </table>
-            </br>
-            <a href="retour_04.php">
-                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                Add
-            </a>
+                    foreach ($temp as $t) {
+                        ?>
+                        <tr>
+                            <td>
+                                <?= $t['titre_ouvrage']; ?>
+                            </td>
+                            <td>
+                                <?= $t['nom_auteur']; ?>
+                            </td>
+                            <td>
+                                <?= $t['prenom_auteur']; ?>
+                            </td>
+                            <td>
+                                <?= $t['date_retour']; ?>
+                            </td>
+                            <td>
+                                <form action="retour_01.php" method="post">
+                                    <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
+                                    <input type="submit" value="🗑️">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="retour_02.php?id=<?= $t['numero_retour'] ?>" method="post">
+                                    <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
+                                    <input type="submit">
+                                </form>
+                            </td>
+                        </tr>
+
+                        <?php
+                    }
+                    ?>
+                </table>
+                </br>
+                <a href="retour_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Add
+                </a>
+            </div>
         </div>
     </main>
 </body>
