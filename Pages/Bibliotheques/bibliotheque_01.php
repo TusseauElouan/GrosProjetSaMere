@@ -42,7 +42,7 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
     include '../../includes/heure.php';
     include '../../includes/titre-page.php';
     ?>
-
+    <div class="content">
     <a href="bibliotheque_02.php">Ajouter +</a>
     <table>
         <thead>
@@ -68,5 +68,6 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
             ?>
         </tbody>
     </table>
+    </div>
 </body>
 </html>
