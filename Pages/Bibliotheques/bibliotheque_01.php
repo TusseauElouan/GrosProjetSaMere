@@ -1,5 +1,5 @@
 <?php
-require_once "connexion.php";
+require_once "./../../includes/connexion.php";
 $sql = 'SELECT * FROM bibliotheque';
 $temp = $pdo->query($sql);
 
@@ -13,6 +13,7 @@ if (isset($_POST['type'])){
         $sql="INSERT INTO bibliotheque (ville_bibliotheque,commentaire) VALUES ('".$_POST['ville_bibliotheque']."','".$_POST['commentaire']."')";
         $pdo->exec($sql);
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@ if (isset($_POST['type'])){
     <link rel="stylesheet" href="CSS/css_bibliotheque.css">
 </head>
 <body>
-    <?
+    <?php
     include "includes/navbar.php"
     ?>
     <a href="bibliotheque_02.php">Ajouter +</a>
