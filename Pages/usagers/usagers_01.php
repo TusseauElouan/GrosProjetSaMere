@@ -1,7 +1,5 @@
 <?php 
     require_once '../../includes/connexion.php';
-    require_once '../../includes/navbar.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,11 @@
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 <body>
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
     <main>
         <table>
             <tr>
