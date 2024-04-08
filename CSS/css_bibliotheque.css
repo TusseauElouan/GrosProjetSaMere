@@ -2,3 +2,6 @@ body{
     display: grid;
     grid-column: 25% 75%;
 }
+.boutonsform{
+    width: 20px;
+}
