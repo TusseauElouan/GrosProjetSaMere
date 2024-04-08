@@ -13,7 +13,7 @@ require_once '../../includes/connexion.php';
     <body>
         <header>
             <?php
-            // include("includes/header.php");
+                require_once '../../includes/navbar.php';
             ?>
         </header>
         <main>
