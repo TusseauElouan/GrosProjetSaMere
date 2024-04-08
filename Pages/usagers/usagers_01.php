@@ -18,6 +18,7 @@
     include '../../includes/titre-page.php';
     ?>
     <main>
+        <a href="usagers_04.php">Ajoutez</a>
         <table>
             <tr>
                 <th>Nom</th>
