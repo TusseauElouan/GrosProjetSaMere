@@ -33,25 +33,6 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
-<body>
-<?php
-    include "../../includes/navbar.php";
-    include '../../includes/heure.php';
-    include '../../includes/titre-page.php';
-    ?>
-    <form action="usagers_01.php" method="post">
-        <label for="nom">Nom</label>
-        <input type="text" name='nom' id="nom" required>
-        <label for="prenom">prenom</label>
-        <input type="text" name="prenom" id="prenom" required>
-        <label for="ville">Ville</label>
-        <input type="text" name="ville" id="ville" required>
-        <label for="biblioteque">numero bibliotheque</label>
-        <input type="text" name="biblioteque" id="biblioteque" required>
-        <label for="commentaire">commentaire</label>
-        <input type="text" name="commentaire" id="commentaire" required>
-        <input type="submit">
-    </form>
 
 <body>
     <?php
@@ -60,7 +41,7 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <form action="usagers_01.php" method="post">
+        <form action="usagers_04.php" method="post">
             <label for="nom">Nom</label>
             <input type="text" name='nom' id="nom">
             <label for="prenom">prenom</label>
