@@ -9,13 +9,14 @@ require_once '../../includes/connexion.php';
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
-    <main>
     <body>
         <?php
             require_once '../../includes/navbar.php';
             require_once '../../includes/heure.php';
             require_once '../../includes/titre-page.php';
         ?>
+        <main>
+        <div class="content">
         <div>
             <table border="1px">
                 <tr><th>Numéro ouvrage</th><th>Date emprunt</th><th>Numéro usager</th><th>commentaire</th><th>Modifs</th></tr>
@@ -53,7 +54,8 @@ require_once '../../includes/connexion.php';
                 Add
             </a>
         </div>
-    </body>
+        </div>
     </main>
+    </body>
 </html>
 
