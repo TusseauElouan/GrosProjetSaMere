@@ -1,8 +1,10 @@
 <?php
-
 require_once 'Database.php';
 
-$sql = 'SELECT Ouvrage.nom Bibliotheque.ville_bibliotheque FROM Transfert,Ouvrage,Bibliotheque WHERE Ouvrage.numero_ouvrage = Transfert.numero_ouvrage';
+$sql = 'SELECT Retour.numero_retour,Auteur.nom_auteur,Auteur.prenom_auteur,Retour.date_retour 
+FROM Emprunt,Retour,Ouvrage 
+WHERE Retour.numero_emprunt = Emprunt.numero_emprunt AND Emprunt.numero_ouvrage = Ouvrage.numero_ouvrage 
+AND Ouvrage.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
@@ -10,9 +12,9 @@ $temp->execute();
 <table>
     <tr>
         <td>Titre ouvrage</td>
-        <td>Ville origine</td>
-        <td>Ville cible</td>
-        <td>Date transfert</td>
+        <td>Nom auteur</td>
+        <td>Prénom auteurt</td>
+        <td>Date du retour</td>
     </tr>
 
 
@@ -21,17 +23,17 @@ foreach ($temp as $t) {
 ?>
     <tr>
         <td><?= $t['titre_ouvrage']; ?></td>
-        <td><?= $t['ville_bibliotheque']; ?></td>
-        <td><?= $t['ville_bibliotheque']; ?></td>
-        <td><?= $t['date_transfert']; ?></td>
+        <td><?= $t['nom_auteur']; ?></td>
+        <td><?= $t['prenom_auteur']; ?></td>
+        <td><?= $t['date_retour']; ?></td>
         <td>
-            <form action="page_admin.php" method="post">
+            <form action="#" method="post">
                 <input type="hidden" name="" value="">
                 <input type="submit" value="🗑️">
             </form>
         </td>
         <td>
-            <form action="modifier_adminActualite.php?id=" method="post">
+            <form action="modifier_ListeRetour.php?id=" method="post">
                 <input type="hidden" name="nom" value="">
                 <input type="submit" value="✏️">
             </form>
@@ -41,7 +43,7 @@ foreach ($temp as $t) {
 <?php
 }
 ?>
-<form action="add_adminActualite.php" method="post">
+<form action="add_ListeRetour.php" method="post">
     <input type="hidden" name="nom" value="' . $r['nom'] . '">
     <input type="submit" class="add-btn delete-btn" value="➕">
 </form>
