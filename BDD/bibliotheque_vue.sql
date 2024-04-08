@@ -34,6 +34,7 @@ SELECT
     T.numero_bibliotheque_cible AS numero_bibliotheque_cible_transfert,
     T.date_transfert,
     T.commentaire AS transfert_commentaire,
+    T.numero_ouvrage AS numero_ouvrage,
     B_origine.numero_bibliotheque AS numero_bibliotheque_origine,
     B_origine.ville_bibliotheque AS ville_bibliotheque_origine,
     B_origine.commentaire AS commentaire_bibliotheque_origine,
