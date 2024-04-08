@@ -105,7 +105,7 @@ nav a:hover{
 .noms {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
-    margin-top: 55%;
+    margin-top: 70vh;
     margin-left: 25px;
     display: flex;
     justify-content: center;
