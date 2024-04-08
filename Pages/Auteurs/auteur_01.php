@@ -4,18 +4,18 @@ require_once '../../includes/connexion.php';
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Projet - Biblio</title>
+        <title>Formulaire Auteurs</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
 
     <body>
-        <header>
             <?php
-            // include("includes/header.php");
+                require_once '../../includes/navbar.php';
+                require_once '../../includes/heure.php';
+                require_once '../../includes/titre-page.php';
             ?>
-        </header>
         <main>
             <div>
                 <table border="1px">
@@ -60,10 +60,5 @@ require_once '../../includes/connexion.php';
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

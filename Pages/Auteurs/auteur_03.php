@@ -14,18 +14,13 @@ if (isset($_REQUEST['del'])) {
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Projet - Biblio</title>
+        <title>Suppression Auteur</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
         <main>
             <fieldset>
                 <h2>Êtes-vous sûr de vouloir supprimer cet auteur ?</h2>
@@ -33,10 +28,5 @@ if (isset($_REQUEST['del'])) {
                 <a href="auteur_01.php">Non</a>
             </fieldset>
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

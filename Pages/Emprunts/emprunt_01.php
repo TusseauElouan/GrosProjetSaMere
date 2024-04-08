@@ -11,11 +11,11 @@ require_once '../../includes/connexion.php';
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <table border="1px">
@@ -55,10 +55,5 @@ require_once '../../includes/connexion.php';
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

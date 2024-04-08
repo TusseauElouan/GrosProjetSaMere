@@ -58,7 +58,7 @@ if(isset($_REQUEST['id_emprunt'])){
     <?php
     }
     ?>
-    <form action="add_Listeemprunt.php" method="post">
+    <form action="emprunt_02.php" method="post">
         <input type="hidden" name="nom" value="">
         <input type="submit" class="" value="➕">
     </form>

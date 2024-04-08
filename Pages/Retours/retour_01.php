@@ -22,15 +22,21 @@ if(isset($_REQUEST['id_retour'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Document</title>
 </head>
 <body>
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
     <table>
         <tr>
-            <td>Titre ouvrage</td>
-            <td>Nom auteur</td>
-            <td>Prénom auteurt</td>
-            <td>Date du retour</td>
+            <th>Titre ouvrage</th>
+            <th>Nom auteur</th>
+            <th>Prénom auteurt</th>
+            <th>Date du retour</th>
         </tr>
 
 
@@ -51,7 +57,7 @@ if(isset($_REQUEST['id_retour'])){
             <td>
                 <form action="retour_02.php?id=<?=$t['numero_retour']?>" method="post">
                     <input type="hidden" name="id_retour" value="<?=$t['numero_retour']?>">
-                    <input type="submit" value="✏️">
+                    <input type="submit">
                 </form>
             </td>
         </tr>
@@ -59,10 +65,9 @@ if(isset($_REQUEST['id_retour'])){
     <?php
     }
     ?>
-    <form action="add_ListeRetour.php" method="post">
+    <form action="Retour_02.php" method="post">
         <input type="hidden" name="nom" value="">
-        <input type="submit" class="" value="➕">
+        <input type="submit">
     </form>
-    <a href="../../index.php">retour sur à l'index</a>
 </body>
 </html>

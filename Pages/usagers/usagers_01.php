@@ -1,27 +1,5 @@
-<?php
-    require '../../includes/connexion.php';
-    require '../../includes/navbar.php';
-
-
-
-    if(isset($_REQUEST["nom"],$_REQUEST["prenom"],$_REQUEST["ville"],$_REQUEST["biblioteque"],$_REQUEST["commentaire"])){
-        $nom = htmlentities($_REQUEST["nom"]);
-        $prenom = htmlentities($_REQUEST["prenom"]);
-        $ville = htmlentities($_REQUEST["ville"]);
-        $bibliotheque = htmlentities($_REQUEST["biblioteque"]);
-        $commentaire = htmlentities($_REQUEST["commentaire"]);
-        $sql = "INSERT INTO usager (nom_usager, prenom_usager, ville_usager, numero_bibliotheque, commentaire) VALUES ( :nom , :prenom, :ville, :numero_bibliotheque, :commentaire)";
-        $temp = $pdo->prepare($sql);
-        $temp->bindParam(':nom',$nom);
-        $temp->bindParam(':prenom',$prenom);
-        $temp->bindParam(':ville',$ville);
-        $temp->bindParam(':numero_bibliotheque', $bibliotheque);
-        $temp->bindParam(':commentaire',$commentaire);
-        $temp->execute();
-
-        header('Location: affichageUsager.php');
-        exit();
-    }
+<?php 
+    require_once '../../includes/connexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,22 +7,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Document</title>
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 <body>
-    <form action="usagers_01.php" method="post">
-        <label for="nom">Nom</label>
-        <input type="text" name='nom' id="nom">
-        <label for="prenom">prenom</label>
-        <input type="text" name="prenom" id="prenom">
-        <label for="ville">Ville</label>
-        <input type="text" name="ville" id="ville">
-        <label for="biblioteque">numero bibliotheque</label>
-        <input type="text" name="biblioteque" id="biblioteque">
-        <label for="commentaire">commentaire</label>
-        <input type="text" name="commentaire" id="commentaire">
-        <input type="submit">
-    </form>
-
+    <?php
+    include "../../includes/navbar.php";
+    include '../../includes/heure.php';
+    include '../../includes/titre-page.php';
+    ?>
+    <main>
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Ville</th>
+                <th>Numero bibliotheque</th>
+                <th>commentaire</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <?php 
+                $sql = 'SELECT * FROM usager';
+                $temp = $pdo->query($sql);
+                while ($usager = $temp->fetch()){
+                    $id = htmlentities($usager["numero_usager"]);
+                    $nom = htmlentities($usager["nom_usager"]);
+                    $prenom = htmlentities($usager["prenom_usager"]);
+                    $ville = htmlentities($usager["ville_usager"]);
+                    $bibliotheque = htmlentities($usager["numero_bibliotheque"]);
+                    $commentaire = htmlentities($usager["commentaire"]);
+                ?>
+                <td><?= $nom ?></td>
+                <td><?= $prenom ?></td>
+                <td><?= $ville ?></td>
+                <td><?= $bibliotheque ?></td>
+                <td><?= $commentaire ?></td>
+                <td> 
+                    <a href="usagers_02.php?id=<?= $id ?>">
+                        <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                    </a>
+                    <a href="usagers_03.php?id=<?= $id ?>">
+                        <img src="../../Medias/supprimerform.png" class="boutonsform" alt="image de suppresion">
+                    </a>
+                </td>
+            </tr>
+            <?php } ?>
+        </table>
+    </main>
 </body>
 </html>

@@ -21,18 +21,18 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Projet - Biblio</title>
+        <title>Ajout Auteur</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+            require_once '../../includes/navbar.php';
+            require_once '../../includes/heure.php';
+            require_once '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <form action="auteur_04.php">
@@ -53,10 +53,5 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

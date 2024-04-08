@@ -17,6 +17,7 @@ if (isset($_REQUEST['bibli-origine'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Formulaire d'ajout d'un transfert</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>

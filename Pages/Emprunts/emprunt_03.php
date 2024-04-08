@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 $id = $_REQUEST['id'];
 
 if (isset($_REQUEST['del'])) {
@@ -21,11 +21,11 @@ if (isset($_REQUEST['del'])) {
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
         <main>
             <fieldset>
                 <h2>Êtes-vous sûr de vouloir supprimer cet auteur ?</h2>
@@ -33,10 +33,5 @@ if (isset($_REQUEST['del'])) {
                 <a href="auteur_01.php">Non</a>
             </fieldset>
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

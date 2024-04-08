@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 // verification de l'existance des valeures dans le liens (si ca existe je prepare les variables pour mon form)
 if (isset($_REQUEST['id'],$_REQUEST['nom'],$_REQUEST['prenom'],$_REQUEST['commentaire'])) {
     $id = $_REQUEST['id'];
@@ -37,11 +37,11 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <form action="auteur_02.php">
@@ -64,10 +64,5 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>

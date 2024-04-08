@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/connexion.php'
+require_once '../../includes/connexion.php';
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
 if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commentaire_auteur'])) {
@@ -28,11 +28,11 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
     </head>
 
     <body>
-        <header>
-            <?php
-            // include("includes/header.php");
-            ?>
-        </header>
+        <?php
+        include "../../includes/navbar.php";
+        include '../../includes/heure.php';
+        include '../../includes/titre-page.php';
+        ?>
         <main>
             <div>
                 <form action="auteur_04.php">
@@ -53,10 +53,5 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-        </footer>
     </body>
 </html>
