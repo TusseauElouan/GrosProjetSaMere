@@ -1,50 +1,66 @@
 <?php
 require_once '../../includes/connexion.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    include "../../includes/navbar.php";
-    include '../../includes/heure.php';
-    include '../../includes/titre-page.php';
-    ?>
-    <main>
+<!doctype html>
+<html lang="fr">
+    <head>
+        <title>Projet - Biblio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
+    </head>
+
+    <body>
         <?php
-            $sql = 'SELECT ouvrage.titre_ouvrage, auteur.nom_auteur, auteur.prenom_auteur, emprunt.date_emprunt FROM ouvrage, auteur, emprunt WHERE ouvrage.numero_ouvrage = emprunt.numero_ouvrage AND auteur.numero_auteur = ouvrage.numero_auteur ORDER BY ouvrage.titre_ouvrage ASC, auteur.nom_auteur ASC, emprunt.date_emprunt ASC;';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-        ?>
-        
-        <div class="tab-admin">
-            <table border="1px">
-            <tr><th>Titre</th><th>Nom auteur</th><th>Prénom auteur</th><th>Date emprunt</th><th>Action</th></tr>
-            
-            <?php
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['titre_ouvrage']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['nom_auteur']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['prenom_auteur']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['date_emprunt']) . "</td>";
-                    // Adding placeholders for action links, you need to replace # with actual values
-                    echo "<td><a href='modif.php?nom=#&prenom=#&comm=#'>Modifier</a><a href='suppr.php?id=#'>Remove</a></td>";
-                    echo "</tr>";
-                }
+            require_once '../../includes/navbar.php';
+            require_once '../../includes/heure.php';
+            require_once '../../includes/titre-page.php';
             ?>
-                
-            </table>
-            <?php
-            ?>
-            <br />
-            <a href="ouvrages_02.php">Add</a>
-        </div>
-    </main>
-</body>
+        <main>
+            <div class="content">
+                <div>
+                    <table border="1px">
+                    <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>titre</th></tr>
+                    <?php
+                        $sql = 'SELECT 
+                        ouvrage.titre_ouvrage AS Titre_Ouvrage,
+                        auteur.nom_auteur AS Nom_Auteur,
+                        auteur.prenom_auteur AS Prenom_Auteur,
+                        emprunt.date_emprunt AS Date_Emprunt
+                    FROM 
+                        emprunt
+                    JOIN ouvrage ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage
+                    JOIN auteur ON ouvrage.numero_auteur = auteur.numero_auteur';
+                        $temp = $pdo->query($sql);
+                        while ($ouvrage = $temp->fetch()) {
+                            $titre = $ouvrage['Titre_Ouvrage'];
+                            $nom = $ouvrage['Nom_Auteur'];
+                            $prenom = $ouvrage['Prenom_Auteur'];
+                            $date_emprunt = $ouvrage['Date_Emprunt']; 
+                    ?>
+                            <tr>
+                            <td><?= $titre ?></td>
+                            <td><?= $nom ?></td>
+                            <td><?= $prenom ?></td>
+                            <td><?= $date_emprunt ?></td>
+                            </tr>
+                    <?php
+                        }
+                    ?>
+                    </table>
+                    <br />
+                    <a href="auteur_04.php">
+                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    </a>
+                    <a
+                        href="#">
+                        <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                    </a>
+                    <a href="#">
+                        <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
+                    </a>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>

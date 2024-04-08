@@ -17,6 +17,7 @@ require_once '../../includes/connexion.php';
                 require_once '../../includes/titre-page.php';
             ?>
         <main>
+        <div class="content">
             <div>
                 <table border="1px">
                 <tr>
@@ -58,7 +59,7 @@ require_once '../../includes/connexion.php';
                 </a>
             </div>
 
-
+        </div>
         </main>
     </body>
 </html>

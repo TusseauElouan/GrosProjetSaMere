@@ -21,11 +21,6 @@ if (isset($_REQUEST['del'])) {
     </head>
 
     <body>
-        <?php
-        include "../../includes/navbar.php";
-        include '../../includes/heure.php';
-        include '../../includes/titre-page.php';
-        ?>
         <main>
             <fieldset>
                 <h2>Êtes-vous sûr de vouloir supprimer cet auteur ?</h2>

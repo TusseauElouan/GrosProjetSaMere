@@ -34,6 +34,7 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
             require_once '../../includes/titre-page.php';
         ?>
         <main>
+        <div class="content">
             <div>
                 <form action="auteur_04.php">
                     <h2>Ajouter un auteur : </h2>
@@ -51,7 +52,7 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
                 </form>
             </div>
 
-
+        </div>
         </main>
     </body>
 </html>
