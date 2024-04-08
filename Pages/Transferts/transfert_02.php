@@ -1,7 +1,14 @@
 <?php
 require_once '../../includes/connexion.php';
-$sql_biblio = 'SELECT * FROM bibliothèque';
+$sql_biblio = 'SELECT * FROM bibliotheque';
 
+if (isset($_REQUEST['bibli-origine'])){
+    $sql = 'SELECT * FROM ouvrage WHERE numero_bibliotheque = ' . $_REQUEST['bibli-origine'];
+
+    $sql_biblio_retire = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque NOT IN ('. $_REQUEST['bibli-origine'].')';
+} else {
+    $sql_biblio_retire = $sql_biblio;
+}
 ?>
 
 
@@ -12,42 +19,68 @@ $sql_biblio = 'SELECT * FROM bibliothèque';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Formulaire d'ajout d'un transfert</title>
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 <body>
-    <form action="" method='POST'>
-        <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
-        <select name="bibli-origine" id="bibli-origine">
-            <?php
-                $result = $pdo->prepare($sql_biblio);
-                $result->execute();
-                while($result = $result->fetch()){
-                    echo '<option value="'.$result['numero_bibliotheque'].'">Bibliothèque de '.$result['ville_bibliotheque'].'</option>';
-                };
-            ?>
-        </select>
+        <?php
+        include "../../includes/navbar.php";
 
-        <label for="bibli-origine">Nom de la bibliothèque ciblé</label>
-        <select name="bibli-cible" id="bibli-cible">
-            <?php
-                $result = $pdo->prepare($sql_biblio);
-                $result->execute();
-                while($result = $result->fetch()){
-                    echo '<option value="'.$result['numero_bibliotheque'].'">Bibliothèque de '.$result['ville_bibliotheque'].'</option>';
-                };
-            ?>
-        </select>
+        include '../../includes/heure.php';
 
-        <label for="titre">L'ouvrage à transférer</label>
-        <select name="titre" id="titre">
+        include '../../includes/titre-page.php';
+       ?>
+    <div>
+        <form action="" method='POST'>
+            <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
+            <select name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
             <?php
-                $result = $pdo->prepare($sql);
-                $result->execute();
-                $resultat_ouvrage = $result->fetchAll(PDO::FETCH_ASSOC);
-                for ($i = 0; $i<count($resultat_ouvrage); $i++){
-                    echo '<option value="'.$result['numero_ouvrage'].'">'.$result['titre'].'</option>';
+                if (!isset($_REQUEST['bibli-origine'])){
+                    echo '<option>Choisissez une option</option>';
                 };
             ?>
-        </select>
-    </form>
+            
+                <?php
+                    $result = $pdo->prepare($sql_biblio);
+                    $result->execute();
+                    
+                    while($resultat = $result->fetch()){
+                        if (isset($_REQUEST['bibli-origine']) && $_REQUEST['bibli-origine'] == $resultat['numero_bibliotheque']){
+                            echo '<option value="'.$resultat['numero_bibliotheque'].'" selected>Bibliothèque de '.$resultat['ville_bibliotheque'].'</option>';
+                        } else {
+                            echo '<option value="'.$resultat['numero_bibliotheque'].'">Bibliothèque de '.$resultat['ville_bibliotheque'].'</option>';
+                        }
+                    };
+                ?>
+            </select>
+        </form>
+        <form action="" method="post">
+            <label for="bibli-origine">Nom de la bibliothèque ciblé</label>
+            <select name="bibli-cible" id="bibli-cible">
+                <?php
+                    $result = $pdo->prepare($sql_biblio_retire);
+                    $result->execute();
+                    while($resultat2 = $result->fetch()){
+                        echo '<option value="'.$resultat2['numero_bibliotheque'].'">Bibliothèque de '.$resultat2['ville_bibliotheque'].'</option>';
+                    };
+                ?>
+            </select>
+            <?php
+            if (isset($_REQUEST['bibli-origine'])){
+            ?>
+            <label for="titre">L'ouvrage à transférer</label>
+            <select name="titre" id="titre">
+                <?php
+                    $result = $pdo->prepare($sql);
+                    $result->execute();
+                    while ($resultat3 = $result->fetch()){
+                        echo '<option value="'.$resultat3['numero_ouvrage'].'">'.$resultat3['titre_ouvrage'].'</option>';
+                    };
+                ?>
+            </select>
+            <?php
+            }
+            ?>
+        </form>
+    </div>
 </body>
 </html>
