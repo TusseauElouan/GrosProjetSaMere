@@ -1,16 +1,112 @@
-body{
-    display: grid;
-    grid-column: 25% 75%;
-}
-.boutonsform{
+.boutonsform {
     width: 20px;
     grid-template-columns: 25% 75%;
     grid-template-rows: 15% 85%;
 }
 
+:root {
+    --gauche: #ADB5BD;
+    --content-back: #CED4DA;
+}
+
+*{
+    margin: 0;
+}
+
+body{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 20% 72%;
+    grid-template-rows: 15% 85%;
+    row-gap: 5%;
+}
+
+
 /* HEADER */
+
 
 nav {
     grid-column: 1 /span 1;
     grid-row: 2 / span 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gauche);
+    height: 800px;
+    justify-content: space-around;
+    border-radius: 0px 50px 50px 0px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+
+/* DATE */
+
+
+.affichage-heure{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    background-color: var(--gauche);
+    display: flex;
+    height: 150px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 50px 50px 0px;
+}
+
+.affichage-heure p {
+    font-size: 30px;
+}
+
+
+/* AFFICHAGE PAGE*/
+
+
+.affichage-titre{
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    font-size: 25px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--content-back);
+    border-radius: 50px 0px 0px 50px;
+}
+
+.content{
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    display: flex;
+    justify-content: center;
+    height: 800px;
+    background-color: var(--content-back);
+    border-radius: 50px 0px 0px 50px;
+}
+
+.content p {
+    margin-top: 25%;
+    font-size: 50px;
+}
+
+/* NOMS */
+
+.noms {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    margin-top: 55%;
+    margin-left: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
