@@ -24,9 +24,17 @@ if(isset($_REQUEST['id_transfert'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Liste des transferts</title>
+    <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 <body>
+<?php
+        include "../../includes/navbar.php";
+
+        include '../../includes/heure.php';
+
+        include '../../includes/titre-page.php';
+       ?>
     <table>
         <tr>
             <th>Titre ouvrage</th>
