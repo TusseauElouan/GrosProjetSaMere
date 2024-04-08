@@ -27,10 +27,10 @@ if(isset($_REQUEST['id_emprunt'])){
 <body>
     <table>
         <tr>
-            <td>Titre ouvrage</td>
-            <td>Nom auteur</td>
-            <td>Prénom auteurt</td>
-            <td>Date du emprunt</td>
+            <th>Titre ouvrage</th>
+            <th>Nom auteur</th>
+            <th>Prénom auteurt</th>
+            <th>Date du emprunt</th>
         </tr>
 
     <?php

@@ -20,10 +20,11 @@ require_once '../../includes/connexion.php'
             <div>
                 <table border="1px">
                 <tr>
-                    <td>Nom</td>
-                    <td>Prénom</td>
-                    <td>Commentaire</td>
-                    <th>Modifs</th></tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Commentaire</th>
+                    <th>Modifs</th>
+                </tr>
                 <?php
                     $sql = 'SELECT * FROM auteur';
                     $temp = $pdo->query($sql);

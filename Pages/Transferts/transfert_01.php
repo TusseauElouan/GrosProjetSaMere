@@ -29,10 +29,10 @@ if(isset($_REQUEST['id_transfert'])){
 <body>
     <table>
         <tr>
-            <td>Titre ouvrage</td>
-            <td>Ville origine</td>
-            <td>Ville cible</td>
-            <td>Date transfert</td>
+            <th>Titre ouvrage</th>
+            <th>Ville origine</th>
+            <th>Ville cible</th>
+            <th>Date transfert</th>
         </tr>
 
 
