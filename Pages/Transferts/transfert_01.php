@@ -30,7 +30,6 @@ if (isset($_REQUEST['id_transfert'])) {
 </head>
 
 <body>
-
     <?php
     include "../../includes/navbar.php";
     include '../../includes/heure.php';
