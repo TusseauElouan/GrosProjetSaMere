@@ -25,24 +25,40 @@ $pdo = new PDO($dsn, $user, $pass);
             ?>
         </header>
         <main>
-            <div class="tab-admin">
+            <div>
                 <table border="1px">
                 <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>Modifs</th></tr>
                 <?php
                     $sql = 'SELECT * FROM auteur';
                     $temp = $pdo->query($sql);
-                    $auteur = $temp->fetch();
-                    $id = $auteur[0];
-                    $nom = $auteur[1];
-                    $prenom = $auteur[2];
-                    $commentaire = $auteur[3];                  
+                    while ($auteur = $temp->fetch()) {
+                        $id = $auteur['numero_auteur'];
+                        $nom = $auteur['nom_auteur'];
+                        $prenom = $auteur['prenom_auteur'];
+                        $commentaire = $auteur['commentaire']; 
                 ?>
-                    <tr><td><?=$nom?></td><td><?=$prenom?></td><td><?=$commentaire?></td><td><a href="auteur_02.php?nom=<?=$nom?>&prenom=<?=$prenom?>&commentaire=<?=$commentaire?>"><img src="../../Medias/editform.png" class="boutonsform" alt="image de modification"></a><a href="auteur_03.php?id=<?=$id?>"><img src="../../Medias/supprimerform.png" class="boutonsform" alt=""></a></td></tr>
+                        <tr>
+                        <td><?= $nom ?></td>
+                        <td><?= $prenom ?></td>
+                        <td><?= $commentaire ?></td>
+                        <td>
+                            <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
+                                <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                            </a>
+                            <a href="auteur_03.php?id=<?= $id ?>">
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
+                            </a>
+                        </td>
+                        </tr>
                 <?php
+                    }
                 ?>
                 </table>
                 <br />
-                <a href="auteur_04.php">Add</a>
+                <a href="auteur_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Add
+                </a>
             </div>
 
 
