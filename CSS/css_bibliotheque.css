@@ -15,10 +15,10 @@
 
 body{
     display: grid;
-    justify-content: space-between;
     grid-template-columns: 20vw 77vw;
     grid-template-rows: 8vw 40vw;
     row-gap: 2vw;
+    column-gap: 2vw;
 }
 
 
@@ -32,7 +32,6 @@ nav {
     flex-direction: column;
     background-color: var(--gauche);
     height: 80vh;
-    justify-content: space-around;
     border-radius: 0px 50px 50px 0px;
 }
 
@@ -41,6 +40,8 @@ nav a {
     color: black;
     margin-left: 20px;
     font-size: 30px;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
 }
 
 nav a:hover{
