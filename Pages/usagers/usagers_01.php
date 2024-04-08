@@ -1,3 +1,17 @@
+<?php
+    require_once '../../includes/connexion.php';
+
+
+
+    if(isset($_REQUEST["nom"],$_REQUEST["prenom"],$_REQUEST["ville"],$_REQUEST["biblioteque"],$_REQUEST["commentaire"])){
+        $nom = $_REQUEST["nom"];
+        $prenom = $_REQUEST["prenom"];
+        $ville = $_REQUEST["ville"];
+        $commentaire = $_REQUEST["commentaire"];
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +31,8 @@
         <input type="text" name="biblioteque">
         <label for="commentaire">commentaire</label>
         <input type="text" name="commentaire" id="commentaire">
+        <input type="submit">
     </form>
+
 </body>
 </html>
