@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Database.php';
+require_once '../../includes/connexion.php';
 
 //requete affichage liste
 $sql = 'SELECT ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
