@@ -40,10 +40,10 @@ require_once '../../includes/connexion.php';
                         <td><?= $numero_usager ?></td>
                         <td><?= $commentaire ?></td>
                         <td>
-                            <a href="emprunt_02.php?id=<?= $numero_emprunt ?>&numero_ouvrage=<?= $numero_ouvrage ?>&date_emprunt=<?= $date_emprunt ?>&numero_usager=<?= $numero_usager ?>&commentaire=<?= $commentaire ?>">
+                            <a href="emprunt_02.php?numero_emprunt=<?= $numero_emprunt ?>&numero_ouvrage=<?= $numero_ouvrage ?>&date_emprunt=<?= $date_emprunt ?>&numero_usager=<?= $numero_usager ?>&commentaire=<?= $commentaire ?>">
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                             </a>
-                            <a href="emprunt_03.php?id=<?= $numero_emprunt ?>">
+                            <a href="emprunt_03.php?numero_emprunt=<?= $numero_emprunt ?>">
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                             </a>
                         </td>
