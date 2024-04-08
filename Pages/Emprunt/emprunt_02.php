@@ -1,13 +1,5 @@
 <?php
-$host = 'localhost';
-$db = 'bibliotheque';
-$user = 'root';
-$pass = '';
-$port = 3306;
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset;port=$port";
-$pdo = new PDO($dsn, $user, $pass);
+require_once '../../includes/connexion.php'
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
 if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commentaire_auteur'])) {
