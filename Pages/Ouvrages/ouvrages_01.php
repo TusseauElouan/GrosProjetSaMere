@@ -19,41 +19,33 @@ require_once '../../includes/connexion.php';
         <main>
             <div class="content">
                 <div>
-                    <a href="auteur_04.php">
+                    <a href="ouvrages_04.php">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
                     <table border="1px">
-                    <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>titre</th><th>modifier</th><th>supprimer</th></tr>
+                    <tr><th>titre</th><th>langue</th><th>bibliotheque</th><th>auteur</th><th>commentaire</th><th>actions</th></tr>
                     <?php
-                        $sql = 'SELECT 
-                        ouvrage.titre_ouvrage AS Titre_Ouvrage,
-                        auteur.nom_auteur AS Nom_Auteur,
-                        auteur.prenom_auteur AS Prenom_Auteur,
-                        emprunt.date_emprunt AS Date_Emprunt
-                    FROM 
-                        emprunt
-                    JOIN ouvrage ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage
-                    JOIN auteur ON ouvrage.numero_auteur = auteur.numero_auteur';
+                        $sql = 'SELECT * FROM ouvrage';
                         $temp = $pdo->query($sql);
                         while ($ouvrage = $temp->fetch()) {
-                            $titre = $ouvrage['Titre_Ouvrage'];
-                            $nom = $ouvrage['Nom_Auteur'];
-                            $prenom = $ouvrage['Prenom_Auteur'];
-                            $date_emprunt = $ouvrage['Date_Emprunt']; 
+                            $titre = $ouvrage['titre_ouvrage'];
+                            $langue = $ouvrage['langue'];
+                            $bibliotheque = $ouvrage['numero_bibliotheque'];
+                            $auteur = $ouvrage['numero_auteur'];
+                            $commentaire = $ouvrage['commentaire'];
                     ?>
                             <tr>
                             <td><?= $titre ?></td>
-                            <td><?= $nom ?></td>
-                            <td><?= $prenom ?></td>
-                            <td><?= $date_emprunt ?></td>
+                            <td><?= $langue ?></td>
+                            <td><?= $bibliotheque ?></td>
+                            <td><?= $auteur ?></td>
+                            <td><?= $commentaire ?></td>
                             <td>
-                                <a href="#">
+                                <a href="ouvrages_02.php">
                                     <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                                 </a>
-                            </td>
-                            <td>
-                                <a href="#">
+                                <a href="ouvrages_03.php">
                                     <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                                 </a>
                             </td>
