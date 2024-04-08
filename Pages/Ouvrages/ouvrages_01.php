@@ -20,7 +20,7 @@ require_once '../../includes/connexion.php';
             <div class="content">
                 <div>
                     <table border="1px">
-                    <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>titre</th></tr>
+                    <tr><th>Nom</th><th>Prénom</th><th>Commentaire</th><th>Titre</th><th>Action</th></tr>
                     <?php
                         $sql = 'SELECT 
                         ouvrage.titre_ouvrage AS Titre_Ouvrage,
@@ -43,6 +43,13 @@ require_once '../../includes/connexion.php';
                             <td><?= $nom ?></td>
                             <td><?= $prenom ?></td>
                             <td><?= $date_emprunt ?></td>
+                            <td>
+                                <a href="#">
+                                    <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+                                </a>
+                                <a href="#">
+                                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
+                                </a></td>
                             </tr>
                     <?php
                         }
@@ -52,13 +59,7 @@ require_once '../../includes/connexion.php';
                     <a href="auteur_04.php">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                     </a>
-                    <a
-                        href="#">
-                        <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
-                    </a>
-                    <a href="#">
-                        <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
-                    </a>
+                    
                 </div>
             </div>
         </main>
