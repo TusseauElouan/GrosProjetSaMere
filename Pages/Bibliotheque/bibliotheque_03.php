@@ -24,6 +24,7 @@
         <textarea name="commentaire_bibliotheque" id="" cols="60" rows="10" required value="<?=$resultat['commentaire']?>"></textarea>
 
         <input type="hidden" name="type" value="modif">
+        <input type="hidden" name="id_bibliotheque" value="<?=$id_bibliotheque?>">
         <input type="submit" value="Envoyer">
     </form>
 </body>
