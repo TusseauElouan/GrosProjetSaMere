@@ -17,7 +17,8 @@
 
         <label for="commentaire_bibliotheque">Commentaire : </label>
         <textarea name="commentaire_bibliotheque" id="" cols="60" rows="10" required></textarea>
-
+        
+        <input type="hidden" name="type" value="ajout">
         <input type="submit" value="Envoyer">
     </form>
 </body>
