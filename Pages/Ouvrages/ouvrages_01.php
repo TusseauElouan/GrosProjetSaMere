@@ -56,15 +56,5 @@ require_once '../../includes/connexion.php';
 
 
         </main>
-        <footer>
-            <?php
-            // include("includes/footer.php");
-            ?>
-            <br />
-            <a href="ouvrages_02.php">Add</a>
-        </div>
-    </main>
-</body>
-        </footer>
     </body>
 </html>
