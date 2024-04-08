@@ -12,7 +12,12 @@
 </head>
 <body>
     <form action="" method='POST'>
-        <label for=""></label>
+        <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
+        <select name="bibli-origine" id="bibli-origine">
+            <?php
+                $sql = 'SELECT * FROM bibliothèque';
+            ?>
+        </select>
     </form>
 </body>
 </html>
