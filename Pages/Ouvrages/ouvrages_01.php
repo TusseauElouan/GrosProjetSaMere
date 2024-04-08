@@ -29,6 +29,7 @@ require_once '../../includes/connexion.php';
                         $sql = 'SELECT * FROM ouvrage';
                         $temp = $pdo->query($sql);
                         while ($ouvrage = $temp->fetch()) {
+                            $id = $ouvrage["numero_ouvrage"];
                             $titre = $ouvrage['titre_ouvrage'];
                             $langue = $ouvrage['langue'];
                             $bibliotheque = $ouvrage['numero_bibliotheque'];
@@ -42,10 +43,10 @@ require_once '../../includes/connexion.php';
                             <td><?= $auteur ?></td>
                             <td><?= $commentaire ?></td>
                             <td>
-                                <a href="ouvrages_02.php">
+                                <a href="ouvrages_02.php?id=<?php echo $id?>">
                                     <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                                 </a>
-                                <a href="ouvrages_03.php">
+                                <a href="ouvrages_03.php?id=<?php echo $id?>">
                                     <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                                 </a>
                             </td>
