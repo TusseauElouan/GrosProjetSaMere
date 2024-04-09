@@ -1,5 +1,14 @@
 <?php
 require_once '../../includes/connexion.php';
+if (isset($_REQUEST['type'])) {
+    $id = $_REQUEST['numero_usager'];
+    $sql = 'DELETE FROM usager WHERE numero_usager = :id';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id', $id);
+    $temp->execute();
+    header('Location: usagers_01.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +32,7 @@ require_once '../../includes/connexion.php';
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="usagers_04.php" class="bouton-ajouter">
+                    <a href="usagers_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -55,15 +64,13 @@ require_once '../../includes/connexion.php';
                         <td><?= $ville ?></td>
                         <td><?= $bibliotheque ?></td>
                         <td><?= $commentaire ?></td>
-                        <td> 
-                            <a href="usagers_02.php?id=<?= $id ?>">
-                                <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
-                            </a>
+                        <td>
+                            <a href='usager_03.php?id=<?= $id?>'>
+                            <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                         </td>
                         <td>
-                            <a href="usagers_03.php?id=<?= $id ?>">
-                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="image de suppresion">
-                            </a>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='usager_01.php?type=supp&numero_usager=<?=$id?>'>
+                            <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                         </td>
                     </tr>
                     <?php } ?>
