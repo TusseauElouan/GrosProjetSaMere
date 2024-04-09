@@ -36,7 +36,7 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
         <main>
         <div class="content">
             <div>
-                <form action="auteur_04.php">
+                <form action="auteur_03.php">
                     <h2>Ajouter un auteur : </h2>
 
                     <label for="nom_auteur">Nom :</label>
