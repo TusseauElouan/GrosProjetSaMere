@@ -18,13 +18,15 @@ require_once '../../includes/connexion.php';
             ?>
         <main>
             <div class="content">
-                <div>
-                    <a href="ouvrages_04.php">
-                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                        Ajouter
-                    </a>
-                    <table border="1px">
-                    <tr><th>titre</th><th>langue</th><th>bibliotheque</th><th>auteur</th><th>commentaire</th><th>actions</th></tr>
+                <div class="content-inside">
+                    <div class="boutonadd-container">
+                        <a href="ouvrages_04.php" class="bouton-ajouter">
+                            <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                            Ajouter
+                        </a>
+                    </div>
+                    <table class="tableau-liste" border="1" cellpadding="5px 7px">
+                    <tr><th>Titre</th><th>Langue</th><th>Bibliothèque</th><th>Auteur</th><th>Commentaire</th><th>Editer</th><th>Supprimer</th></tr>
                     <?php
                         $sql = 'SELECT * FROM ouvrage';
                         $temp = $pdo->query($sql);
@@ -46,6 +48,8 @@ require_once '../../includes/connexion.php';
                                 <a href="ouvrages_02.php?id=<?php echo $id?>">
                                     <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                                 </a>
+                            </td>
+                            <td>
                                 <a href="ouvrages_03.php?id=<?php echo $id?>">
                                     <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                                 </a>

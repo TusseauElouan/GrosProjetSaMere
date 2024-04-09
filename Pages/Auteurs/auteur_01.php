@@ -18,17 +18,20 @@ require_once '../../includes/connexion.php';
             ?>
         <main>
         <div class="content">
-            <div>
-            <a href="auteur_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Ajouter
-                </a>
-                <table border="1px">
+            <div class="content-inside">
+                <div class="boutonadd-container">
+                    <a href="auteur_04.php" class="bouton-ajouter">
+                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                        Ajouter
+                    </a>
+                </div>
+                <table class="tableau-liste" border="1">
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Commentaire</th>
-                    <th>Modifs</th>
+                    <th>Editer</th>
+                    <th>Supprimer</th>
                 </tr>
                 <?php
                     $sql = 'SELECT * FROM auteur';
@@ -47,6 +50,8 @@ require_once '../../includes/connexion.php';
                                 <a href="auteur_02.php?id=<?= $id ?>&nom=<?= $nom ?>&prenom=<?= $prenom ?>&commentaire=<?= $commentaire ?>">
                                     <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                                 </a>
+                            </td>
+                            <td>
                                 <a href="auteur_03.php?id=<?= $id ?>">
                                     <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
                                 </a>
@@ -56,7 +61,6 @@ require_once '../../includes/connexion.php';
                     }
                 ?>
                 </table>
-                <br />
             </div>
 
         </div>

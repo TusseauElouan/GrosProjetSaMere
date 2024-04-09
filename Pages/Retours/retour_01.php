@@ -35,17 +35,21 @@ if (isset($_REQUEST['id_retour'])) {
     ?>
     <main>
         <div class="content">
-            <div>
-                <a href="retour_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Ajouter
-                </a>
-                <table border="1px">
+            <div class="content-inside">
+                <div class="boutonadd-container">
+                    <a href="retour_04.php" class="bouton-ajouter">
+                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                        Ajouter
+                    </a>
+                </div>
+                <table class="tableau-liste" border="1" cellpadding="5px 7px">
                     <tr>
                         <th>Titre ouvrage</th>
                         <th>Nom auteur</th>
                         <th>Prénom auteurt</th>
                         <th>Date du retour</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
                     </tr>
 
 

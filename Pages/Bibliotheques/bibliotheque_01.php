@@ -43,12 +43,14 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <div>
-            <a href="bibliotheque_02.php">
-                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                Ajouter
-            </a>
-            <table border="1px">
+        <div class="content-inside">
+            <div class="boutonadd-container">
+                <a href="bibliotheque_02.php" class="bouton-ajouter">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Ajouter
+                </a>
+            </div>
+            <table class="tableau-liste" border="1" cellpadding="5px 7px">
                 <thead>
                     <tr>
                         <th scope='col'>Ville</th>
