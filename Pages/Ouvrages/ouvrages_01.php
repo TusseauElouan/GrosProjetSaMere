@@ -55,7 +55,7 @@ if (isset($_REQUEST['type'])) {
                             <td><?= $auteur ?></td>
                             <td><?= $commentaire ?></td>
                             <td>
-                                <a href='ouvrage_03.php?id=<?= $id?>'>
+                                <a href='ouvrages_03.php?id=<?= $id?>'>
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>

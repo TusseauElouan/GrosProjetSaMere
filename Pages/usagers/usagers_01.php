@@ -65,7 +65,7 @@ if (isset($_REQUEST['type'])) {
                         <td><?= $bibliotheque ?></td>
                         <td><?= $commentaire ?></td>
                         <td>
-                            <a href='usager_03.php?id=<?= $id?>'>
+                            <a href='usagers_02.php?id=<?= $id?>'>
                             <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                         </td>
                         <td>

@@ -21,6 +21,7 @@ body{
     grid-template-rows: 8vw 40vw;
     row-gap: 2vw;
     column-gap: 2vw;
+    justify-content: space-between;
 }
 
 
