@@ -37,7 +37,7 @@ if (isset($_REQUEST['id_transfert'])) {
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="emprunt_03.php" class="bouton-ajouter">
+                    <a href="transfert_02.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>

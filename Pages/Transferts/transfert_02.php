@@ -9,6 +9,26 @@ if (isset($_REQUEST['bibli-origine'])) {
 } else {
     $sql_biblio_retire = $sql_biblio;
 }
+
+if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre'])) {
+    $sql_insert = 'INSERT INTO transfert (numero_bibliotheque_origine, numero_bibliotheque_cible, numero_ouvrage, date_transfert, commentaire) VALUES (:bibli-origine, :bibli-cible, :titre, :date_transfert, :commentaire)';
+    $data = [
+        'bibli-origine' => htmlentities($_REQUEST['bibli-origine']),
+        'bibli-cible' => htmlentities($_REQUEST['bibli-cible']),
+        'titre' => htmlentities($_REQUEST['titre']),
+        'date_transfert' => htmlentities($_REQUEST['date_transfert']),
+        'commentaire' => htmlentities($_REQUEST['commentaire'])
+    ];
+    $resultat4 = $pdo->prepare($sql_insert);
+    $resultat4->execute($data);
+
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibli-cible';
+    $data2 = [
+        'bibli-cible' => htmlentities($_REQUEST['bibli-cible'])
+    ];
+    $resultat5 = $pdo->prepare($sql_update);
+    $resultat5->execute($data2);
+}
 ?>
 
 
@@ -34,6 +54,8 @@ if (isset($_REQUEST['bibli-origine'])) {
     <div>
         <div class="content">
             <form action="" method='POST'>
+                <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
+
                 <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
                 <select name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
                     <?php
@@ -59,7 +81,7 @@ if (isset($_REQUEST['bibli-origine'])) {
                 </select>
             </form>
             <form action="" method="post">
-                <label for="bibli-origine">Nom de la bibliothèque ciblé</label>
+                <label for="bibli-cible">Nom de la bibliothèque ciblé</label>
                 <select name="bibli-cible" id="bibli-cible">
                     <?php
                     $result = $pdo->prepare($sql_biblio_retire);
@@ -87,6 +109,7 @@ if (isset($_REQUEST['bibli-origine'])) {
                     <?php
                 }
                 ?>
+                <input type="submit" value="Transferer">
             </form>
         </div>
     </div>
