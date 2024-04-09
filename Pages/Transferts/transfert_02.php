@@ -54,8 +54,13 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     <div>
         <div class="content">
             <form action="" method='POST'>
+                <?php
+                    if (isset($_REQUEST['bibli-origine'])) {
+                ?>
                 <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
-
+                <?php
+                    }
+                ?>
                 <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
                 <select name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
                     <?php
