@@ -12,21 +12,21 @@ if (isset($_REQUEST['bibli-origine'])) {
 
 if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre'])) {
     
-    $sql_insert = 'INSERT INTO transfert (numero_bibliotheque_origine, numero_bibliotheque_cible, numero_ouvrage, date_transfert, commentaire) VALUES (:bibli-origine, :bibli-cible, :titre, :date_transfert, :commentaire)';
+    $sql_insert = 'INSERT INTO transfert(numero_bibliotheque_origine, numero_bibliotheque_cible, numero_ouvrage, date_transfert, commentaire) VALUES (:bibliorigine, :biblicible, :titre, :date_transfert, :commentaire)';
     $data = [
-        'bibli-origine' => htmlentities($_REQUEST['bibli-origine']),
-        'bibli-cible' => htmlentities($_REQUEST['bibli-cible']),
-        'titre' => htmlentities($_REQUEST['titre']),
-        'date_transfert' => htmlentities($_REQUEST['date_transfert']),
-        'commentaire' => htmlentities($_REQUEST['commentaire'])
+        'bibliorigine' => $_REQUEST['bibli-origine'],
+        'biblicible' => $_REQUEST['bibli-cible'],
+        'titre' => $_REQUEST['titre'],
+        'date_transfert' => date('Y-m-d'),
+        'commentaire' => $_REQUEST['commentaire']
     ];
-    echo $sql_insert;
+
     $resultat4 = $pdo->prepare($sql_insert);
     $resultat4->execute($data);
 
-    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibli-cible';
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :biblicible';
     $data2 = [
-        'bibli-cible' => htmlentities($_REQUEST['bibli-cible'])
+        'biblicible' => htmlentities($_REQUEST['bibli-cible'])
     ];
     $resultat5 = $pdo->prepare($sql_update);
     $resultat5->execute($data2);
@@ -35,7 +35,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -56,20 +56,12 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     <div>
         <div class="content">
             <form action="" method='POST'>
-                <?php
-                    if (isset($_REQUEST['bibli-origine'])) {
-                ?>
-                <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
-                <?php
-                    }
-                ?>
                 <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
                 <select name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
                     <?php
-                    if (!isset($_REQUEST['bibli-origine'])) {
+                    if (!isset($_REQUEST['bibli-origine'])){
                         echo '<option>Choisissez une option</option>';
-                    }
-                    ;
+                    };
                     ?>
 
                     <?php
@@ -88,11 +80,20 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                 </select>
             </form>
             <form action="" method="post">
+                <?php
+                    if (isset($_REQUEST['bibli-origine'])) {
+                ?>
+                    <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
+                <?php
+                    }
+                ?>
                 <label for="bibli-cible">Nom de la bibliothèque ciblé</label>
                 <select name="bibli-cible" id="bibli-cible">
                     <?php
+                    
                     $result = $pdo->prepare($sql_biblio_retire);
                     $result->execute();
+
                     while ($resultat2 = $result->fetch()) {
                         echo '<option value="' . $resultat2['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat2['ville_bibliotheque'] . '</option>';
                     }
@@ -109,9 +110,12 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                             while ($resultat3 = $result->fetch()) {
                                 echo '<option value="' . $resultat3['numero_ouvrage'] . '">' . $resultat3['titre_ouvrage'] . '</option>';
                             }
-                    }
                         ?>
                     </select>
+                    <textarea name="commentaire" id="commentaire" cols="30" rows="10">Aucun</textarea>
+                <?php
+                }
+                ?>
                 
                 <input type="submit" value="Transferer">
             </form>
