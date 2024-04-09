@@ -53,7 +53,7 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                     <label for="commentaire">Commentaire :</label>
                     <input type="text" name="commentaire" required/>
 
-                    <input type="submit" value="Modifier" />
+                    <input type="submit" value="Ajouter" />
                 </form>
             </div>
 
