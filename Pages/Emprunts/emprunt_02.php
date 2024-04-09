@@ -48,25 +48,36 @@ if (isset($_REQUEST['numero_emprunt_ajout'],$_REQUEST['numero_ouvrage_ajout'],$_
         ?>
         <main>
         <div class="content">
-            <div>
-                <form action="emprunt_02.php">
+            <div class="content-inside">
+                <form class="form" action="emprunt_02.php">
                     <h2>Modifier un emprunt : </h2>
 
                     <input type="hidden" name="numero_emprunt_ajout" value="<?=$numero_emprunt?>"/>
 
-                    <label for="numero_ouvrage">Numero Ouvrage :</label>
-                    <input type="number" name="numero_ouvrage_ajout" value="<?=$numero_ouvrage?>" required/>
+                    <div class="label-box">
+                        <label for="numero_ouvrage">Numero Ouvrage :</label>
+                        <input class="form-input" type="number" name="numero_ouvrage_ajout" value="<?=$numero_ouvrage?>" required/>
+                    </div>
 
-                    <label for="date_emprunt">Date Ouvrage :</label>
-                    <input type="date" name="date_emprunt" value="<?=$date_emprunt?>" required/>
+                    <div class="label-box">
+                        <label for="date_emprunt">Date Ouvrage :</label>
+                        <input class="form-input" type="date" name="date_emprunt" value="<?=$date_emprunt?>" required/>
+                    </div>
 
-                    <label for="numero_usager">Numero Usager :</label>
-                    <input type="number" name="numero_usager_ajout" value="<?=$numero_usager?>" required/>
+                    <div class="label-box">
+                        <label for="numero_usager">Numero Usager :</label>
+                        <input class="form-input" type="number" name="numero_usager_ajout" value="<?=$numero_usager?>" required/>
+                    </div>
 
-                    <label for="commentaire">Commentaire :</label>
-                    <input type="text" name="commentaire_ajout" value="<?=$commentaire?>" required/>
+                    <div class="label-box-textarea">
+                        <label for="commentaire">Commentaire :</label><br />
+                        <textarea class="form-input" type="text" name="commentaire_ajout" id="" cols="60" rows="10"
+                            required><?=$commentaire?></textarea>
+                    </div>
 
-                    <input type="submit" value="Modifier" />
+                    <div>
+                        <input class="submit-btn" type="submit" value="Modifier" />
+                    </div>
                 </form>
             </div>
         </div>

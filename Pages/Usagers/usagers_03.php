@@ -41,7 +41,7 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <form action="usagers_04.php" method="post">
+        <form action="usagers_03.php" method="post">
             <label for="nom">Nom</label>
             <input type="text" name='nom' id="nom">
             <label for="prenom">prenom</label>

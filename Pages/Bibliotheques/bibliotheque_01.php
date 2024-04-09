@@ -68,7 +68,7 @@ if (isset($_REQUEST['type'])) {
                 while ($resultats = $temp->fetch()) {
                     ?>
                         <tr>
-                            <th scope='row'><?= $resultats['ville_bibliotheque']?></th>
+                            <td scope='row'><?= $resultats['ville_bibliotheque']?></td>
                             <td><?php echo $resultats['commentaire']?></td>
                             <td>
                                 <a href='bibliotheque_03.php?id_bibliotheque=<?= $resultats['numero_bibliotheque']?>'>

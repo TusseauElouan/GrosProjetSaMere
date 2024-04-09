@@ -40,7 +40,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modifier un usager</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -50,19 +50,36 @@
     include '../../includes/heure.php';
     include '../../includes/titre-page.php';
 ?>
-<form action="usagers_02.php?id=<?php echo $id ?>" method="post">
-    <label for="nom">Nom</label>
-    <input type="text" name='nom' id="nom" value="<?php echo $usager["nom_usager"] ?>">
-    <label for="prenom">prenom</label>
-    <input type="text" name="prenom" id="prenom" value="<?php echo $usager["prenom_usager"] ?>">
-    <label for="ville">Ville</label>
-    <input type="text" name="ville" id="ville"  value="<?php echo $usager["ville_usager"] ?>">
-    <label for="biblioteque">Numero bibliothèque</label>
-    <input type="text" name="biblioteque" id="biblioteque"  value="<?php echo $usager["numero_bibliotheque"] ?>">
-    <label for="commentaire">Commentaire</label>
-    <input type="text" name="commentaire" id="commentaire"  value="<?php echo $usager["commentaire"] ?>">
-    <input type="submit">
-</form>
+<div class="content">
+    <div class="content-inside">
+        <form class="form" action="usagers_02.php?id=<?php echo $id ?>" method="post">
+        <div class="label-box">
+            <label for="nom">Nom</label>
+            <input class="form-input" type="text" name='nom' id="nom" value="<?php echo $usager["nom_usager"] ?>">
+        </div>
+        <div class="label-box">
+            <label for="prenom">prenom</label>
+            <input class="form-input" type="text" name="prenom" id="prenom" value="<?php echo $usager["prenom_usager"] ?>">
+        </div>
+        <div class="label-box">
+            <label for="ville">Ville</label>
+            <input class="form-input" type="text" name="ville" id="ville"  value="<?php echo $usager["ville_usager"] ?>">
+        </div>
+        <div class="label-box">
+            <label for="biblioteque">Numero bibliothèque</label>
+            <input class="form-input" type="text" name="biblioteque" id="biblioteque"  value="<?php echo $usager["numero_bibliotheque"] ?>">
+        </div>
+        <div class="label-box-textarea">
+            <label for="commentaire">Commentaire</label><br />
+            <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10"
+                        required><?= $usager["commentaire"] ?></textarea>
+        </div>
+        <div>
+            <input class="submit-btn" type="submit">
+        </div>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>

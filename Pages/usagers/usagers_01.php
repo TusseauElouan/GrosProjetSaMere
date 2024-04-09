@@ -18,7 +18,7 @@ if (isset($_REQUEST['type'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
-    <title>Document</title>
+    <title>Formulaire Usagers</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -43,8 +43,8 @@ if (isset($_REQUEST['type'])) {
                         <th>Prenom</th>
                         <th>Ville</th>
                         <th>Numero bibliotheque</th>
-                        <th>Commentaire</th>
-                        <th>Modifier</th>
+                        <th>commentaire</th>
+                        <th>Editer</th>
                         <th>Supprimer</th>
                     </tr>
                     <tr>
@@ -65,11 +65,11 @@ if (isset($_REQUEST['type'])) {
                         <td><?= $bibliotheque ?></td>
                         <td><?= $commentaire ?></td>
                         <td>
-                            <a href='usager_03.php?id=<?= $id?>'>
+                            <a href='usagers_02.php?id=<?= $id?>'>
                             <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                         </td>
                         <td>
-                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='usager_01.php?type=supp&numero_usager=<?=$id?>'>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='usagers_01.php?type=supp&numero_usager=<?=$id?>'>
                             <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                         </td>
                     </tr>
