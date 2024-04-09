@@ -59,7 +59,7 @@ if (isset($_REQUEST['type'])) {
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='ouvrages_01.php?type=supp&numero_ouvrage=<?=$id?>'>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet ouvrage ?')" href='ouvrages_01.php?type=supp&numero_ouvrage=<?=$id?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                             </tr>
