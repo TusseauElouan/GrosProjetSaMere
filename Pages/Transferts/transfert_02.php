@@ -11,6 +11,7 @@ if (isset($_REQUEST['bibli-origine'])) {
 }
 
 if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre'])) {
+    
     $sql_insert = 'INSERT INTO transfert (numero_bibliotheque_origine, numero_bibliotheque_cible, numero_ouvrage, date_transfert, commentaire) VALUES (:bibli-origine, :bibli-cible, :titre, :date_transfert, :commentaire)';
     $data = [
         'bibli-origine' => htmlentities($_REQUEST['bibli-origine']),
@@ -19,6 +20,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
         'date_transfert' => htmlentities($_REQUEST['date_transfert']),
         'commentaire' => htmlentities($_REQUEST['commentaire'])
     ];
+    echo $sql_insert;
     $resultat4 = $pdo->prepare($sql_insert);
     $resultat4->execute($data);
 
@@ -94,7 +96,6 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                     while ($resultat2 = $result->fetch()) {
                         echo '<option value="' . $resultat2['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat2['ville_bibliotheque'] . '</option>';
                     }
-                    
                     ?>
                 </select>
                 <?php
@@ -103,57 +104,15 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                     <label for="titre">L'ouvrage à transférer</label>
                     <select name="titre" id="titre">
                         <?php
-                        if (!isset($_REQUEST['bibli-origine'])) {
-                            echo '<option>Choisissez une option</option>';
-                        }
-                    }
-                        ?>
-
-                        <?php
-                        $result = $pdo->prepare($sql_biblio);
-                        $result->execute();
-
-                        while ($resultat = $result->fetch()) {
-                            if (isset($_REQUEST['bibli-origine']) && $_REQUEST['bibli-origine'] == $resultat['numero_bibliotheque']) {
-                                echo '<option value="' . $resultat['numero_bibliotheque'] . '" selected>Bibliothèque de ' . $resultat['ville_bibliotheque'] . '</option>';
-                            } else {
-                                echo '<option value="' . $resultat['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat['ville_bibliotheque'] . '</option>';
-                            }
-                        }
-                        ;
-                        ?>
-                    </select>
-                </div>
-                <div class="content-inside">
-                    <label for="bibli-origine">Nom de la bibliothèque ciblé</label>
-                    <select class="form-input" name="bibli-cible" id="bibli-cible">
-                        <?php
-                        $result = $pdo->prepare($sql_biblio_retire);
-                        $result->execute();
-                        while ($resultat2 = $result->fetch()) {
-                            echo '<option value="' . $resultat2['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat2['ville_bibliotheque'] . '</option>';
-                        }
-                        ;
-                        ?>
-                    </select>
-                    <?php
-                    if (isset($_REQUEST['bibli-origine'])) {
-                        ?>
-                        <label for="titre">L'ouvrage à transférer</label>
-                        <select name="titre" id="titre">
-                            <?php
                             $result = $pdo->prepare($sql);
                             $result->execute();
                             while ($resultat3 = $result->fetch()) {
                                 echo '<option value="' . $resultat3['numero_ouvrage'] . '">' . $resultat3['titre_ouvrage'] . '</option>';
                             }
-                            ;
-                            ?>
-                        </select>
-                </div>
-                    <?php
-                }
-                ?>
+                    }
+                        ?>
+                    </select>
+                
                 <input type="submit" value="Transferer">
             </form>
         </div>
