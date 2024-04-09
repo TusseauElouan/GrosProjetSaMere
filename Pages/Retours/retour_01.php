@@ -2,18 +2,18 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
+$sql = 'SELECT retour_vue.numero_retour,retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
 FROM retour_vue, auteur
 WHERE retour_vue.numero_auteur = auteur.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
 
 //Requete de delete
-if (isset($_REQUEST['id_retour'])) {
-    $id_retour = htmlentities($_REQUEST['id_retour']);
-    $sql = 'DELETE FROM retour WHERE numero_retour = :id_retour';
+if (isset($_REQUEST['type'])) {
+    $numero_retour = htmlentities($_REQUEST['numero_retour']);
+    $sql = 'DELETE FROM retour WHERE numero_retour = :numero_retour';
     $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id_retour', $id_retour);
+    $temp->bindParam(':numero_retour', $numero_retour);
     $temp->execute();
 }
 ?>
@@ -70,16 +70,12 @@ if (isset($_REQUEST['id_retour'])) {
                                 <?= $t['date_retour']; ?>
                             </td>
                             <td>
-                                <form action="retour_01.php" method="post">
-                                    <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
-                                    <input type="submit" value="🗑️">
-                                </form>
+                                <a href='retour_03.php?id=<?= $t['numero_retour']?>'>
+                                <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
-                                <form action="retour_02.php?id=<?= $t['numero_retour'] ?>" method="post">
-                                    <input type="hidden" name="id_retour" value="<?= $t['numero_retour'] ?>">
-                                    <input type="submit">
-                                </form>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='retour_01.php?type=supp&numero_retour=<?=$t['numero_retour']?>'>
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                         </tr>
 

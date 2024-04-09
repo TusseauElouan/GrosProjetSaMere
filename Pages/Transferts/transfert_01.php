@@ -37,7 +37,7 @@ if (isset($_REQUEST['id_transfert'])) {
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="emprunt_04.php" class="bouton-ajouter">
+                    <a href="emprunt_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -49,7 +49,6 @@ if (isset($_REQUEST['id_transfert'])) {
                         <th>Ville cible</th>
                         <th>Date transfert</th>
                         <th>Editer</th>
-                        <th>Supprimer</th>
                     </tr>
                 <?php
                 foreach ($temp as $t) {
@@ -68,17 +67,13 @@ if (isset($_REQUEST['id_transfert'])) {
                             <?= $t['date_transfert']; ?>
                         </td>
                         <td>
-                            <form action="transfert_01.php" method="post">
-                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                                <input type="submit" value="🗑️">
-                            </form>
+                            <a href='transfert_03.php?id=<?= $t['numero_transfert']?>'>
+                            <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                         </td>
-                        <td>
-                            <form action="transfert_02.php?id=<?= $t['numero_transfert'] ?>" method="post">
-                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                                <input type="submit">
-                            </form>
-                        </td>
+                        <!-- <td>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='transfert_01.php?type=supp&id_transfert=<?=$t['numero_transfert']?>'>
+                            <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
+                        </td> -->
                     </tr>
                 <?php
                 }

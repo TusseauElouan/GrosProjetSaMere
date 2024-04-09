@@ -1,5 +1,13 @@
 <?php
 require_once '../../includes/connexion.php';
+
+if (isset($_REQUEST['supprimer'])) {
+    $numero_emprunt = $_REQUEST['numero_emprunt'];
+    $sql = 'DELETE FROM auteur WHERE numero_auteur = :numero_emprunt';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':numero_emprunt', $numero_emprunt);
+    $temp->execute();
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -19,7 +27,7 @@ require_once '../../includes/connexion.php';
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="emprunt_04.php" class="bouton-ajouter">
+                    <a href="emprunt_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -47,9 +55,8 @@ require_once '../../includes/connexion.php';
                                 </a>
                             </td>
                             <td>
-                                <a href="emprunt_03.php?numero_emprunt=<?= $numero_emprunt ?>">
-                                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
-                                </a>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='emprunt_01.php?type=supp&numero_emprunt=<?=$numero_emprunt?>'>
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                     <?php
                         }

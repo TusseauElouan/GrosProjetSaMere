@@ -1,5 +1,15 @@
 <?php
 require_once '../../includes/connexion.php';
+
+if (isset($_REQUEST['type'])) {
+    $id = $_REQUEST['numero_auteur'];
+    $sql = 'DELETE FROM auteur WHERE numero_auteur = :id';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id', $id);
+    $temp->execute();
+    header('Location: auteur_01.php');
+    exit();
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -20,7 +30,7 @@ require_once '../../includes/connexion.php';
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="auteur_04.php" class="bouton-ajouter">
+                    <a href="auteur_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -52,9 +62,8 @@ require_once '../../includes/connexion.php';
                                 </a>
                             </td>
                             <td>
-                                <a href="auteur_03.php?id=<?= $id ?>">
-                                    <img src="../../Medias/supprimerform.png" class="boutonsform" alt="">
-                                </a>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='auteur_01.php?type=supp&numero_auteur=<?=$id?>'>
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                         </tr>
                 <?php
