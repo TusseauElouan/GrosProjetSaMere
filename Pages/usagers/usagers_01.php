@@ -9,7 +9,7 @@ require_once '../../includes/connexion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
-    <title>Document</title>
+    <title>Formulaire Usagers</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -35,7 +35,8 @@ require_once '../../includes/connexion.php';
                         <th>Ville</th>
                         <th>Numero bibliotheque</th>
                         <th>commentaire</th>
-                        <th>Action</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
                     </tr>
                     <tr>
                         <?php 
@@ -58,6 +59,8 @@ require_once '../../includes/connexion.php';
                             <a href="usagers_02.php?id=<?= $id ?>">
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
                             </a>
+                        </td>
+                        <td>
                             <a href="usagers_03.php?id=<?= $id ?>">
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="image de suppresion">
                             </a>

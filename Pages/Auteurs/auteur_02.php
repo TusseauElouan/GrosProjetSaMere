@@ -68,7 +68,7 @@ if (isset($_REQUEST['id_auteur'],$_REQUEST['nom_auteur'],$_REQUEST['prenom_auteu
                     </div>
 
                     <div>
-                        <input type="submit" value="Modifier" />
+                        <input class="submit-btn" type="submit" value="Modifier" />
                     </div>
                 </form>
             </div>

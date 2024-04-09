@@ -31,8 +31,8 @@ require_once "./../../includes/connexion.php";
                 </div>
                 <div class="label-box-textarea">
                     <label for="commentaire_bibliotheque">Commentaire : </label><br />
-                    <textarea class="form-input" name="commentaire_bibliotheque" id="" cols="60" rows="10"
-                        required><?= $resultat['commentaire'] ?></textarea>
+                        <textarea class="form-input" name="commentaire_bibliotheque" id="" cols="60" rows="10"
+                            required><?= $resultat['commentaire'] ?></textarea>
                 </div>
 
                 <input type="hidden" name="type" value="modif">

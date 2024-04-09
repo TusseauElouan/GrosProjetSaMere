@@ -36,7 +36,7 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modifier Ouvrage</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -48,19 +48,34 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <form action="ouvrages_02.php?id=<?php echo $id ?>" method="post">
-            <label for="titre">Titre</label>
-            <input type="text" name='titre' id="titre" value="<?php echo $ouvrage['titre_ouvrage']?>">
-            <label for="langue">langue</label>
-            <input type="text" name="langue" id="langue" value="<?php echo $ouvrage['langue']?>">
-            <label for="numero_bibliotheque">numero bibliotheque</label>
-            <input type="text" name="numero_bibliotheque" id="numero_bibliotheque" value="<?php echo $ouvrage['numero_bibliotheque']?>">
-            <label for="numero_auteur">numero auteur</label>
-            <input type="text" name="numero_auteur" id="numero_auteur" value="<?php echo $ouvrage['numero_auteur']?>">
-            <label for="commentaire">commentaire</label>
-            <input type="text" name="commentaire" id="commentaire" value="<?php echo $ouvrage['commentaire']?>">
-            <input type="submit">
-        </form>
+        <div class="content-inside">
+            <form class="form" action="ouvrages_02.php?id=<?php echo $id ?>" method="post">
+            <div class="label-box">
+                <label for="titre">Titre</label>
+                <input class="form-input" type="text" name='titre' id="titre" value="<?php echo $ouvrage['titre_ouvrage']?>">
+            </div>
+            <div class="label-box">
+                <label for="langue">langue</label>
+                <input class="form-input" type="text" name="langue" id="langue" value="<?php echo $ouvrage['langue']?>">
+            </div>
+            <div class="label-box">
+                <label for="numero_bibliotheque">numero bibliotheque</label>
+                <input class="form-input" type="text" name="numero_bibliotheque" id="numero_bibliotheque" value="<?php echo $ouvrage['numero_bibliotheque']?>">
+            </div>
+            <div class="label-box">
+                <label for="numero_auteur">numero auteur</label>
+                <input class="form-input" type="text" name="numero_auteur" id="numero_auteur" value="<?php echo $ouvrage['numero_auteur']?>">
+            </div>
+            <div class="label-box-textarea">
+                <label for="commentaire">commentaire</label><br />
+                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10"
+                        required><?= $ouvrage['commentaire']?></textarea>
+            </div>
+            <div>
+                <input class="submit-btn" type="submit">
+            </div>
+            </form>
+        </div>
     </div>
 </body>
 

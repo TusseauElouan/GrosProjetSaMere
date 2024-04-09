@@ -69,7 +69,7 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
                 while ($resultats = $temp->fetch()) {
                     ?>
                         <tr>
-                            <th scope='row'><?= $resultats['ville_bibliotheque']?></th>
+                            <td scope='row'><?= $resultats['ville_bibliotheque']?></td>
                             <td><?php echo $resultats['commentaire']?></td>
                             <td><a href='bibliotheque_03.php?id_bibliotheque=<?= $resultats['numero_bibliotheque']?>'><img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a></td>
                             <td><a onclick="return confirm('Voulez-vous vraiment supprimer cette bibliothèque?')" href='bibliotheque_01.php?type=supp&numero_bibliotheque=<?=$resultats['numero_bibliotheque']?>'><img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a></td>
