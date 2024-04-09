@@ -101,7 +101,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                         if (!isset($_REQUEST['bibli-origine'])) {
                             echo '<option>Choisissez une option</option>';
                         }
-                        ;
+                    }
                         ?>
 
                         <?php

@@ -3,7 +3,7 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
+$sql = 'SELECT Ouvrage.numero_ouvrage, transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
 FROM transfert_vue,ouvrage
 WHERE Ouvrage.numero_ouvrage = Transfert_vue.numero_ouvrage';
 $temp = $pdo->prepare($sql);
