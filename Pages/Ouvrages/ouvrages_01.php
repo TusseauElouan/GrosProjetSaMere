@@ -30,7 +30,7 @@ if (isset($_REQUEST['type'])) {
             <div class="content">
                 <div class="content-inside">
                     <div class="boutonadd-container">
-                        <a href="ouvrages_03.php" class="bouton-ajouter">
+                        <a href="ouvrages_04.php" class="bouton-ajouter">
                             <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                             Ajouter
                         </a>
@@ -55,7 +55,7 @@ if (isset($_REQUEST['type'])) {
                             <td><?= $auteur ?></td>
                             <td><?= $commentaire ?></td>
                             <td>
-                                <a href='ouvrages_03.php?id=<?= $id?>'>
+                                <a href='ouvrages_02.php?id=<?= $id?>'>
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
