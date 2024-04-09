@@ -3,7 +3,7 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
+$sql = 'SELECT transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
 FROM transfert_vue,ouvrage
 WHERE Ouvrage.numero_ouvrage = Transfert_vue.numero_ouvrage';
 $temp = $pdo->prepare($sql);
@@ -59,10 +59,10 @@ if (isset($_REQUEST['id_transfert'])) {
                             <?= $t['titre_ouvrage']; ?>
                         </td>
                         <td>
-                            <?= $t['ville_bibliotheque']; ?>
+                            <?= $t['ville_bibliotheque_origine']; ?>
                         </td>
                         <td>
-                            <?= $t['ville_bibliotheque']; ?>
+                            <?= $t['ville_bibliotheque_cible']; ?>
                         </td>
                         <td>
                             <?= $t['date_transfert']; ?>
