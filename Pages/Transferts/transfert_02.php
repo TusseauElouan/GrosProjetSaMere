@@ -94,7 +94,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                     while ($resultat2 = $result->fetch()) {
                         echo '<option value="' . $resultat2['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat2['ville_bibliotheque'] . '</option>';
                     }
-                    ;
+                    
                     ?>
                 </select>
                 <?php
