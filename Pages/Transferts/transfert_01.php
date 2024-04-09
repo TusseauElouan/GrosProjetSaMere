@@ -37,7 +37,7 @@ if (isset($_REQUEST['id_transfert'])) {
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="emprunt_03.php" class="bouton-ajouter">
+                    <a href="transfert_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -48,32 +48,25 @@ if (isset($_REQUEST['id_transfert'])) {
                         <th>Ville origine</th>
                         <th>Ville cible</th>
                         <th>Date transfert</th>
-                        <th>Editer</th>
+                        <th>Supprimer</th>
                     </tr>
                 <?php
-                foreach ($temp as $t) {
+                while ($t= $temp->fetch()) {
+                    $id = $t['numero_ouvrage'];
+                    $titre = $t['titre_ouvrage'];
+                    $origine = $t['ville_bibliotheque_origine'];
+                    $cible = $t['ville_bibliotheque_cible'];
+                    $date = $t['date_transfert'];
                     ?>
                     <tr>
+                        <td><?= $titre; ?></td>
+                        <td><?= $origine; ?></td>
+                        <td><?= $cible; ?></td>
+                        <td><?= $date; ?></td>
                         <td>
-                            <?= $t['titre_ouvrage']; ?>
-                        </td>
-                        <td>
-                            <?= $t['ville_bibliotheque_origine']; ?>
-                        </td>
-                        <td>
-                            <?= $t['ville_bibliotheque_cible']; ?>
-                        </td>
-                        <td>
-                            <?= $t['date_transfert']; ?>
-                        </td>
-                        <td>
-                            <a href='transfert_03.php?id=<?= $t['numero_transfert']?>'>
-                            <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
-                        </td>
-                        <!-- <td>
-                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='transfert_01.php?type=supp&id_transfert=<?=$t['numero_transfert']?>'>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='transfert_01.php?type=supp&id_transfert=<?=$id?>'>
                             <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
-                        </td> -->
+                        </td>
                     </tr>
                 <?php
                 }
