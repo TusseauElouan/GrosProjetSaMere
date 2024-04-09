@@ -35,20 +35,29 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
         ?>
         <main>
         <div class="content">
-            <div>
-                <form action="auteur_03.php">
+            <div class="content-inside">
+                <form class="form" action="auteur_03.php">
                     <h2>Ajouter un auteur : </h2>
 
-                    <label for="nom_auteur">Nom :</label>
-                    <input type="text" name="nom_auteur" required/>
+                    <div class="label-box">
+                        <label for="nom_auteur">Nom :</label>
+                        <input class="form-input" type="text" name="nom_auteur" required/>
+                    </div>
 
-                    <label for="prenom_auteur">Prénom :</label>
-                    <input type="text" name="prenom_auteur" required/>
+                    <div class="label-box">
+                        <label for="prenom_auteur">Prénom :</label>
+                        <input class="form-input" type="text" name="prenom_auteur" required/>
+                    </div>
 
-                    <label for="commentaire_auteur">Commentaire :</label>
-                    <input type="text" name="commentaire_auteur" required/>
+                    <div class="label-box-textarea">
+                        <label for="commentaire_auteur">Commentaire :</label><br />
+                        <textarea class="form-input" type="text" name="commentaire_auteur"  id="" cols="60" rows="10"
+                        required></textarea>
+                    </div>
 
-                    <input type="submit" value="Ajouter" />
+                    <div>
+                        <input class="submit-btn" type="submit" value="Ajouter" />
+                    </div>
                 </form>
             </div>
 

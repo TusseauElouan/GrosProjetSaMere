@@ -29,7 +29,7 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ajouter un Usager</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -41,19 +41,34 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <form action="usagers_03.php" method="post">
-            <label for="nom">Nom</label>
-            <input type="text" name='nom' id="nom">
-            <label for="prenom">prenom</label>
-            <input type="text" name="prenom" id="prenom">
-            <label for="ville">Ville</label>
-            <input type="text" name="ville" id="ville">
-            <label for="biblioteque">numero bibliotheque</label>
-            <input type="text" name="biblioteque" id="biblioteque">
-            <label for="commentaire">commentaire</label>
-            <input type="text" name="commentaire" id="commentaire">
-            <input type="submit">
-        </form>
+        <div class="content-inside">
+            <form class="form" action="usagers_03.php" method="post">
+            <div class="label-box">
+                <label for="nom">Nom</label>
+                <input class="form-input" type="text" name='nom' id="nom">
+            </div>
+            <div class="label-box">
+                <label for="prenom">prenom</label>
+                <input class="form-input" type="text" name="prenom" id="prenom">
+            </div>
+            <div class="label-box">
+                <label for="ville">Ville</label>
+                <input class="form-input" type="text" name="ville" id="ville">
+            </div>
+            <div class="label-box">
+                <label for="biblioteque">numero bibliotheque</label>
+                <input class="form-input" type="text" name="biblioteque" id="biblioteque">
+            </div>
+            <div class="label-box-textarea">
+                <label for="commentaire">commentaire</label><br />
+                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10"
+                        required></textarea>
+            </div>
+            <div>
+                <input class="submit-btn" type="submit">
+            </div>
+            </form>
+        </div>
     </div>
 </body>
 

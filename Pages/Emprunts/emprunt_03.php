@@ -21,7 +21,7 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
 <!doctype html>
 <html lang="fr">
     <head>
-        <title>Ajout Auteur</title>
+        <title>Ajout emprunt</title>
         <meta charset="utf-8" />
         <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
@@ -35,28 +35,38 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
         ?>
         <main>
         <div class="content">
-            <div>
-            <form action="emprunt_01.php">
-                    <h2>Ajouter un emprunt : </h2>
+            <div class="content-inside">
+            <form class="form" action="emprunt_01.php">
+                <h2>Ajouter un emprunt : </h2>
 
-                    <input type="hidden" name="numero_emprunt"/>
+                <input type="hidden" name="numero_emprunt"/>
 
+                <div class="content-inside">
                     <label for="numero_ouvrage">Numero Ouvrage :</label>
-                    <input type="number" name="numero_ouvrage" required/>
-
+                    <input class="form-input" type="number" name="numero_ouvrage" required/>
+                </div>
+                
+                <div class="content-inside">
                     <label for="date_emprunt">Date Ouvrage :</label>
-                    <input type="date" name="date_emprunt" required/>
+                    <input class="form-input" type="date" name="date_emprunt" required/>
+                </div>
 
+                <div class="content-inside">
                     <label for="numero_usager">Numero Usager :</label>
-                    <input type="number" name="numero_usager" required/>
+                    <input class="form-input" type="number" name="numero_usager" required/>
+                </div>
 
-                    <label for="commentaire">Commentaire :</label>
-                    <input type="text" name="commentaire" required/>
-
-                    <input type="submit" value="Modifier" />
-                </form>
+                <div class="content-inside-textarea">
+                    <label for="commentaire">Commentaire :</label><br />
+                    <textarea class="form-input" type="text" name="commentaire" id="" cols="60" rows="10"
+                        required></textarea>
+                </div>
+                
+                <div>
+                    <input class="submit-btn" type="submit" value="Modifier" />
+                </div>
+            </form>
             </div>
-
         </div>
         </main>
     </body>
