@@ -51,7 +51,7 @@ if (isset($_REQUEST['nom_auteur'],$_REQUEST['prenom_auteur'],$_REQUEST['commenta
 
                     <div class="label-box-textarea">
                         <label for="commentaire_auteur">Commentaire :</label><br />
-                        <textarea class="form-input" type="text" name="commentaire_auteur"  id="" cols="60" rows="10"
+                        <textarea class="form-input" type="text" name="commentaire_auteur" id="" cols="60" rows="10"
                         required></textarea>
                     </div>
 

@@ -56,10 +56,14 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                     <input class="form-input" type="number" name="numero_usager" required/>
                 </div>
 
-                    <label for="commentaire">Commentaire :</label>
-                    <input type="text" name="commentaire" required/>
-
+                <div class="content-inside">
+                    <label for="commentaire">Commentaire :</label><br />
+                    <textarea type="text" name="commentaire" id="" cols="60" rows="10"
+                        required></textarea>
+                </div>
+                <div>
                     <input type="submit" value="Ajouter" />
+                </div>
                 </form>
             </div>
         </div>
