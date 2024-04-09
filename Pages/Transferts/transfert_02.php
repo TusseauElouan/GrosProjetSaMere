@@ -9,6 +9,26 @@ if (isset($_REQUEST['bibli-origine'])) {
 } else {
     $sql_biblio_retire = $sql_biblio;
 }
+
+if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre'])) {
+    $sql_insert = 'INSERT INTO transfert (numero_bibliotheque_origine, numero_bibliotheque_cible, numero_ouvrage, date_transfert, commentaire) VALUES (:bibli-origine, :bibli-cible, :titre, :date_transfert, :commentaire)';
+    $data = [
+        'bibli-origine' => htmlentities($_REQUEST['bibli-origine']),
+        'bibli-cible' => htmlentities($_REQUEST['bibli-cible']),
+        'titre' => htmlentities($_REQUEST['titre']),
+        'date_transfert' => htmlentities($_REQUEST['date_transfert']),
+        'commentaire' => htmlentities($_REQUEST['commentaire'])
+    ];
+    $resultat4 = $pdo->prepare($sql_insert);
+    $resultat4->execute($data);
+
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibli-cible';
+    $data2 = [
+        'bibli-cible' => htmlentities($_REQUEST['bibli-cible'])
+    ];
+    $resultat5 = $pdo->prepare($sql_update);
+    $resultat5->execute($data2);
+}
 ?>
 
 
@@ -33,11 +53,50 @@ if (isset($_REQUEST['bibli-origine'])) {
     ?>
     <div>
         <div class="content">
-            <div class="content-inside">
-            <form class="form" action="" method='POST'>
-            <div class="content-inside">   
+            <form action="" method='POST'>
+                <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
+
                 <label for="bibli-origine">Nom de la bibliothèque d'origine</label>
-                    <select class="form-input" name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
+                <select name="bibli-origine" id="bibli-origine" onchange="this.form.submit()">
+                    <?php
+                    if (!isset($_REQUEST['bibli-origine'])) {
+                        echo '<option>Choisissez une option</option>';
+                    }
+                    ;
+                    ?>
+
+                    <?php
+                    $result = $pdo->prepare($sql_biblio);
+                    $result->execute();
+
+                    while ($resultat = $result->fetch()) {
+                        if (isset($_REQUEST['bibli-origine']) && $_REQUEST['bibli-origine'] == $resultat['numero_bibliotheque']) {
+                            echo '<option value="' . $resultat['numero_bibliotheque'] . '" selected>Bibliothèque de ' . $resultat['ville_bibliotheque'] . '</option>';
+                        } else {
+                            echo '<option value="' . $resultat['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat['ville_bibliotheque'] . '</option>';
+                        }
+                    }
+                    ;
+                    ?>
+                </select>
+            </form>
+            <form action="" method="post">
+                <label for="bibli-cible">Nom de la bibliothèque ciblé</label>
+                <select name="bibli-cible" id="bibli-cible">
+                    <?php
+                    $result = $pdo->prepare($sql_biblio_retire);
+                    $result->execute();
+                    while ($resultat2 = $result->fetch()) {
+                        echo '<option value="' . $resultat2['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat2['ville_bibliotheque'] . '</option>';
+                    }
+                    ;
+                    ?>
+                </select>
+                <?php
+                if (isset($_REQUEST['bibli-origine'])) {
+                    ?>
+                    <label for="titre">L'ouvrage à transférer</label>
+                    <select name="titre" id="titre">
                         <?php
                         if (!isset($_REQUEST['bibli-origine'])) {
                             echo '<option>Choisissez une option</option>';
@@ -90,6 +149,7 @@ if (isset($_REQUEST['bibli-origine'])) {
                     <?php
                 }
                 ?>
+                <input type="submit" value="Transferer">
             </form>
         </div>
     </div>
