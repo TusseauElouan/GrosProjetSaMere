@@ -6,8 +6,13 @@ $temp = $pdo->query($sql);
 
 if (isset($_POST['type'])){
     if($_POST['type']=="modif"){
-        $sql="UPDATE bibliotheque SET ville_bibliotheque='".$_POST['ville_bibliotheque']."', commentaire='".$_POST['commentaire_bibliotheque']."' WHERE numero_bibliotheque='".$_POST['numero_bibliotheque']."'";
-        $pdo->exec($sql);
+        if (isset($_POST['ville_bibliotheque'],$_POST['commentaire_bibliotheque'],$_POST['id_bibliotheque'])){
+            $numero_bibliotheque = $_POST['id_bibliotheque'];
+            $ville_bibliotheque = $_POST['ville_bibliotheque'];
+            $commentaire_bibliotheque = $_POST['commentaire_bibliotheque'];
+            $sql="UPDATE bibliotheque SET ville_bibliotheque='".$ville_bibliotheque."', commentaire='".$commentaire_bibliotheque."' WHERE numero_bibliotheque='".$numero_bibliotheque."'";
+            $pdo->exec($sql);
+        }
     }
     if($_POST['type']=="ajout"){
         $sql="INSERT INTO bibliotheque (ville_bibliotheque,commentaire) VALUES ('".$_POST['ville_bibliotheque']."','".$_POST['commentaire_bibliotheque']."')";
