@@ -25,9 +25,10 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     $resultat4 = $pdo->prepare($sql_insert);
     $resultat4->execute($data);
 
-    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :biblicible';
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :biblicible WHERE numero_ouvrage = :titre';
     $data2 = [
-        'biblicible' => htmlentities($_REQUEST['bibli-cible'])
+        'biblicible' => htmlentities($_REQUEST['bibli-cible']),
+        'titre' => $_REQUEST['titre']
     ];
     $resultat5 = $pdo->prepare($sql_update);
     $resultat5->execute($data2);
