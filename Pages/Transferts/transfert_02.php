@@ -3,6 +3,7 @@ require_once '../../includes/connexion.php';
 $sql_biblio = 'SELECT * FROM bibliotheque';
 
 if (isset($_REQUEST['bibli-origine'])) {
+    
     $sql = 'SELECT * FROM ouvrage WHERE numero_bibliotheque = ' . $_REQUEST['bibli-origine'];
 
     $sql_biblio_retire = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque NOT IN (' . $_REQUEST['bibli-origine'] . ')';

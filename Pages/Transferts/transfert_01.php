@@ -3,7 +3,7 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT Ouvrage.numero_ouvrage, transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
+$sql = 'SELECT transfert_vue.numero_bibliotheque_origine_transfert, Ouvrage.numero_ouvrage, transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
 FROM transfert_vue,ouvrage
 WHERE Ouvrage.numero_ouvrage = Transfert_vue.numero_ouvrage';
 $temp = $pdo->prepare($sql);
@@ -13,9 +13,16 @@ $temp->execute();
 if (isset($_REQUEST['id_transfert'])) {
     $id_transfert = htmlentities($_REQUEST['id_transfert']);
     $sql = 'DELETE FROM transfert WHERE numero_transfert = :id_transfert';
-    $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id_transfert', $id_transfert);
-    $temp->execute();
+    $result = $pdo->prepare($sql);
+    $result->bindParam(':id_transfert', $id_transfert);
+    $result->execute();
+
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibliorigine';
+    $result_update = $pdo->prepare($sql_update);
+    $result_update->bindParam(':bibliorigine', $_REQUEST['numero_bibliotheque_origine_transfert']);
+    $result_update->execute();
+
+    header('Location: transfert_01.php');
 }
 
 ?>
