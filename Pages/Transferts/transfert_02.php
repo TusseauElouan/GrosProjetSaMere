@@ -33,6 +33,8 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     $resultat5 = $pdo->prepare($sql_update);
     $resultat5->execute($data2);
 
+    header('Location: transfert_01.php');
+
     
 }
 

@@ -20,9 +20,6 @@ if (isset($_REQUEST['id_transfert'])) {
         'id_transfert' => $id_transfert
     ];
     $result_research->execute($data);
-    var_dump($result_research);
-
-
     
     $sql = 'DELETE FROM transfert WHERE numero_transfert = :id_transfert';
     $result = $pdo->prepare($sql);
@@ -41,7 +38,7 @@ if (isset($_REQUEST['id_transfert'])) {
         $result_update->execute($data2);
     }
     
-
+    header('Location: transfert_01.php');
     
 }
 
