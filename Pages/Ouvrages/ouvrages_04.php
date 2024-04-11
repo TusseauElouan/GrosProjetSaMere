@@ -1,6 +1,8 @@
 <?php
 require '../../includes/connexion.php';
 
+$sql_biblio = 'SELECT ville_bibliotheque, numero_bibliotheque FROM bibliotheque;';
+$sql_auteur = 'SELECT numero_auteur, nom_auteur, prenom_auteur FROM auteur ;';
 
 
 if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliotheque"], $_REQUEST["numero_auteur"], $_REQUEST["commentaire"])) {
@@ -53,11 +55,27 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
             </div>
             <div class="label-box">
                 <label for="numero_bibliotheque">numero bibliotheque</label>
-                <input class="form-input" type="text" name="numero_bibliotheque" id="numero_bibliotheque">
+                <select name="numero_bibliotheque" id="numero_bibliotheque">
+                    <?php 
+                        $temp_biblio = $pdo->prepare($sql_biblio);
+                        $temp_biblio->execute();
+                        while ($biblio = $temp_biblio->fetch()) {
+                    ?>
+                    <option value="<?php echo $biblio ["numero_bibliotheque"] ?>"><?php echo $biblio ["ville_bibliotheque"] ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="label-box">
                 <label for="numero_auteur">numero auteur</label>
-                <input class="form-input" type="text" name="numero_auteur" id="numero_auteur">
+                <select name="numero_auteur" id="numero_auteur">
+                    <?php 
+                        $temp_auteur = $pdo->prepare($sql_auteur);
+                        $temp_auteur->execute();
+                        while ($auteur = $temp_auteur->fetch()){
+                    ?>
+                    <option value="<?php echo $auteur["numero_auteur"]?>"><?php echo $auteur["prenom_auteur"]?> <?php echo $auteur["nom_auteur"]?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="label-box-textarea">
                 <label for="commentaire">commentaire</label><br />
