@@ -15,6 +15,9 @@ if (isset($_REQUEST['type'])) {
     $temp = $pdo->prepare($sql);
     $temp->bindParam(':numero_retour', $numero_retour);
     $temp->execute();
+
+    header('Location: retour_01.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ if (isset($_REQUEST['type'])) {
         <div class="content">
             <div class="content-inside">
                 <div class="boutonadd-container">
-                    <a href="retour_04.php" class="bouton-ajouter">
+                    <a href="retour_03.php" class="bouton-ajouter">
                         <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
                         Ajouter
                     </a>
@@ -46,8 +49,9 @@ if (isset($_REQUEST['type'])) {
                     <tr>
                         <th>Titre ouvrage</th>
                         <th>Nom auteur</th>
-                        <th>Prénom auteurt</th>
+                        <th>Prénom auteur</th>
                         <th>Date du retour</th>
+                        <th>commentaire</th>
                         <th>Editer</th>
                         <th>Supprimer</th>
                     </tr>
@@ -68,13 +72,16 @@ if (isset($_REQUEST['type'])) {
                             </td>
                             <td>
                                 <?= $t['date_retour']; ?>
+                            </td>                           
+                            <td>
+                                <?= $t['commentaire']; ?>
                             </td>
                             <td>
-                                <a href='retour_03.php?id=<?= $t['numero_retour']?>'>
+                                <a href='retour_02.php?id=<?= $t['numero_retour']?>'>
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='retour_01.php?type=supp&numero_retour=<?=$t['numero_retour']?>'>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce retour?')" href='retour_01.php?type=supp&numero_retour=<?=$t['numero_retour']?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                         </tr>
