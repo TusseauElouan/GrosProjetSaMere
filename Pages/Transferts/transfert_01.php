@@ -12,20 +12,37 @@ $temp->execute();
 //Requete de delete
 if (isset($_REQUEST['id_transfert'])) {
     $id_transfert = htmlentities($_REQUEST['id_transfert']);
+
+
+    $sql_research = 'SELECT * FROM transfert WHERE numero_transfert = :id_transfert';
+    $result_research = $pdo->prepare($sql_research);
+    $data = [
+        'id_transfert' => $id_transfert
+    ];
+    $result_research->execute($data);
+    var_dump($result_research);
+
+
+    
     $sql = 'DELETE FROM transfert WHERE numero_transfert = :id_transfert';
     $result = $pdo->prepare($sql);
     $result->bindParam(':id_transfert', $id_transfert);
     $result->execute();
 
+
     $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibliorigine WHERE numero_ouvrage = :id_ouvrage';
     $result_update = $pdo->prepare($sql_update);
-    $data = [
-        'bibliorigine' => $_REQUEST['numero_bibliotheque_origine_transfert'],
-        'id_ouvrage' => $_REQUEST['numero_ouvrage']
-    ];
-    $result_update->execute($data);
+    while ($resultat_research = $result_research->fetch()) {
+        var_dump($resultat_research);
+        $data2 = [
+            'bibliorigine' => $resultat_research['numero_bibliotheque_origine'],
+            'id_ouvrage' => $resultat_research['numero_ouvrage']
+        ];
+        $result_update->execute($data2);
+    }
+    
 
-    header('Location: transfert_01.php');
+    
 }
 
 ?>
@@ -62,7 +79,7 @@ if (isset($_REQUEST['id_transfert'])) {
                     </tr>
                 <?php
                 while ($t= $temp->fetch()) {
-                    $id = $t['numero_ouvrage'];
+                    $id = $t['numero_transfert'];
                     $titre = $t['titre_ouvrage'];
                     $origine = $t['ville_bibliotheque_origine'];
                     $cible = $t['ville_bibliotheque_cible'];

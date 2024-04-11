@@ -44,6 +44,7 @@ if (isset($_REQUEST['type'])) {
                         <th>Commentaire</th>
                         <th>Editer</th>
                         <th>Supprimer</th>
+                        <th>Transferer</th>
                     </tr>
                     <?php
                         $sql = 'SELECT * FROM ouvrage';
@@ -53,14 +54,22 @@ if (isset($_REQUEST['type'])) {
                             $titre = $ouvrage['titre_ouvrage'];
                             $langue = $ouvrage['langue'];
                             $bibliotheque = $ouvrage['numero_bibliotheque'];
+
+                            $sql_bibliotheque = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque = ' . $bibliotheque;
+                            $nom_bibliotheque = $pdo->query($sql_bibliotheque)->fetch()['ville_bibliotheque'];
+
                             $auteur = $ouvrage['numero_auteur'];
+                            $sql_auteur = 'SELECT nom_auteur, prenom_auteur FROM auteur WHERE numero_auteur = ' . $auteur;
+                            $nom_auteur = $pdo->query($sql_auteur)->fetch()['nom_auteur'];
+                            $prenom_auteur = $pdo->query($sql_auteur)->fetch()['prenom_auteur'];
+
                             $commentaire = $ouvrage['commentaire'];
                     ?>
                     <tr>
                         <td><?= $titre ?></td>
                         <td><?= $langue ?></td>
-                        <td><?= $bibliotheque ?></td>
-                        <td><?= $auteur ?></td>
+                        <td><?= $nom_bibliotheque ?></td>
+                        <td><?= $nom_auteur . ' ' . $prenom_auteur?></td>
                         <td><?= $commentaire ?></td>
                         <td>
                             <a href='ouvrages_02.php?id=<?= $id?>'>
@@ -70,6 +79,11 @@ if (isset($_REQUEST['type'])) {
                         <td>
                             <a onclick="return confirm('Voulez-vous vraiment supprimer cet ouvrage ?')" href='ouvrages_01.php?type=supp&numero_ouvrage=<?=$id?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../Transferts/transfert_02.php?id=<?= $id?>">
+                                <img src="../../Medias/arrow-redo-outline.svg" class="boutonsform" alt="transférer" title="transférer">
                             </a>
                         </td>
                     </tr>

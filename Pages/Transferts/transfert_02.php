@@ -32,6 +32,24 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     ];
     $resultat5 = $pdo->prepare($sql_update);
     $resultat5->execute($data2);
+
+    
+}
+
+if (isset($_REQUEST['id'])) {
+    $id = htmlentities($_REQUEST['id']);
+
+    $sql = 'SELECT * FROM ouvrage WHERE numero_ouvrage = '. $id;
+
+    $resultat_ouvrage_id = $pdo->prepare($sql);
+    $resultat_ouvrage_id->execute();
+    while ($resultat_oi = $resultat_ouvrage_id->fetch()){
+        $sql_biblio = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque = '. $resultat_oi['numero_bibliotheque'];
+    }
+
+
+    
+
 }
 ?>
 
@@ -59,6 +77,9 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
         <div class="content">
             <div class="content-inside">
                 <div class="transfert">
+                    <?php
+                        if (!isset($_REQUEST['id'])) {
+                    ?>
                     <form action="" method='POST'>
                     <div class="label-box">
                         <label for="bibli-origine">Bibliothèque d'origine : </label>
@@ -66,10 +87,11 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                             <?php
                             if (!isset($_REQUEST['bibli-origine'])){
                                 echo '<option>Choisissez une option</option>';
-                            };
+                            }
                             ?>
 
                             <?php
+
                             $result = $pdo->prepare($sql_biblio);
                             $result->execute();
 
@@ -85,11 +107,19 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                         </select>
                     </div>
                     </form>
+
+                    <?php
+                        }
+                    ?>
                     <form action="" method="post">
                         <?php
                             if (isset($_REQUEST['bibli-origine'])) {
                         ?>
                             <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
+                        <?php
+                            } else if (isset($_REQUEST['id'])) {
+                        ?>
+                            <input type="hidden" name="bibli-origine" value="<?= $id?>">';
                         <?php
                             }
                         ?>
@@ -108,7 +138,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
                             </select>
                         </div>
                         <?php
-                        if (isset($_REQUEST['bibli-origine'])) {
+                        if (isset($_REQUEST['bibli-origine']) || isset($_REQUEST['id'])) {
                             ?>
                             <div class="label-box">
                                 <label for="titre">Ouvrage à transférer : </label><br />
