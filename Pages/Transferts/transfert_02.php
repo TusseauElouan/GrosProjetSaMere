@@ -28,7 +28,7 @@ if (isset($_REQUEST['bibli-cible'], $_REQUEST['bibli-origine'], $_REQUEST['titre
     $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :biblicible WHERE numero_ouvrage = :titre';
     $data2 = [
         'biblicible' => htmlentities($_REQUEST['bibli-cible']),
-        'titre' => $_REQUEST['titre']
+        'titre' => htmlentities($_REQUEST['titre'])
     ];
     $resultat5 = $pdo->prepare($sql_update);
     $resultat5->execute($data2);

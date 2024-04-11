@@ -17,10 +17,13 @@ if (isset($_REQUEST['id_transfert'])) {
     $result->bindParam(':id_transfert', $id_transfert);
     $result->execute();
 
-    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibliorigine';
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibliorigine WHERE numero_ouvrage = :id_ouvrage';
     $result_update = $pdo->prepare($sql_update);
-    $result_update->bindParam(':bibliorigine', $_REQUEST['numero_bibliotheque_origine_transfert']);
-    $result_update->execute();
+    $data = [
+        'bibliorigine' => $_REQUEST['numero_bibliotheque_origine_transfert'],
+        'id_ouvrage' => $_REQUEST['numero_ouvrage']
+    ];
+    $result_update->execute($data);
 
     header('Location: transfert_01.php');
 }
