@@ -111,6 +111,8 @@ nav a:hover{
 
 .content-inside {
     margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .bouton-ajouter {
