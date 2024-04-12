@@ -57,7 +57,7 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                     </div>
 
                     <div class="label-box">
-                        <label for="date_emprunt">Date Ouvrage :</label>
+                        <label for="date_emprunt">Date emprunt :</label>
                         <input class="form-input" type="date" name="date_emprunt" required />
                     </div>
 
