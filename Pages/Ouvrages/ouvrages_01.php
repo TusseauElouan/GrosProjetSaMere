@@ -57,7 +57,6 @@ if (isset($_REQUEST['type'])) {
 
                             $sql_bibliotheque = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque = ' . $bibliotheque;
                             $nom_bibliotheque = $pdo->query($sql_bibliotheque)->fetch()['ville_bibliotheque'];
-
                             $auteur = $ouvrage['numero_auteur'];
                             $sql_auteur = 'SELECT nom_auteur, prenom_auteur FROM auteur WHERE numero_auteur = ' . $auteur;
                             $nom_auteur = $pdo->query($sql_auteur)->fetch()['nom_auteur'];
@@ -116,17 +115,19 @@ if (isset($_REQUEST['type'])) {
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
+                        <th>Titre</th>
                         <th>Date de retour</th>
                         <th>Date d'emprunt</th>
                     </tr>
                     <?php
-                        $sql_retours = "SELECT r.date_retour, u.nom_usager, u.prenom_usager, e.date_emprunt
+                        $sql_retours = "SELECT r.date_retour, u.nom_usager, u.prenom_usager,o.titre_ouvrage, e.date_emprunt
                                         FROM retour r
                                         JOIN emprunt e ON r.numero_emprunt = e.numero_emprunt
-                                        JOIN usager u ON e.numero_usager = u.numero_usager";
+                                        JOIN usager u ON e.numero_usager = u.numero_usager
+                                        JOIN ouvrage o ON r.numero_retour = o.numero_ouvrage";
                         $result_retours = $pdo->query($sql_retours);
                         while($row = $result_retours->fetch(PDO::FETCH_ASSOC)){
-                            echo "<tr><td>".$row['nom_usager']."</td><td>".$row['prenom_usager']."</td><td>".$row['date_retour']."</td><td>".$row['date_emprunt']."</td></tr>";
+                            echo "<tr><td>".$row['nom_usager']."</td><td>".$row['prenom_usager']."</td><td>".$row['titre_ouvrage']."</td><td>".$row['date_retour']."</td><td>".$row['date_emprunt']."</td></tr>";
                         }
                     ?>
                 </table><br /><br />
