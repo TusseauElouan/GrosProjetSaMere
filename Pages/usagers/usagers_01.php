@@ -22,7 +22,10 @@ require_once '../../includes/connexion.php';
     <main>
         <div class="content">
             <div>
-        <a href="usagers_04.php">Ajoutez</a>
+        <a href="usagers_04.php">
+            <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+            Ajouter
+        </a>
         <table border="1px">
             <tr>
                 <th>Nom</th>

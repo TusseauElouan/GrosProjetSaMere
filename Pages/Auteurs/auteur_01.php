@@ -19,6 +19,10 @@ require_once '../../includes/connexion.php';
         <main>
         <div class="content">
             <div>
+            <a href="auteur_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Ajouter
+                </a>
                 <table border="1px">
                 <tr>
                     <th>Nom</th>
@@ -53,10 +57,6 @@ require_once '../../includes/connexion.php';
                 ?>
                 </table>
                 <br />
-                <a href="auteur_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Add
-                </a>
             </div>
 
         </div>

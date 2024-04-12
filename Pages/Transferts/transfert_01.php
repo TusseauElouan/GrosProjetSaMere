@@ -36,6 +36,10 @@ if (isset($_REQUEST['id_transfert'])) {
     <main>
         <div class="content">
             <div>
+                <a href="emprunt_04.php">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Ajouter
+                </a>
                 <table border="1px">
                     <tr>
                         <th>Titre ouvrage</th>
@@ -76,11 +80,6 @@ if (isset($_REQUEST['id_transfert'])) {
                 }
                 ?>
                 </table>
-                </br>
-                <a href="emprunt_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Add
-                </a>
             </div>
         </div>
     </main>
