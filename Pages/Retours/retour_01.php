@@ -31,16 +31,18 @@ if (isset($_REQUEST['type'])) {
 
 if(isset($_REQUEST['ajout'])){
     $numero_emprunt = $_REQUEST['id'];
-    $sql = "INSERT INTO retour (numero_emprunt, date_retour) values(:numero_emprunt,NOW())";
+    $commentaire = $_REQUEST['commentaire'];
+    $sql = "INSERT INTO retour (numero_emprunt, date_retour, commentaire) values(:numero_emprunt,NOW(),:commentaire)";
     $temp = $pdo->prepare($sql);
     $temp->bindParam(':numero_emprunt', $numero_emprunt);
+    $temp->bindParam(':commentaire', $commentaire);
     $temp->execute();
     header('Location: retour_01.php');
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +100,7 @@ if(isset($_REQUEST['ajout'])){
                             <td>
                                 <?php 
                                 if($e['numero_retour'] == -1){?>
-                                    <a href='retour_01.php?id=<?= $e['numero_emprunt']?>&ajout=ajout'>clique</a>
+                                    <a href='retour_01.php?id=<?= $e['numero_emprunt']?>&commentaire=<?=$e['commentaire']?>&ajout=ajout'>clique</a>
                                     <?php
                                 }else{
                                     echo "Retourné";
