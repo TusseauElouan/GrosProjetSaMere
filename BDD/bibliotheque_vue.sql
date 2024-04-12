@@ -1,3 +1,4 @@
+DROP view if exists emprunt_vue;
 CREATE VIEW emprunt_vue AS
 SELECT 
     E.numero_emprunt AS emprunt_numero_emprunt, 
@@ -21,12 +22,13 @@ FROM emprunt E
 JOIN usager U ON E.numero_usager = U.numero_usager 
 JOIN ouvrage O ON E.numero_ouvrage = O.numero_ouvrage;
 
+DROP view if exists retour_vue;
 CREATE VIEW retour_vue AS
 SELECT *
 FROM retour
 JOIN emprunt_vue ON retour.numero_emprunt = emprunt_vue.emprunt_numero_emprunt;
 
-
+DROP view if exists transfert_vue;
 CREATE VIEW transfert_vue AS 
 SELECT 
     T.numero_transfert,

@@ -63,7 +63,6 @@ nav a:hover{
     grid-row: 1 / span 1;
     background-color: var(--gauche);
     display: flex;
-    height: 8vw;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -71,7 +70,7 @@ nav a:hover{
 }
 
 .affichage-heure p {
-    font-size: 30px;
+    font-size: 3vh;
 }
 
 
@@ -81,7 +80,7 @@ nav a:hover{
 .affichage-titre{
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
-    font-size: 25px;
+    font-size: 2.5vh;
     height: 8vw;
     display: flex;
     flex-direction: row;
@@ -105,7 +104,7 @@ nav a:hover{
 
 .content p {
     margin-top: 25%;
-    font-size: 50px;
+    font-size: 5vh;
 }
 
 .content-inside {
@@ -120,12 +119,7 @@ nav a:hover{
     border: 1px solid black;
     border-radius: 15px;
     background-color: var(--buttonsandtables);
-    padding: 3px 10px;
-}
-
-.boutonadd-container {
-    display: flex;
-    justify-content: right;
+    padding: 3px 10px; 
 }
 
 .boutonsform {
@@ -152,9 +146,11 @@ nav a:hover{
 /* TABLEAUX */
 
 .tableau-liste {
-    margin-top: 10px;
+    margin-top: 1vh;
     padding: 10px;
     border: 3px solid;
+    font-size: 1.5em;
+    width: 100%;
     border-radius: 15px;
     border-spacing: 15px;
     text-align: center;
@@ -220,7 +216,7 @@ nav a:hover{
 }
 
 .submit-btn {
-    margin-top: 20px;
+    margin-top: 2vh;
     padding: 5px 7px;
     border: 1px solid;
     border-radius: 15px;
