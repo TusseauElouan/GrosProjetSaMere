@@ -19,7 +19,7 @@
         <a href="Pages/Emprunts/emprunt_01.php">Emprunts</a>
         <a href="Pages/Retours/retour_01.php">Retours</a>
         <a href="Pages/Transferts/transfert_01.php">Transferts</a>
-        <a href="../Historique/historique_01.php">Historique des ouvrages</a>
+        <a href="Pages/Historique/historique_01.php">Historique des ouvrages</a>
     </nav>
 
     <?php 
