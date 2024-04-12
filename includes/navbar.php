@@ -7,4 +7,5 @@
     <a href="../Emprunts/emprunt_01.php">Gestion des emprunts</a>
     <a href="../Retours/retour_01.php">Gestion des retours</a>
     <a href="../Transferts/transfert_01.php">Gestion des transferts</a>
+    <a href="../Historique/historique_01.php">Historique des ouvrages</a>
 </nav>
