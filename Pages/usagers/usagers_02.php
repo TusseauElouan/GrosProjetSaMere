@@ -9,20 +9,20 @@
         $usager = $temp2->fetch();
     
     
-    if(isset($_REQUEST["nom"],$_REQUEST["prenom"],$_REQUEST["ville"],$_REQUEST["biblioteque"],$_REQUEST["commentaire"])){
+    if(isset($_REQUEST["nom"],$_REQUEST["prenom"],$_REQUEST["ville"],$_REQUEST["bibliotheque"],$_REQUEST["commentaire"])){
         $nom = htmlentities($_REQUEST["nom"]);
         $prenom = htmlentities($_REQUEST["prenom"]);
         $ville = htmlentities($_REQUEST["ville"]);
-        $bibliotheque = htmlentities($_REQUEST["biblioteque"]);
+        $bibliotheque = htmlentities($_REQUEST["bibliotheque"]);
         $commentaire = htmlentities($_REQUEST["commentaire"]);
         $id = $_REQUEST["id"];
-        $sql = "UPDATE usager SET nom_usager = :nom , prenom_usager = :prenom, ville_usager = :ville, numero_bibliotheque = :biblioteque, commentaire = :commentaire WHERE numero_usager = :id";
+        $sql = "UPDATE usager SET nom_usager = :nom , prenom_usager = :prenom, ville_usager = :ville, numero_bibliotheque = :bibliotheque, commentaire = :commentaire WHERE numero_usager = :id";
         echo $sql;
         $temp = $pdo->prepare($sql);
         $temp->bindParam(':nom', $nom);
         $temp->bindParam(':prenom', $prenom);
         $temp->bindParam(':ville', $ville);
-        $temp->bindParam(':biblioteque', $bibliotheque);
+        $temp->bindParam(':bibliotheque', $bibliotheque);
         $temp->bindParam(':commentaire', $commentaire);
         $temp->bindParam(':id', $id);
         
@@ -67,7 +67,18 @@
         </div>
         <div class="label-box">
             <label for="biblioteque">Numero bibliothèque</label>
-            <input class="form-input" type="text" name="biblioteque" id="biblioteque"  value="<?php echo $usager["numero_bibliotheque"] ?>">
+            <select name="bibliotheque" id="bibliotheque">
+                    <?php 
+                        $sql_biblio = 'SELECT * FROM bibliotheque ;';
+                        $temp_biblio = $pdo->prepare($sql_biblio);
+                        $temp_biblio->execute();
+                        while ($biblio = $temp_biblio->fetch()) {
+                    ?>
+                    <option value="<?php echo $biblio ["numero_bibliotheque"] ?>" <?php if ($biblio["numero_bibliotheque"] == $usager["numero_bibliotheque"]) {
+                                                                                                echo "selected";
+                                                                                            } ?>><?php echo $biblio ["ville_bibliotheque"] ?></option>
+                    <?php } ?>
+                </select>
         </div>
         <div class="label-box-textarea">
             <label for="commentaire">Commentaire</label><br />

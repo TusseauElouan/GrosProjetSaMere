@@ -58,11 +58,13 @@ if (isset($_REQUEST['type'])) {
                             $ville = htmlentities($usager["ville_usager"]);
                             $bibliotheque = htmlentities($usager["numero_bibliotheque"]);
                             $commentaire = htmlentities($usager["commentaire"]);
+                            $sql_bibliotheque = 'SELECT * FROM bibliotheque WHERE numero_bibliotheque = ' . $bibliotheque;
+                            $nom_bibliotheque = $pdo->query($sql_bibliotheque)->fetch()['ville_bibliotheque'];
                         ?>
                         <td><?= $nom ?></td>
                         <td><?= $prenom ?></td>
                         <td><?= $ville ?></td>
-                        <td><?= $bibliotheque ?></td>
+                        <td><?= $nom_bibliotheque ?></td>
                         <td><?= $commentaire ?></td>
                         <td>
                             <a href='usagers_02.php?id=<?= $id?>'>
