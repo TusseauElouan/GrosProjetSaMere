@@ -3,11 +3,11 @@ require '../../includes/connexion.php';
 
 
 
-if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["biblioteque"], $_REQUEST["commentaire"])) {
+if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["numero_bibliotheque"], $_REQUEST["commentaire"])) {
     $nom = htmlentities($_REQUEST["nom"]);
     $prenom = htmlentities($_REQUEST["prenom"]);
     $ville = htmlentities($_REQUEST["ville"]);
-    $bibliotheque = htmlentities($_REQUEST["biblioteque"]);
+    $bibliotheque = htmlentities($_REQUEST["numero_bibliotheque"]);
     $commentaire = htmlentities($_REQUEST["commentaire"]);
     $sql = "INSERT INTO usager (nom_usager, prenom_usager, ville_usager, numero_bibliotheque, commentaire) VALUES ( :nom , :prenom, :ville, :numero_bibliotheque, :commentaire)";
     $temp = $pdo->prepare($sql);
@@ -57,7 +57,16 @@ if (isset($_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["ville"], $_REQUEST["
             </div>
             <div class="label-box">
                 <label for="biblioteque">numero bibliotheque</label>
-                <input class="form-input" type="text" name="biblioteque" id="biblioteque">
+                <select name="numero_bibliotheque" id="numero_bibliotheque">
+                    <?php 
+                        $sql_biblio = 'SELECT * FROM bibliotheque ;';
+                        $temp_biblio = $pdo->prepare($sql_biblio);
+                        $temp_biblio->execute();
+                        while ($biblio = $temp_biblio->fetch()) {
+                    ?>
+                    <option value="<?php echo $biblio ["numero_bibliotheque"] ?>"><?php echo $biblio ["ville_bibliotheque"] ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="label-box-textarea">
                 <label for="commentaire">commentaire</label><br />

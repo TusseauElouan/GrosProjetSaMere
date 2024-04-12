@@ -3,7 +3,7 @@ require_once '../../includes/connexion.php';
 
 if (isset($_REQUEST['supprimer'])) {
     $numero_emprunt = $_REQUEST['numero_emprunt'];
-    $sql = 'DELETE FROM auteur WHERE numero_auteur = :numero_emprunt';
+    $sql = 'DELETE FROM emprunt WHERE numero_emprunt = :numero_emprunt';
     $temp = $pdo->prepare($sql);
     $temp->bindParam(':numero_emprunt', $numero_emprunt);
     $temp->execute();
@@ -33,21 +33,25 @@ if (isset($_REQUEST['supprimer'])) {
                     </a>
                 </div>
                 <table class="tableau-liste" border="1" cellpadding="5px 7px">
-                    <tr><th>Numéro ouvrage</th><th>Date emprunt</th><th>Numéro usager</th><th>Commentaire</th><th>Editer</th><th>Supprimer</th></tr>
+                    <tr><th>Nom ouvrage</th><th>Date emprunt</th><th>Nom usager</th><th>Commentaire</th><th>Editer</th><th>Supprimer</th></tr>
                     <?php
-                        $sql = 'SELECT * FROM emprunt';
+                        $sql = 'SELECT emprunt.numero_emprunt, emprunt.numero_ouvrage, emprunt.numero_usager, emprunt.date_emprunt, usager.nom_usager, usager.prenom_usager, emprunt.commentaire, ouvrage.titre_ouvrage FROM emprunt INNER JOIN usager ON emprunt.numero_usager = usager.numero_usager JOIN ouvrage ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage';
                         $temp = $pdo->query($sql);
                         while ($emprunt = $temp->fetch()) {
                             $numero_emprunt = $emprunt['numero_emprunt'];
                             $numero_ouvrage = $emprunt['numero_ouvrage'];
                             $date_emprunt = $emprunt['date_emprunt'];
                             $numero_usager = $emprunt['numero_usager']; 
+                            $prenom_usager = $emprunt['prenom_usager'];
+                            $nom_usager = $emprunt['nom_usager'];
+                            $titre_ouvrage = $emprunt['titre_ouvrage'];
                             $commentaire = $emprunt['commentaire']; 
+
                     ?>
                             <tr>
-                            <td><?= $numero_ouvrage ?></td>
+                            <td><?= $titre_ouvrage ?></td>
                             <td><?= $date_emprunt ?></td>
-                            <td><?= $numero_usager ?></td>
+                            <td><?= $prenom_usager.' '.$nom_usager ?></td>
                             <td><?= $commentaire ?></td>
                             <td>
                                 <a href="emprunt_02.php?numero_emprunt=<?= $numero_emprunt ?>&numero_ouvrage=<?= $numero_ouvrage ?>&date_emprunt=<?= $date_emprunt ?>&numero_usager=<?= $numero_usager ?>&commentaire=<?= $commentaire ?>">
@@ -55,7 +59,7 @@ if (isset($_REQUEST['supprimer'])) {
                                 </a>
                             </td>
                             <td>
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet emprunt?')" href='emprunt_01.php?type=supp&numero_emprunt=<?=$numero_emprunt?>'>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet emprunt?')" href='emprunt_01.php?supprimer=1&numero_emprunt=<?=$numero_emprunt?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                     <?php
