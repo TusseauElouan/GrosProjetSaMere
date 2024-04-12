@@ -65,7 +65,7 @@ if(isset($_REQUEST['ajout'])){
                         Ajouter
                     </a>
                 </div>
-                <table class="tableau-liste" border="1" cellpadding="5px 7px">
+                <table class="tableau-liste" border="1" cellpadding="5px 7px" >
                     <tr>
                         <th>Titre ouvrage</th>
                         <th>Nom auteur</th>
