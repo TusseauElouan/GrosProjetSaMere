@@ -329,6 +329,49 @@ DROP VIEW IF EXISTS `transfert_vue`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`user_bibliotheque`@`localhost` SQL SECURITY DEFINER VIEW `transfert_vue`  AS SELECT `t`.`numero_transfert` AS `numero_transfert`, `t`.`numero_bibliotheque_origine` AS `numero_bibliotheque_origine_transfert`, `t`.`numero_bibliotheque_cible` AS `numero_bibliotheque_cible_transfert`, `t`.`date_transfert` AS `date_transfert`, `t`.`commentaire` AS `transfert_commentaire`, `t`.`numero_ouvrage` AS `numero_ouvrage`, `b_origine`.`numero_bibliotheque` AS `numero_bibliotheque_origine`, `b_origine`.`ville_bibliotheque` AS `ville_bibliotheque_origine`, `b_origine`.`commentaire` AS `commentaire_bibliotheque_origine`, `b_cible`.`numero_bibliotheque` AS `numero_bibliotheque_cible`, `b_cible`.`ville_bibliotheque` AS `ville_bibliotheque_cible`, `b_cible`.`commentaire` AS `commentaire_bibliotheque_cible` FROM ((`transfert` `t` join `bibliotheque` `b_origine` on((`t`.`numero_bibliotheque_origine` = `b_origine`.`numero_bibliotheque`))) join `bibliotheque` `b_cible` on((`t`.`numero_bibliotheque_cible` = `b_cible`.`numero_bibliotheque`))) ;
 COMMIT;
 
+ALTER TABLE ouvrage
+ADD CONSTRAINT fk_auteur
+FOREIGN KEY (numero_auteur)
+REFERENCES auteur(numero_auteur)
+ON DELETE RESTRICT
+ON UPDATE RESTRICT;
+
+ALTER TABLE emprunt
+ADD CONSTRAINT fk_ouvrage
+FOREIGN KEY (numero_ouvrage)
+REFERENCES ouvrage(numero_ouvrage)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE retour
+ADD CONSTRAINT fk_emprunt
+FOREIGN KEY (numero_emprunt)
+REFERENCES emprunt(numero_emprunt)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE usager
+ADD CONSTRAINT fk_bibliotheque_usager
+FOREIGN KEY (numero_bibliotheque)
+REFERENCES bibliotheque(numero_bibliotheque)
+ON DELETE RESTRICT
+ON UPDATE RESTRICT;
+
+ALTER TABLE ouvrage
+ADD CONSTRAINT fk_bibliotheque_ouvrage
+FOREIGN KEY (numero_bibliotheque)
+REFERENCES bibliotheque(numero_bibliotheque)
+ON DELETE RESTRICT
+ON UPDATE RESTRICT;
+
+ALTER TABLE transfert
+ADD CONSTRAINT fk_ouvrage_transfert
+FOREIGN KEY (numero_ouvrage)
+REFERENCES ouvrage(numero_ouvrage)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
