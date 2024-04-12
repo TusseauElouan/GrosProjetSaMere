@@ -72,7 +72,7 @@ if(isset($_REQUEST['ajout'])){
                         <th>Prénom auteur</th>
                         <th>Date du retour</th>
                         <th>commentaire</th>
-                        <th>Retourner</th>
+                        <th>Retourné</th>
                         <th>Editer</th>
                         <th>Annuler</th>
                     </tr>
