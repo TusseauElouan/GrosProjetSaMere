@@ -2,7 +2,7 @@
 require_once '../../includes/connexion.php';
 
 $sql = 'SELECT emprunt_vue.emprunt_numero_emprunt AS numero_emprunt, emprunt_vue.nom_usager, emprunt_vue.prenom_usager, emprunt_vue.titre_ouvrage, auteur.nom_auteur,auteur.prenom_auteur,
-emprunt_vue.date_emprunt, COALESCE (retour.numero_retour,-1) AS numero_retour, retour.commentaire, retour.date_retour
+emprunt_vue.date_emprunt, COALESCE (retour.numero_retour,-1) AS numero_retour, retour.commentaire AS commentaire_retour, retour.date_retour, emprunt_vue.commentaire_emprunt
 FROM emprunt_vue
 LEFT JOIN retour ON retour.numero_emprunt = emprunt_vue.emprunt_numero_emprunt
 LEFT JOIN auteur ON emprunt_vue.numero_auteur = auteur.numero_auteur';
@@ -71,7 +71,8 @@ if(isset($_REQUEST['ajout'])){
                         <th>Nom auteur</th>
                         <th>Prénom auteur</th>
                         <th>Date du retour</th>
-                        <th>commentaire</th>
+                        <th>commentaire emprunt</th>
+                        <th>commentaire retour</th>
                         <th>Retourner</th>
                         <th>Editer</th>
                         <th>Annuler</th>
@@ -95,12 +96,15 @@ if(isset($_REQUEST['ajout'])){
                                 <?= $e['date_emprunt']; ?>
                             </td>                           
                             <td>
-                                <?= $e['commentaire']; ?>
+                                <?= $e['commentaire_emprunt']; ?>
+                            </td>
+                            <td>
+                                <?= $e['commentaire_retour']; ?>
                             </td>
                             <td>
                                 <?php 
                                 if($e['numero_retour'] == -1){?>
-                                    <a style="text-decoration:none;" href='retour_01.php?id=<?= $e['numero_emprunt']?>&commentaire=<?=$e['commentaire']?>&ajout=ajout'>➕</a>
+                                    <a style="text-decoration:none;" href='retour_01.php?id=<?= $e['numero_emprunt']?>&commentaire=<?=$e['commentaire_retour']?>&ajout=ajout'>➕</a>
                                     <?php
                                 }else{
                                     echo "✅";

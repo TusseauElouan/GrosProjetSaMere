@@ -1,7 +1,7 @@
 <?php
 require_once '../../includes/connexion.php';
 
-$sql = "SELECT emprunt_numero_emprunt, nom_usager, prenom_usager, titre_ouvrage, date_emprunt 
+$sql = "SELECT emprunt_numero_emprunt AS numero_emprunt, nom_usager, prenom_usager, titre_ouvrage, date_emprunt 
 FROM emprunt_vue 
 WHERE NOT EXISTS (SELECT * FROM retour_vue WHERE retour_vue.numero_emprunt = emprunt_vue.emprunt_numero_emprunt)
 ORDER BY date_emprunt DESC";
@@ -11,9 +11,9 @@ $selectEmprunt = $temp ;
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
 if (isset($_REQUEST['ajouter'])) {
-    $numero_emprunt = $_REQUEST['numero_ouvrage'];
+    $numero_emprunt = $_REQUEST['numero_emprunt'];
     $date_retour = $_REQUEST['date_retour'];
-    $commentaire = $_REQUEST['commentaire'];
+    $commentaire = $_REQUEST['commentaire_auteur'];
 
     $sql = "INSERT INTO retour (numero_emprunt, date_retour, commentaire) values(:numero_emprunt,:date_retour,:commentaire)";
     $temp = $pdo->prepare($sql);
@@ -53,7 +53,9 @@ if (isset($_REQUEST['ajouter'])) {
                                 <?php 
                                 foreach($selectEmprunt as $t){ 
                                     echo '<option value="'.$t['numero_emprunt'].'">'.$t['titre_ouvrage'].' | '.$t['nom_usager'].' '.$t['prenom_usager'].' | '.$t['date_emprunt'].'</option>';
-                                }?>
+                                }
+                                
+                                ?>
                         </div>
                         <div class="label-box">
                             <label for="date_retour">Date de retour :</label><br />
