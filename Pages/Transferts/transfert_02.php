@@ -104,7 +104,6 @@ if (isset($_REQUEST['id'])) {
                                     echo '<option value="' . $resultat['numero_bibliotheque'] . '">Bibliothèque de ' . $resultat['ville_bibliotheque'] . '</option>';
                                 }
                             }
-                            ;
                             ?>
                         </select>
                     </div>
@@ -117,11 +116,11 @@ if (isset($_REQUEST['id'])) {
                         <?php
                             if (isset($_REQUEST['bibli-origine'])) {
                         ?>
-                            <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>">
+                            <input type="hidden" name="bibli-origine" value="<?= $_REQUEST['bibli-origine'] ?>"
                         <?php
                             } else if (isset($_REQUEST['id'])) {
                         ?>
-                            <input type="hidden" name="bibli-origine" value="<?= $id?>">';
+                            <input type="hidden" name="bibli-origine" value="<?= $id?>">
                         <?php
                             }
                         ?>

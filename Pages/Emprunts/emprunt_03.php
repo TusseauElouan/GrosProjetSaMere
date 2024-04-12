@@ -37,32 +37,32 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
         <div class="content">
             <div class="content-inside">
             <form class="form" action="emprunt_01.php">
-                <h2>Ajouter un emprunt : </h2>
+                <h2>Ajouter un emprunt : </h2><br /><br/>
 
                 <input type="hidden" name="numero_emprunt"/>
 
-                <div class="content-inside">
+                <div class="label-box">
                     <label for="numero_ouvrage">Numero Ouvrage :</label>
                     <input class="form-input" type="number" name="numero_ouvrage" required/>
                 </div>
                 
-                <div class="content-inside">
+                <div class="label-box">
                     <label for="date_emprunt">Date Ouvrage :</label>
                     <input class="form-input" type="date" name="date_emprunt" required/>
                 </div>
 
-                <div class="content-inside">
+                <div class="label-box">
                     <label for="numero_usager">Numero Usager :</label>
                     <input class="form-input" type="number" name="numero_usager" required/>
                 </div>
 
-                <div class="content-inside">
+                <div class="label-box-textarea">
                     <label for="commentaire">Commentaire :</label><br />
-                    <textarea type="text" name="commentaire" id="" cols="60" rows="10"
+                    <textarea class="form-input" type="text" name="commentaire" id="" cols="60" rows="10"
                         required></textarea>
                 </div>
                 <div>
-                    <input type="submit" value="Ajouter" />
+                    <input class="submit-btn" type="submit" value="Ajouter" />
                 </div>
                 </form>
             </div>

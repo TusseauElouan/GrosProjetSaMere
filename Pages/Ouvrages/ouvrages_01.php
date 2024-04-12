@@ -90,9 +90,9 @@ if (isset($_REQUEST['type'])) {
                     <?php
                         }
                     ?>
-                </table>
+                </table><br /><br />        
                 <h2>Historique des emprunts</h2>
-                <table border='1'>
+                <table  class="tableau-liste" border="1" cellpadding="5px 7px">
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
@@ -109,10 +109,10 @@ if (isset($_REQUEST['type'])) {
                             echo "<tr><td>".$row['nom_usager']."</td><td>".$row['prenom_usager']."</td><td>".$row['date_emprunt']."</td><td>".$row['titre_ouvrage']."</td></tr>";
                         }
                     ?>
-                </table>
+                </table><br /><br />
                 
                 <h2>Historique des retours</h2>
-                <table border='1'>
+                <table class="tableau-liste" border="1" cellpadding="5px 7px">
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
@@ -129,10 +129,10 @@ if (isset($_REQUEST['type'])) {
                             echo "<tr><td>".$row['nom_usager']."</td><td>".$row['prenom_usager']."</td><td>".$row['date_retour']."</td><td>".$row['date_emprunt']."</td></tr>";
                         }
                     ?>
-                </table>
+                </table><br /><br />
                 
                 <h2>Historique des transferts</h2>
-                <table border='1'>
+                <table class="tableau-liste" border="1" cellpadding="5px 7px">
                     <tr>
                         <th>Date de transfert</th>
                         <th>Bibliothèque d'origine</th>
