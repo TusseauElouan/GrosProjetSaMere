@@ -6,6 +6,7 @@ $sql_ouvrage = 'SELECT * FROM ouvrage ; ';
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
 if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['date_emprunt'],$_REQUEST['numero_usager'],$_REQUEST['commentaire'])) {
+    echo "zizi";
     $numero_emprunt = $_REQUEST['numero_emprunt'];
     $numero_ouvrage = $_REQUEST['numero_ouvrage'];
     $date_emprunt = $_REQUEST['date_emprunt'];
@@ -15,9 +16,14 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
     $sql = "INSERT INTO emprunt (numero_ouvrage, date_emprunt, numero_usager ,commentaire) values(:numero_ouvrage,:date_emprunt,:numero_usager,:commentaire)";
     $temp = $pdo->prepare($sql);
 
+    $temp->bindParam('numero_ouvrage', ':numero_ouvrage');
+    $temp->bindParam('date_emprunt', ':date_emprunt');
+    $temp->bindParam('numero_usager', ':numero_usager');
+    $temp->bindParam('commentaire', ':commentaire');
+
     $temp->execute();
 
-    header('Location: auteur_01.php');
+    header('Location: emprunt_03.php');
     exit();
 }
 ?>

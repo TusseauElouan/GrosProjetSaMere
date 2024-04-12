@@ -16,18 +16,18 @@ if (isset($_REQUEST['numero_emprunt_ajout'],$_REQUEST['numero_ouvrage_ajout'],$_
     $numero_usager_ajout = $_REQUEST['numero_usager_ajout'];
     $commentaire_ajout = $_REQUEST['commentaire_ajout'];
 
-    $sql = "UPDATE emprunt SET numero_ouvrage_ajout = :numero_ouvrage_ajout, date_emprunt_ajout = :date_emprunt_ajout, numero_usager_ajout = :numero_usager_ajout ,commentaire_ajout = :commentaire_ajout WHERE numero_emprunt_ajout = :numero_emprunt_ajout";
+    $sql = "UPDATE emprunt SET numero_ouvrage = :numero_ouvrage, date_emprunt = :date_emprunt, numero_usager = :numero_usager ,commentaire = :commentaire WHERE numero_emprunt = :numero_emprunt";
     $temp = $pdo->prepare($sql);
 
-    $temp->bindParam(':numero_ouvrage_ajout', $numero_ouvrage_ajout);
-    $temp->bindParam(':date_emprunt_ajout', $date_emprunt_ajout);
-    $temp->bindParam(':numero_usager_ajout', $numero_usager_ajout);
-    $temp->bindParam(':commentaire_ajout', $commentaire_ajout);
-    $temp->bindParam(':numero_emprunt_ajout', $numero_emprunt_ajout);
+    $temp->bindParam(':numero_ouvrage', $numero_ouvrage_ajout);
+    $temp->bindParam(':date_emprunt', $date_emprunt_ajout);
+    $temp->bindParam(':numero_usager', $numero_usager_ajout);
+    $temp->bindParam(':commentaire', $commentaire_ajout);
+    $temp->bindParam(':numero_emprunt', $numero_emprunt_ajout);
 
     $temp->execute();
 
-    header('Location: auteur_01.php');
+    header('Location: emprunt_01.php');
     exit();
 }
 ?>
