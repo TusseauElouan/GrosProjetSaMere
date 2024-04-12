@@ -18,7 +18,7 @@
         <a href="Pages/Usagers/usagers_01.php">Usagers</a>
         <a href="Pages/Emprunts/emprunt_01.php">Emprunts</a>
         <a href="Pages/Retours/retour_01.php">Retours</a>
-        <a href="Pages/Transferts/transfert_01.php">TSransferts</a>
+        <a href="Pages/Transferts/transfert_01.php">Transferts</a>
     </nav>
 
     <?php 
@@ -32,7 +32,7 @@
     </div>
 
     <div class="noms">
-        <p>
+        <p style="font-size:1.5vh;">
             Foucher Theo,
             Chevalier Bastien,
             Chevalier Clement,
