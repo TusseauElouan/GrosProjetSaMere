@@ -54,7 +54,7 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
                 <input class="form-input" type="text" name="langue" id="langue">
             </div>
             <div class="label-box">
-                <label for="numero_bibliotheque">numero bibliotheque</label>
+                <label for="numero_bibliotheque">bibliotheque</label>
                 <select name="numero_bibliotheque" id="numero_bibliotheque">
                     <?php 
                         $temp_biblio = $pdo->prepare($sql_biblio);
@@ -66,7 +66,7 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
                 </select>
             </div>
             <div class="label-box">
-                <label for="numero_auteur">numero auteur</label>
+                <label for="numero_auteur">auteur</label>
                 <select name="numero_auteur" id="numero_auteur">
                     <?php 
                         $temp_auteur = $pdo->prepare($sql_auteur);
@@ -78,9 +78,8 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
                 </select>
             </div>
             <div class="label-box-textarea">
-                <label for="commentaire">commentaire</label><br />
-                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10"
-                        required></textarea>
+                <label for="commentaire">commentaire</label>
+                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10" required></textarea>
             </div>
             <div>
                 <input class="submit-btn" type="submit">
