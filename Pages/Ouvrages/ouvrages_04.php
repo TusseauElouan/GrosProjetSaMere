@@ -79,7 +79,7 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
             </div>
             <div class="label-box-textarea">
                 <label for="commentaire">commentaire</label>
-                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10"required></textarea>
+                <textarea class="form-input" type="text" name="commentaire" id="commentaire" cols="60" rows="10" required></textarea>
             </div>
             <div>
                 <input class="submit-btn" type="submit">

@@ -2,11 +2,10 @@
 require_once '../../includes/connexion.php';
 
 $sql_usager = 'SELECT * FROM usager ;';
-$sql_ouvrage = 'SELECT * FROM ouvrage ; ';
+$sql_ouvrage = 'SELECT * FROM ouvrage JOIN emprunt ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage WHERE emprunt.numero_ouvrage != ouvrage.numero_ouvrage;';
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
-if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['date_emprunt'],$_REQUEST['numero_usager'],$_REQUEST['commentaire'])) {
-    $numero_emprunt = $_REQUEST['numero_emprunt'];
+if (isset($_REQUEST['numero_ouvrage'],$_REQUEST['date_emprunt'],$_REQUEST['numero_usager'],$_REQUEST['commentaire'])) {
     $numero_ouvrage = $_REQUEST['numero_ouvrage'];
     $date_emprunt = $_REQUEST['date_emprunt'];
     $numero_usager = $_REQUEST['numero_usager'];
@@ -15,9 +14,14 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
     $sql = "INSERT INTO emprunt (numero_ouvrage, date_emprunt, numero_usager ,commentaire) values(:numero_ouvrage,:date_emprunt,:numero_usager,:commentaire)";
     $temp = $pdo->prepare($sql);
 
+    $temp->bindParam(':numero_ouvrage', $numero_ouvrage);
+    $temp->bindParam(':date_emprunt', $date_emprunt);
+    $temp->bindParam(':numero_usager', $numero_usager);
+    $temp->bindParam(':commentaire', $commentaire);
+
     $temp->execute();
 
-    header('Location: auteur_01.php');
+    header('Location: emprunt_01.php');
     exit();
 }
 ?>
@@ -42,7 +46,6 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
             <div class="content-inside">
                 <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <h2>Ajouter un emprunt :</h2><br /><br />
-
                     <div class="label-box">
                         <label for="numero_ouvrage">Ouvrage :</label>
                         <select name="numero_ouvrage">
@@ -57,8 +60,8 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                     </div>
 
                     <div class="label-box">
-                        <label for="date_emprunt">Date emprunt :</label>
-                        <input class="form-input" type="date" name="date_emprunt" required />
+                        <label for="date_emprunt">Date emprunt :</label> 
+                        <input class="form-input" type="date" name="date_emprunt" value="<?php echo date('Y-m-d'); ?>" required />
                     </div>
 
                     <div class="label-box">
@@ -71,12 +74,14 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                             ?>
                                 <option value="<?php echo $usager["numero_usager"] ?>"><?php echo $usager["prenom_usager"] ?> <?php echo $usager["nom_usager"] ?></option>
                             <?php } ?>
+                        </select>
                     </div>
 
                     <div class="label-box-textarea">
                         <label for="commentaire">Commentaire :</label><br/>
                         <textarea class="form-input" type="text" name="commentaire" id="" cols="60" rows="10" required></textarea>
                     </div>
+
                     <div>
                         <input class="submit-btn" type="submit" value="Ajouter" />
                     </div>
