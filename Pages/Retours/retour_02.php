@@ -33,6 +33,11 @@ if (isset($_REQUEST['ajouter'])) {
     header('Location: retour_01.php');
     exit();
 }
+
+$sql = "SELECT numero_emprunt, nom_usager, prenom_usager, titre_ouvrage, date_emprunt FROM emprunt_vue ORDER BY date_emprunt DESC";
+$temp = $pdo->prepare($sql);
+$temp->execute();
+$selectEmprunt = $temp ;
 ?>
 <!doctype html>
 <html lang="fr">
@@ -54,21 +59,14 @@ if (isset($_REQUEST['ajouter'])) {
                 <div class="content-inside">
                     <form class="form" action="retour_03.php">
                         <h2>Ajouter un retour : </h2>
-
                         <div class="label-box">
-                            <label for="titre_ouvrage">Titre de l'ouvrage :</label>
-                            <input class="form-input" type="text" name="titre_ouvrage" required/>
+                            <label for="titre_ouvrage">Liste des emprunts en cours :</label>
+                            <select class="form-input" type="text" name="titre_ouvrage" >
+                                <?php 
+                                foreach($selectEmprunt as $t){ 
+                                    echo '<option value="'.$t['numero_emprunt'].'">'.$t['nom_usager'].' '.$t['prenom_usager'].''.$t['titre_ouvrage'].''.$t['date_emprunt'].'</option>';
+                                }?>
                         </div>
-
-                        <div class="label-box">
-                            <label for="nom_auteur">Nom de l'auteur :</label>
-                            <input class="form-input" type="text" name="nom_auteur" required/>
-                        </div>                    
-                        <div class="label-box">
-                            <label for="prenom_auteur">Prénom de l'auteur :</label>
-                            <input class="form-input" type="text" name="prenom_auteur" required/>
-                        </div>
-
                         <div class="label-box">
                             <label for="date_retour">Date de retour :</label><br />
                             <input type="date" class="form-input" type="text" name="date_retour" id=""

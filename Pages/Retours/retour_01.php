@@ -1,12 +1,22 @@
 <?php
 require_once '../../includes/connexion.php';
 
+$sql = 'SELECT emprunt_vue.emprunt_numero_emprunt AS numero_emprunt, emprunt_vue.nom_usager, emprunt_vue.prenom_usager, emprunt_vue.titre_ouvrage, auteur.nom_auteur,auteur.prenom_auteur,
+emprunt_vue.date_emprunt, COALESCE (retour.numero_retour,-1) AS numero_retour, retour.commentaire, retour.date_retour
+FROM emprunt_vue
+LEFT JOIN retour ON retour.numero_emprunt = emprunt_vue.emprunt_numero_emprunt
+LEFT JOIN auteur ON emprunt_vue.numero_auteur = auteur.numero_auteur';
+$temp = $pdo->query($sql);
+$temp->execute();
+$emprunt = $temp;
+
 //requete affichage liste
-$sql = 'SELECT retour_vue.numero_retour,retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour
+$sql = 'SELECT retour_vue.numero_retour,retour_vue.titre_ouvrage,auteur.nom_auteur,auteur.prenom_auteur,retour_vue.date_retour, retour_vue.commentaire
 FROM retour_vue, auteur
 WHERE retour_vue.numero_auteur = auteur.numero_auteur';
 $temp = $pdo->prepare($sql);
 $temp->execute();
+$retour = $temp;
 
 //Requete de delete
 if (isset($_REQUEST['type'])) {
@@ -17,12 +27,20 @@ if (isset($_REQUEST['type'])) {
     $temp->execute();
 
     header('Location: retour_01.php');
-    exit();
+}
+
+if(isset($_REQUEST['ajout'])){
+    $numero_emprunt = $_REQUEST['id'];
+    $sql = "INSERT INTO retour (numero_emprunt, date_retour) values(:numero_emprunt,NOW())";
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':numero_emprunt', $numero_emprunt);
+    $temp->execute();
+    header('Location: retour_01.php');
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,40 +70,49 @@ if (isset($_REQUEST['type'])) {
                         <th>Prénom auteur</th>
                         <th>Date du retour</th>
                         <th>commentaire</th>
+                        <th>Retourner</th>
                         <th>Editer</th>
-                        <th>Supprimer</th>
+                        <th>Annuler</th>
                     </tr>
 
 
                     <?php
-                    foreach ($temp as $t) {
+                    foreach ($emprunt as $e) {
                         ?>
                         <tr>
                             <td>
-                                <?= $t['titre_ouvrage']; ?>
+                                <?= $e['titre_ouvrage']; ?>
                             </td>
                             <td>
-                                <?= $t['nom_auteur']; ?>
+                                <?= $e['nom_auteur']; ?>
                             </td>
                             <td>
-                                <?= $t['prenom_auteur']; ?>
+                                <?= $e['prenom_auteur']; ?>
                             </td>
                             <td>
-                                <?= $t['date_retour']; ?>
+                                <?= $e['date_emprunt']; ?>
                             </td>                           
                             <td>
-                                <?= $t['commentaire']; ?>
+                                <?= $e['commentaire']; ?>
                             </td>
                             <td>
-                                <a href='retour_02.php?id=<?= $t['numero_retour']?>'>
+                                <?php 
+                                if($e['numero_retour'] == -1){?>
+                                    <a href='retour_01.php?id=<?= $e['numero_emprunt']?>&ajout=ajout'>clique</a>
+                                    <?php
+                                }else{
+                                    echo "Retourné";
+                                } ?>
+                            </td>
+                            <td>
+                                <a href='retour_02.php?id=<?= $e['numero_retour']?>'>
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce retour?')" href='retour_01.php?type=supp&numero_retour=<?=$t['numero_retour']?>'>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce retour?')" href='retour_01.php?type=supp&numero_retour=<?=$e['numero_retour']?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                         </tr>
-
                         <?php
                     }
                     ?>
