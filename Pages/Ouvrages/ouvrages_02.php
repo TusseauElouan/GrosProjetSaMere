@@ -1,6 +1,6 @@
 <?php
 require '../../includes/connexion.php';
-
+$sql_auteur = 'SELECT * FROM auteur ;';
         $id = $_REQUEST["id"];
         $sql2 = "SELECT * FROM ouvrage WHERE numero_ouvrage = :id";
         $temp2 = $pdo->prepare($sql2);
@@ -8,18 +8,16 @@ require '../../includes/connexion.php';
         $temp2->execute();
         $ouvrage = $temp2->fetch();
 
-if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliotheque"], $_REQUEST["numero_auteur"], $_REQUEST["commentaire"])) {
+if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_auteur"], $_REQUEST["commentaire"])) {
         $titre = htmlentities($_REQUEST["titre"]);
         $langue = htmlentities($_REQUEST["langue"]);
-        $bibliotheque = htmlentities($_REQUEST["numero_bibliotheque"]);
         $auteur = htmlentities($_REQUEST["numero_auteur"]);
         $commentaire = htmlentities($_REQUEST["commentaire"]);
         $id = $_REQUEST["id"];
-        $sql = "UPDATE ouvrage SET titre_ouvrage = :titre , langue = :langue, numero_bibliotheque = :biblioteque, numero_auteur = :auteur, commentaire = :commentaire WHERE numero_ouvrage = :id";
+        $sql = "UPDATE ouvrage SET titre_ouvrage = :titre , langue = :langue, numero_auteur = :auteur, commentaire = :commentaire WHERE numero_ouvrage = :id";
         $temp = $pdo->prepare($sql);
         $temp->bindParam(':titre', $titre);
         $temp->bindParam(':langue', $langue);
-        $temp->bindParam(':biblioteque', $bibliotheque);
         $temp->bindParam(':auteur', $auteur);
         $temp->bindParam(':commentaire', $commentaire);
         $temp->bindParam(':id', $id);
@@ -59,12 +57,17 @@ if (isset($_REQUEST["titre"], $_REQUEST["langue"], $_REQUEST["numero_bibliothequ
                 <input class="form-input" type="text" name="langue" id="langue" value="<?php echo $ouvrage['langue']?>">
             </div>
             <div class="label-box">
-                <label for="numero_bibliotheque">numero bibliotheque</label>
-                <input class="form-input" type="text" name="numero_bibliotheque" id="numero_bibliotheque" value="<?php echo $ouvrage['numero_bibliotheque']?>">
-            </div>
-            <div class="label-box">
-                <label for="numero_auteur">numero auteur</label>
-                <input class="form-input" type="text" name="numero_auteur" id="numero_auteur" value="<?php echo $ouvrage['numero_auteur']?>">
+            <select name="numero_auteur" id="numero_auteur">
+                        <?php
+                        $temp_auteur = $pdo->prepare($sql_auteur);
+                        $temp_auteur->execute();
+                        while ($auteur = $temp_auteur->fetch()) {
+                            ?>
+                            <option value="<?php echo $auteur["numero_auteur"] ?>" <?php if ($auteur["numero_auteur"] == $ouvrage["numero_auteur"]) {
+                                                                                                echo "selected";
+                                                                                            } ?>><?php echo $auteur["prenom_auteur"] ?> <?php echo $auteur["nom_auteur"] ?></option>
+                        <?php } ?>
+                    </select>
             </div>
             <div class="label-box-textarea">
                 <label for="commentaire">commentaire</label><br />
