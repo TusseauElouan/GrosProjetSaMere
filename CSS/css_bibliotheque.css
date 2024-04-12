@@ -34,7 +34,6 @@ nav {
     display: flex;
     flex-direction: column;
     background-color: var(--gauche);
-    height: 80vh;
     border-radius: 0px 50px 50px 0px;
 }
 
@@ -42,7 +41,7 @@ nav a {
     text-decoration: none;
     color: black;
     margin-left: 20px;
-    font-size: 30px;
+    font-size: 3vh;
     margin-bottom: 1vh;
     margin-top: 2vh;
 }

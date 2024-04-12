@@ -71,12 +71,14 @@ if (isset($_REQUEST['numero_emprunt'],$_REQUEST['numero_ouvrage'],$_REQUEST['dat
                             ?>
                                 <option value="<?php echo $usager["numero_usager"] ?>"><?php echo $usager["prenom_usager"] ?> <?php echo $usager["nom_usager"] ?></option>
                             <?php } ?>
+                        </select>
                     </div>
 
                     <div class="label-box-textarea">
                         <label for="commentaire">Commentaire :</label><br/>
                         <textarea class="form-input" type="text" name="commentaire" id="" cols="60" rows="10" required></textarea>
                     </div>
+
                     <div>
                         <input class="submit-btn" type="submit" value="Ajouter" />
                     </div>
