@@ -100,7 +100,7 @@ if(isset($_REQUEST['ajout'])){
                             <td>
                                 <?php 
                                 if($e['numero_retour'] == -1){?>
-                                    <a style="text-decoration:none;" href='retour_01.php?id=<?= $e['numero_emprunt']?>&ajout=ajout'>➕</a>
+                                    <a style="text-decoration:none;" href='retour_01.php?id=<?= $e['numero_emprunt']?>&commentaire=<?=$e['commentaire']?>&ajout=ajout'>➕</a>
                                     <?php
                                 }else{
                                     echo "✅";
