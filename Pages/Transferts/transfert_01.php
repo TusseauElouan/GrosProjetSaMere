@@ -3,7 +3,7 @@
 require_once '../../includes/connexion.php';
 
 //requete affichage liste
-$sql = 'SELECT ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
+$sql = 'SELECT transfert_vue.numero_bibliotheque_origine_transfert, Ouvrage.numero_ouvrage, transfert_vue.numero_transfert,ouvrage.titre_ouvrage, transfert_vue.ville_bibliotheque_origine, transfert_vue.ville_bibliotheque_cible, transfert_vue.date_transfert
 FROM transfert_vue,ouvrage
 WHERE Ouvrage.numero_ouvrage = Transfert_vue.numero_ouvrage';
 $temp = $pdo->prepare($sql);
@@ -12,10 +12,34 @@ $temp->execute();
 //Requete de delete
 if (isset($_REQUEST['id_transfert'])) {
     $id_transfert = htmlentities($_REQUEST['id_transfert']);
+
+
+    $sql_research = 'SELECT * FROM transfert WHERE numero_transfert = :id_transfert';
+    $result_research = $pdo->prepare($sql_research);
+    $data = [
+        'id_transfert' => $id_transfert
+    ];
+    $result_research->execute($data);
+    
     $sql = 'DELETE FROM transfert WHERE numero_transfert = :id_transfert';
-    $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id_transfert', $id_transfert);
-    $temp->execute();
+    $result = $pdo->prepare($sql);
+    $result->bindParam(':id_transfert', $id_transfert);
+    $result->execute();
+
+
+    $sql_update = 'UPDATE ouvrage SET numero_bibliotheque = :bibliorigine WHERE numero_ouvrage = :id_ouvrage';
+    $result_update = $pdo->prepare($sql_update);
+    while ($resultat_research = $result_research->fetch()) {
+        var_dump($resultat_research);
+        $data2 = [
+            'bibliorigine' => $resultat_research['numero_bibliotheque_origine'],
+            'id_ouvrage' => $resultat_research['numero_ouvrage']
+        ];
+        $result_update->execute($data2);
+    }
+    
+    header('Location: transfert_01.php');
+    
 }
 
 ?>
@@ -35,45 +59,37 @@ if (isset($_REQUEST['id_transfert'])) {
     ?>
     <main>
         <div class="content">
-            <div>
-                <a href="emprunt_04.php">
-                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                    Ajouter
-                </a>
-                <table border="1px">
+            <div class="content-inside">
+                <div class="boutonadd-container">
+                    <a href="transfert_02.php" class="bouton-ajouter">
+                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                        Ajouter
+                    </a>
+                </div>
+                <table class="tableau-liste" border="1" cellpadding="5px 7px">
                     <tr>
                         <th>Titre ouvrage</th>
                         <th>Ville origine</th>
                         <th>Ville cible</th>
                         <th>Date transfert</th>
+                        <th>Supprimer</th>
                     </tr>
                 <?php
-                foreach ($temp as $t) {
+                while ($t= $temp->fetch()) {
+                    $id = $t['numero_transfert'];
+                    $titre = $t['titre_ouvrage'];
+                    $origine = $t['ville_bibliotheque_origine'];
+                    $cible = $t['ville_bibliotheque_cible'];
+                    $date = $t['date_transfert'];
                     ?>
                     <tr>
+                        <td><?= $titre; ?></td>
+                        <td><?= $origine; ?></td>
+                        <td><?= $cible; ?></td>
+                        <td><?= $date; ?></td>
                         <td>
-                            <?= $t['titre_ouvrage']; ?>
-                        </td>
-                        <td>
-                            <?= $t['ville_bibliotheque']; ?>
-                        </td>
-                        <td>
-                            <?= $t['ville_bibliotheque']; ?>
-                        </td>
-                        <td>
-                            <?= $t['date_transfert']; ?>
-                        </td>
-                        <td>
-                            <form action="transfert_01.php" method="post">
-                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                                <input type="submit" value="🗑️">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="transfert_02.php?id=<?= $t['numero_transfert'] ?>" method="post">
-                                <input type="hidden" name="id_transfert" value="<?= $t['numero_transfert'] ?>">
-                                <input type="submit">
-                            </form>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='transfert_01.php?type=supp&id_transfert=<?=$id?>'>
+                            <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                         </td>
                     </tr>
                 <?php

@@ -1,5 +1,14 @@
 <?php
 require_once '../../includes/connexion.php';
+if (isset($_REQUEST['type'])) {
+    $id = $_REQUEST['numero_usager'];
+    $sql = 'DELETE FROM usager WHERE numero_usager = :id';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id', $id);
+    $temp->execute();
+    header('Location: usagers_01.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +18,7 @@ require_once '../../includes/connexion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
-    <title>Document</title>
+    <title>Formulaire Usagers</title>
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
 </head>
 
@@ -21,49 +30,52 @@ require_once '../../includes/connexion.php';
     ?>
     <main>
         <div class="content">
-            <div>
-        <a href="usagers_04.php">
-            <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-            Ajouter
-        </a>
-        <table border="1px">
-            <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Ville</th>
-                <th>Numero bibliotheque</th>
-                <th>commentaire</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <?php 
-                $sql = 'SELECT * FROM usager';
-                $temp = $pdo->query($sql);
-                while ($usager = $temp->fetch()){
-                    $id = htmlentities($usager["numero_usager"]);
-                    $nom = htmlentities($usager["nom_usager"]);
-                    $prenom = htmlentities($usager["prenom_usager"]);
-                    $ville = htmlentities($usager["ville_usager"]);
-                    $bibliotheque = htmlentities($usager["numero_bibliotheque"]);
-                    $commentaire = htmlentities($usager["commentaire"]);
-                ?>
-                <td><?= $nom ?></td>
-                <td><?= $prenom ?></td>
-                <td><?= $ville ?></td>
-                <td><?= $bibliotheque ?></td>
-                <td><?= $commentaire ?></td>
-                <td> 
-                    <a href="usagers_02.php?id=<?= $id ?>">
-                        <img src="../../Medias/editform.png" class="boutonsform" alt="image de modification">
+            <div class="content-inside">
+                <div class="boutonadd-container">
+                    <a href="usagers_03.php" class="bouton-ajouter">
+                        <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                        Ajouter
                     </a>
-                    <a href="usagers_03.php?id=<?= $id ?>">
-                        <img src="../../Medias/supprimerform.png" class="boutonsform" alt="image de suppresion">
-                    </a>
-                </td>
-            </tr>
-            <?php } ?>
-        </table>
-        </div>
+                </div>
+                <table class="tableau-liste" border="1" cellpadding="5px 7px">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Ville</th>
+                        <th>Numero bibliotheque</th>
+                        <th>commentaire</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    <tr>
+                        <?php 
+                        $sql = 'SELECT * FROM usager';
+                        $temp = $pdo->query($sql);
+                        while ($usager = $temp->fetch()){
+                            $id = htmlentities($usager["numero_usager"]);
+                            $nom = htmlentities($usager["nom_usager"]);
+                            $prenom = htmlentities($usager["prenom_usager"]);
+                            $ville = htmlentities($usager["ville_usager"]);
+                            $bibliotheque = htmlentities($usager["numero_bibliotheque"]);
+                            $commentaire = htmlentities($usager["commentaire"]);
+                        ?>
+                        <td><?= $nom ?></td>
+                        <td><?= $prenom ?></td>
+                        <td><?= $ville ?></td>
+                        <td><?= $bibliotheque ?></td>
+                        <td><?= $commentaire ?></td>
+                        <td>
+                            <a href='usagers_02.php?id=<?= $id?>'>
+                            <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
+                        </td>
+                        <td>
+                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='usagers_01.php?type=supp&numero_usager=<?=$id?>'>
+                            <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
         </div>
     </main>
 </body>

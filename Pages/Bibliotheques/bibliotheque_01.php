@@ -6,8 +6,13 @@ $temp = $pdo->query($sql);
 
 if (isset($_POST['type'])){
     if($_POST['type']=="modif"){
-        $sql="UPDATE bibliotheque SET ville_bibliotheque='".$_POST['ville_bibliotheque']."', commentaire='".$_POST['commentaire_bibliotheque']."' WHERE numero_bibliotheque='".$_POST['numero_bibliotheque']."'";
-        $pdo->exec($sql);
+        if (isset($_POST['ville_bibliotheque'],$_POST['commentaire_bibliotheque'],$_POST['id_bibliotheque'])){
+            $numero_bibliotheque = $_POST['id_bibliotheque'];
+            $ville_bibliotheque = $_POST['ville_bibliotheque'];
+            $commentaire_bibliotheque = $_POST['commentaire_bibliotheque'];
+            $sql="UPDATE bibliotheque SET ville_bibliotheque='".$ville_bibliotheque."', commentaire='".$commentaire_bibliotheque."' WHERE numero_bibliotheque='".$numero_bibliotheque."'";
+            $pdo->exec($sql);
+        }
     }
     if($_POST['type']=="ajout"){
         $sql="INSERT INTO bibliotheque (ville_bibliotheque,commentaire) VALUES ('".$_POST['ville_bibliotheque']."','".$_POST['commentaire_bibliotheque']."')";
@@ -15,15 +20,14 @@ if (isset($_POST['type'])){
     }
     header("Location: bibliotheque_01.php");
 }
-if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
-    if ($_GET['type'] == "supp") {
-        $numero_bibliotheque = $_GET['numero_bibliotheque'];
-        $sql = 'DELETE FROM bibliotheque WHERE numero_bibliotheque=' . $numero_bibliotheque;
-        $pdo->exec($sql);
-        header("Location: bibliotheque_01.php");
-        
-
-    }
+if (isset($_REQUEST['type'])) {
+    $id = $_REQUEST['numero_bibliotheque'];
+    $sql = 'DELETE FROM bibliotheque WHERE numero_bibliotheque = :id';
+    $temp = $pdo->prepare($sql);
+    $temp->bindParam(':id', $id);
+    $temp->execute();
+    header('Location: bibliotheque_01.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -43,12 +47,14 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <div>
-            <a href="bibliotheque_02.php">
-                <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
-                Ajouter
-            </a>
-            <table border="1px">
+        <div class="content-inside">
+            <div class="boutonadd-container">
+                <a href="bibliotheque_02.php" class="bouton-ajouter">
+                    <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">
+                    Ajouter
+                </a>
+            </div>
+            <table class="tableau-liste" border="1" cellpadding="5px 7px">
                 <thead>
                     <tr>
                         <th scope='col'>Ville</th>
@@ -62,10 +68,16 @@ if (isset($_GET['type'], $_GET['numero_bibliotheque'])) {
                 while ($resultats = $temp->fetch()) {
                     ?>
                         <tr>
-                            <th scope='row'><?= $resultats['ville_bibliotheque']?></th>
+                            <td scope='row'><?= $resultats['ville_bibliotheque']?></td>
                             <td><?php echo $resultats['commentaire']?></td>
-                            <td><a href='bibliotheque_03.php?id_bibliotheque=<?= $resultats['numero_bibliotheque']?>'><img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a></td>
-                            <td><a onclick="return confirm('Voulez-vous vraiment supprimer cette bibliothèque?')" href='bibliotheque_01.php?type=supp&numero_bibliotheque=<?=$resultats['numero_bibliotheque']?>'><img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a></td>
+                            <td>
+                                <a href='bibliotheque_03.php?id_bibliotheque=<?= $resultats['numero_bibliotheque']?>'>
+                                <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
+                            </td>
+                            <td>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cette bibliothèque?')" href='bibliotheque_01.php?type=supp&numero_bibliotheque=<?=$resultats['numero_bibliotheque']?>'>
+                                <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
+                            </td>
                         </tr>
                     <?php
                     }

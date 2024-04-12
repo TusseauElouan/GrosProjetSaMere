@@ -16,15 +16,22 @@
     include '../../includes/titre-page.php';
     ?>
     <div class="content">
-        <form action="bibliotheque_01.php" method="post">
+        <div class="content-inside">
+        <form class="form" action="bibliotheque_01.php" method="post">
+        <div class="label-box">
             <label for="ville_bibliotheque">Ville de la Bibliothèque : </label>
-            <input type="text" name="ville_bibliotheque" required>
+            <input class="form-input" type="text" name="ville_bibliotheque" required>
+        </div>
 
-            <label for="commentaire_bibliotheque">Commentaire : </label>
-            <textarea name="commentaire_bibliotheque" id="" cols="60" rows="10" required></textarea>
+        <div class="label-box-textarea">
+            <label for="commentaire_bibliotheque">Commentaire : </label><br />
+            <textarea class="form-input" name="commentaire_bibliotheque" id="" cols="60" rows="10" required></textarea>
+        </div>
 
+        <div>
             <input type="hidden" name="type" value="ajout">
-            <input type="submit" value="Envoyer">
+            <input class="submit-btn" type="submit" value="Envoyer">
+        </div>
         </form>
     </div>
 </body>
