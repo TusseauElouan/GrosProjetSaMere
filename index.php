@@ -33,7 +33,7 @@
     </div>
 
     <div class="noms">
-        <p style="font-size:1.5vh;">
+        <p style="font-size:2vh;">
             Foucher Theo,
             Chevalier Bastien,
             Chevalier Clement,
