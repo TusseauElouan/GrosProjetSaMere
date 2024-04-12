@@ -33,7 +33,7 @@ if (isset($_REQUEST['supprimer'])) {
                     </a>
                 </div>
                 <table class="tableau-liste" border="1" cellpadding="5px 7px">
-                    <tr><th>Numéro ouvrage</th><th>Date emprunt</th><th>Numéro usager</th><th>Commentaire</th><th>Editer</th><th>Supprimer</th></tr>
+                    <tr><th>Nom ouvrage</th><th>Date emprunt</th><th>Nom usager</th><th>Commentaire</th><th>Editer</th><th>Supprimer</th></tr>
                     <?php
                         $sql = 'SELECT emprunt.numero_emprunt, emprunt.numero_ouvrage, emprunt.numero_usager, emprunt.date_emprunt, usager.nom_usager, usager.prenom_usager, emprunt.commentaire, ouvrage.titre_ouvrage FROM emprunt INNER JOIN usager ON emprunt.numero_usager = usager.numero_usager JOIN ouvrage ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage';
                         $temp = $pdo->query($sql);
