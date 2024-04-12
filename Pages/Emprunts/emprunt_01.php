@@ -55,7 +55,7 @@ if (isset($_REQUEST['supprimer'])) {
                                 </a>
                             </td>
                             <td>
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce transfert?')" href='emprunt_01.php?type=supp&numero_emprunt=<?=$numero_emprunt?>'>
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet emprunt?')" href='emprunt_01.php?type=supp&numero_emprunt=<?=$numero_emprunt?>'>
                                 <img src="../../Medias/supprimerform.png" class="boutonsform" alt="supprimer" title="supprimer"></a>
                             </td>
                     <?php
