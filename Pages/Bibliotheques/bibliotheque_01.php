@@ -20,14 +20,24 @@ if (isset($_POST['type'])){
     }
     header("Location: bibliotheque_01.php");
 }
-if (isset($_REQUEST['type'])) {
+
+if (isset($_REQUEST['type']) && $_REQUEST['type'] == "supp") {
     $id = $_REQUEST['numero_bibliotheque'];
-    $sql = 'DELETE FROM bibliotheque WHERE numero_bibliotheque = :id';
-    $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id', $id);
-    $temp->execute();
-    header('Location: bibliotheque_01.php');
-    exit();
+    try {
+        $sql = 'DELETE FROM bibliotheque WHERE numero_bibliotheque = :id';
+        $temp = $pdo->prepare($sql);
+        $temp->bindParam(':id', $id);
+        $temp->execute();
+        header('Location: bibliotheque_01.php');
+        exit();
+    } catch (PDOException $e) {
+        if ($e->getCode() == '23000') {
+            header("Location: bibliotheque_01.php?error=related_records&id=$id");
+            exit();
+        } else {
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -48,6 +58,11 @@ if (isset($_REQUEST['type'])) {
     ?>
     <div class="content">
         <div class="content-inside">
+        <?php
+            if (isset($_GET['error']) && $_GET['error'] == "related_records") {
+                echo "<p style='margin: 0;'>Vous devez d'abord supprimer tous les ouvrages associés à cette bibliothèque avant de pouvoir la supprimer.</p>";
+            }
+            ?>
             <div class="boutonadd-container">
                 <a href="bibliotheque_02.php" class="bouton-ajouter">
                     <img src="../../Medias/ajouterform.png" class="boutonsform" alt="">

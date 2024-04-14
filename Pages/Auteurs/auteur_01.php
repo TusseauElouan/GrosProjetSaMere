@@ -1,14 +1,24 @@
 <?php
 require_once '../../includes/connexion.php';
 
+
 if (isset($_REQUEST['type'])) {
     $id = $_REQUEST['numero_auteur'];
-    $sql = 'DELETE FROM auteur WHERE numero_auteur = :id';
-    $temp = $pdo->prepare($sql);
-    $temp->bindParam(':id', $id);
-    $temp->execute();
-    header('Location: auteur_01.php');
-    exit();
+    try {
+        $sql = 'DELETE FROM auteur WHERE numero_auteur = :id';
+        $temp = $pdo->prepare($sql);
+        $temp->bindParam(':id', $id);
+        $temp->execute();
+        header('Location: auteur_01.php');
+        exit();
+    } catch (PDOException $e) {
+        if ($e->errorInfo[1] == 1451) {
+            echo "Vous devez supprimer tous les ouvrages de cet auteur avant de le supprimer.";
+            
+        } else {
+            echo "Une erreur s'est produite: " . $e->getMessage();
+        }
+    }
 }
 ?>
 <!doctype html>
