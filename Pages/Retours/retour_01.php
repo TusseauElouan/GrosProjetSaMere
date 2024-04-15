@@ -49,7 +49,6 @@ if(isset($_REQUEST['ajout'])){
     <link rel="stylesheet" href="../../CSS/css_bibliotheque.css">
     <title>Formulaire Retours</title>
 </head>
-
 <body>
     <?php
     include "../../includes/navbar.php";
