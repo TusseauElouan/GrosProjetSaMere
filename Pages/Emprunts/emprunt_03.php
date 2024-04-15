@@ -2,7 +2,7 @@
 require_once '../../includes/connexion.php';
 
 $sql_usager = 'SELECT * FROM usager ;';
-$sql_ouvrage = 'SELECT * FROM ouvrage JOIN emprunt ON emprunt.numero_ouvrage = ouvrage.numero_ouvrage WHERE emprunt.numero_ouvrage != ouvrage.numero_ouvrage;';
+$sql_ouvrage = 'SELECT o.numero_ouvrage, o.titre_ouvrage FROM ouvrage o LEFT JOIN emprunt e ON o.numero_ouvrage = e.numero_ouvrage LEFT JOIN retour r ON e.numero_emprunt = r.numero_emprunt WHERE e.numero_emprunt IS NULL OR r.numero_emprunt IS NOT NULL;';
 
 // verification de l'existance des valeures du form (si ca existe je prepare les variables pour la modif dans la BDD)
 if (isset($_REQUEST['numero_ouvrage'],$_REQUEST['date_emprunt'],$_REQUEST['numero_usager'],$_REQUEST['commentaire'])) {
