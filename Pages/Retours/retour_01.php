@@ -93,8 +93,8 @@ if(isset($_REQUEST['ajout'])){
                                 <?= $e['prenom_auteur']; ?>
                             </td>
                             <td>
-                                <?= $e['date_emprunt']; ?>
-                            </td>                           
+                                <?= $e['date_retour']; ?>
+                            </td>                               
                             <td>
                                 <?= $e['commentaire_emprunt']; ?>
                             </td>
@@ -104,14 +104,15 @@ if(isset($_REQUEST['ajout'])){
                             <td>
                                 <?php 
                                 if($e['numero_retour'] == -1){?>
-                                    <a style="text-decoration:none;" href='retour_01.php?id=<?= $e['numero_emprunt']?>&commentaire=<?=$e['commentaire_retour']?>&ajout=ajout'>➕</a>
+                                    <a style="text-decoration:none;" href='retour_01.php?id=<?=$e['numero_emprunt']?>&commentaire=<?=$e['commentaire_retour']?>&ajout=ajout'>➕</a>
                                     <?php
                                 }else{
                                     echo "✅";
                                 } ?>
                             </td>
                             <td>
-                                <a href='retour_02.php?id=<?= $e['numero_retour']?>'>
+                                <a href='retour_02.php?set=on&numero=<?=$e['numero_retour']?>&nom=<?=$e['nom_auteur']?>&prenom=<?=$e['prenom_auteur']?>
+                                &date=<?=$e['date_retour']?>&commentaire=<?=$e['commentaire_retour']?>&titre_ouvrage=<?=$e['titre_ouvrage']?>'>
                                 <img src="../../Medias/editform.png" class="boutonsform" alt="edit" title="edit"></a>
                             </td>
                             <td>
